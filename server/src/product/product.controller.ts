@@ -5,15 +5,15 @@ import { Product } from './product.model';
 
 @Controller('product')
 export class ProductController {
-  constructor(private readonly producttService: ProductService) {}
+  constructor(private readonly productService: ProductService) {}
 
   @Get()
   getProducts(): Promise<Product[]> {
-    return this.producttService.getAllProducts();
+    return this.productService.getAllProducts();
   }
 
   @Post()
   async createProduct(): Promise<Product> {
-    return this.producttService.createProduct();
+    return this.productService.createProduct();
   }
 }
