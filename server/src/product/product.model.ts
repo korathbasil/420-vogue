@@ -1,40 +1,18 @@
-import { Schema, model } from 'mongoose';
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
-export interface Product {
+export type ProductDoc = Product & Document;
+
+@Schema()
+export class Product {
+  @Prop()
+  id: string;
+
+  @Prop()
   name: string;
-  description: string;
-  category: string;
-  subCatogory: string;
-  size: string[];
+
+  @Prop()
+  price: number;
 }
 
-const productSchema = new Schema<Product>({
-  name: {
-    type: String,
-    required: true,
-    maxlength: 40,
-  },
-  description: {
-    type: String,
-    required: true,
-    maxlength: 200,
-  },
-  category: {
-    type: String,
-    required: true,
-    maxlength: 40,
-  },
-  subCatogory: {
-    type: String,
-    required: true,
-    maxlength: 40,
-  },
-  size: [
-    {
-      type: Number,
-      required: true,
-    },
-  ],
-});
-
-export const productModel = model<Product>('products', productSchema);
+export const productSchema = SchemaFactory.createForClass(Product);
