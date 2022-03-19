@@ -12,4 +12,12 @@ export class ProductService {
 
     return products;
   }
+
+  async createProduct(): Promise<Product> {
+    return this.productRepo.insertOne({
+      id: 'jnfjihaiha',
+      name: 'Shirt',
+      price: 3.45,
+    });
+  }
 }

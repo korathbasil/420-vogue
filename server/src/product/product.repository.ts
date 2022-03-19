@@ -14,4 +14,10 @@ export class ProductRepository {
   async find(productsFilterQuery: FilterQuery<Product>): Promise<Product[]> {
     return this.productModel.find(productsFilterQuery);
   }
+
+  async insertOne(product: Product): Promise<Product> {
+    const newProduct = new this.productModel(product);
+
+    return newProduct.save();
+  }
 }
