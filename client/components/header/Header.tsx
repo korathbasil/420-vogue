@@ -1,13 +1,24 @@
 import styles from "./header.module.scss";
-import { Cart, Avatar } from "../../assets/icons";
+import { Menu, Cart, Avatar } from "../../assets/icons";
 
 export const Header = () => {
   return (
     <header className={styles.header}>
-      <div className={styles.left}>420 vogue</div>
+      <div className={styles.left}>
+        <div className={styles.iconWrapper}>
+          <Menu />
+        </div>
+        <div className={styles.logoWrapper}>
+          <h1>420__vogue</h1>
+        </div>
+      </div>
       <div className={styles.right}>
-        <Cart />
-        <Avatar />
+        <div className={styles.iconWrapper}>
+          <Cart />
+        </div>
+        <div className={styles.iconWrapper}>
+          <Avatar />
+        </div>
       </div>
     </header>
   );
