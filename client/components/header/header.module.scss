@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+
+  .left {
+    display: flex;
+
+    .iconWrapper {
+      margin-right: 1rem;
+    }
+
+    .logoWrapper > h1 {
+      font-size: 20px;
+    }
+  }
+
+  .right {
+    display: flex;
+
+    .iconWrapper {
+      margin-left: 1rem;
+    }
+  }
+}
