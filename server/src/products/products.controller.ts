@@ -1,11 +1,11 @@
 import { Controller, Get, Post } from '@nestjs/common';
 
-import { ProductService } from './product.service';
-import { Product } from './product.model';
+import { Product } from './products.model';
+import { ProductsService } from './products.service';
 
-@Controller('product')
-export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+@Controller('products')
+export class ProductsController {
+  constructor(private readonly productService: ProductsService) {}
 
   @Get()
   getProducts(): Promise<Product[]> {

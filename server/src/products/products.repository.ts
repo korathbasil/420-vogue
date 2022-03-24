@@ -2,11 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, FilterQuery } from 'mongoose';
 
-import { ProductDoc } from './product.model';
-import { Product } from './product.model';
+import { ProductDoc } from './products.model';
+import { Product } from './products.model';
 
 @Injectable()
-export class ProductRepository {
+export class ProductsRepository {
   constructor(
     @InjectModel('Product') private readonly productModel: Model<ProductDoc>,
   ) {}
