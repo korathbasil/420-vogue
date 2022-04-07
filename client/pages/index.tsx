@@ -28,6 +28,7 @@ const HomePage: NextPage = () => {
       <Header />
       <Greetings />
       <HomeBanner />
+      <Greetings />
       <RecentItems />
     </div>
   );
