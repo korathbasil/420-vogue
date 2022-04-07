@@ -3,7 +3,7 @@ import { Menu, Cart, Avatar } from "../../assets/icons";
 
 export const Header = () => {
   return (
-    <header>
+    <header className={styles.headerParent}>
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.left}>

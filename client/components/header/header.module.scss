@@ -1,9 +1,14 @@
+.headerParent {
+  width: 100%;
+  position: fixed;
+}
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
   position: relative;
+  background-color: var(--col-light-bg);
 
   .left {
     display: flex;
