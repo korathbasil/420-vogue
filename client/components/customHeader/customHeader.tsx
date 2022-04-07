@@ -6,7 +6,7 @@ import { BackArrow } from "assets/icons";
 
 type LinkType = {
   url: string;
-  icon: string;
+  Icon: FC;
 };
 
 interface CustomHeaderProps {
@@ -24,10 +24,10 @@ export const CustomHeader: FC<CustomHeaderProps> = ({ links }) => {
             </div>
           </div>
           <div className={styles.right}>
-            {links.map((link) => (
-              <div className={styles.linkWrapper}>
-                <Link href={link.url}>
-                  <link.icon />
+            {links.map(({ url, Icon }) => (
+              <div key={url} className={styles.linkWrapper}>
+                <Link href={url}>
+                  <Icon />
                 </Link>
               </div>
             ))}
