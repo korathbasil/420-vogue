@@ -2,14 +2,22 @@ import Link from "next/link";
 
 import styles from "./header.module.scss";
 import { Menu, ShoppingBag, Search } from "assets/icons";
+import { FC } from "react";
 
-export const Header = () => {
+interface HeaderProps {
+  sidebarToggleHandler: () => void;
+}
+
+export const Header: FC<HeaderProps> = ({ sidebarToggleHandler }) => {
   return (
     <header className={styles.headerParent}>
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.left}>
-            <div className={styles.iconWrapper}>
+            <div
+              onClick={() => sidebarToggleHandler()}
+              className={styles.iconWrapper}
+            >
               <Menu />
             </div>
           </div>

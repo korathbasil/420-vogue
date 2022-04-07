@@ -1,9 +1,21 @@
+import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 
-import { Header, Greetings, HomeBanner, RecentItems } from "../components";
+import {
+  Header,
+  Greetings,
+  HomeBanner,
+  RecentItems,
+  Sidebar,
+} from "../components";
 
 const HomePage: NextPage = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+
+  function sidebarToggleHandler() {
+    setIsSidebarOpen(!isSidebarOpen);
+  }
   return (
     <div>
       <Head>
@@ -24,7 +36,11 @@ const HomePage: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Sidebar
+        isSidebarOpen={isSidebarOpen}
+        sidebarToggleHandler={sidebarToggleHandler}
+      />
+      <Header sidebarToggleHandler={sidebarToggleHandler} />
       <Greetings />
       <HomeBanner />
       <Greetings />
