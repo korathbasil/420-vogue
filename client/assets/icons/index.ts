@@ -5,3 +5,4 @@ export * from "./backArrow";
 export * from "./heart";
 export * from "./heartOutlined";
 export * from "./shoppingBag";
+export * from "./seacrh";
