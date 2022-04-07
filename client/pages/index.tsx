@@ -45,6 +45,12 @@ const HomePage: NextPage = () => {
       <HomeBanner />
       <Greetings />
       <RecentItems />
+
+      <style>{`
+        body {
+          overflow: ${isSidebarOpen ? "hidden" : "scroll"};
+        }
+      `}</style>
     </div>
   );
 };

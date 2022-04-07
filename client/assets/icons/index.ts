@@ -7,3 +7,6 @@ export * from "./heartOutlined";
 export * from "./shoppingBag";
 export * from "./seacrh";
 export * from "./close";
+export * from "./help";
+export * from "./info";
+export * from "./order";

@@ -1,7 +1,8 @@
 import { FC, useEffect } from "react";
+import Link from "next/link";
 
 import styles from "./sidebar.module.scss";
-import { Close } from "assets/icons";
+import { Close, Heart, Order, Avatar, Help, Info } from "assets/icons";
 
 interface SidebarProps {
   isSidebarOpen: boolean;
@@ -29,6 +30,61 @@ export const Sidebar: FC<SidebarProps> = ({
           <Close />
         </div>
       </div>
+      <nav>
+        <ul>
+          <Link href={"/wishlist"}>
+            <a className={styles.link}>
+              <div className={styles.iconWrapper}>
+                <Heart />
+              </div>
+              <p>MY WISHLIST</p>
+            </a>
+          </Link>
+        </ul>
+        <ul>
+          <Link href={"/orders"}>
+            <a className={styles.link}>
+              <div className={styles.iconWrapper}>
+                <Order />
+              </div>
+              <p>MY ORDERS</p>
+            </a>
+          </Link>
+        </ul>
+        <ul>
+          <Link href={"/profile"}>
+            <a className={styles.link}>
+              <div className={styles.iconWrapper}>
+                <Avatar />
+              </div>
+              <p>MY PROFILE</p>
+            </a>
+          </Link>
+        </ul>
+        <div className={styles.spacer}></div>
+        <hr />
+        <div className={styles.spacer}></div>
+        <ul>
+          <Link href={"/help"}>
+            <a className={styles.link}>
+              <div className={styles.iconWrapper}>
+                <Help />
+              </div>
+              <p>HELP</p>
+            </a>
+          </Link>
+        </ul>
+        <ul>
+          <Link href={"/about"}>
+            <a className={styles.link}>
+              <div className={styles.iconWrapper}>
+                <Info />
+              </div>
+              <p>ABOUT US</p>
+            </a>
+          </Link>
+        </ul>
+      </nav>
     </aside>
   );
 };
