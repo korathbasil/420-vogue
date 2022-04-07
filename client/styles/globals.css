@@ -7,7 +7,7 @@ body {
 
   /* Colors */
 
-  --col-primary: #2255ff;
+  --col-primary: #000055ff;
   --col-light-bg: #faf4ea;
   background-color: var(--col-light-bg);
 }

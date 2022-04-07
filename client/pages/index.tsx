@@ -13,6 +13,16 @@ const HomePage: NextPage = () => {
           name="description"
           content="420VOGUE is the best online shop for all mens fashion needs"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="crossorigin"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap"
+          rel="stylesheet"
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
