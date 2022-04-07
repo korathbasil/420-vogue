@@ -27,7 +27,9 @@ export const CustomHeader: FC<CustomHeaderProps> = ({ links }) => {
             {links.map(({ url, Icon }) => (
               <div key={url} className={styles.linkWrapper}>
                 <Link href={url}>
-                  <Icon />
+                  <a>
+                    <Icon />
+                  </a>
                 </Link>
               </div>
             ))}
