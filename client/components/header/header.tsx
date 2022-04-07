@@ -1,5 +1,7 @@
+import Link from "next/link";
+
 import styles from "./header.module.scss";
-import { Menu, Cart, Avatar } from "../../assets/icons";
+import { Menu, ShoppingBag, Search } from "assets/icons";
 
 export const Header = () => {
   return (
@@ -16,10 +18,18 @@ export const Header = () => {
           </div>
           <div className={styles.right}>
             <div className={styles.iconWrapper}>
-              <Cart />
+              <Link href={"/search"}>
+                <a>
+                  <Search />
+                </a>
+              </Link>
             </div>
             <div className={styles.iconWrapper}>
-              <Avatar />
+              <Link href={"/bag"}>
+                <a>
+                  <ShoppingBag />
+                </a>
+              </Link>
             </div>
           </div>
         </div>
