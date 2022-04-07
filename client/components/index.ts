@@ -1,4 +1,5 @@
 export * from "./header/header";
+export * from "./greetings/greentings";
 export * from "./homeBanner/homeBanner";
 export * from "./productCard/productCard";
 export * from "./recentItems/recentItems";

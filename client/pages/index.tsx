@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 
 import styles from "../styles/Home.module.css";
-import { Header, HomeBanner, RecentItems } from "../components";
+import { Header, Greetings, HomeBanner, RecentItems } from "../components";
 
 const HomePage: NextPage = () => {
   return (
@@ -26,6 +26,7 @@ const HomePage: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <Greetings />
       <HomeBanner />
       <RecentItems />
     </div>
