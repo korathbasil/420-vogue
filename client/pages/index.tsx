@@ -43,8 +43,6 @@ const HomePage: NextPage = () => {
       <Header sidebarToggleHandler={sidebarToggleHandler} />
       <Greetings />
       <HomeBanner />
-      <Greetings />
-      <RecentItems />
 
       <style>{`
         body {
