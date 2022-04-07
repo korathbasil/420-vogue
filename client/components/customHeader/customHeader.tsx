@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import styles from "./customHeader.module.scss";
 import { BackArrow } from "assets/icons";
@@ -14,12 +15,19 @@ interface CustomHeaderProps {
 }
 
 export const CustomHeader: FC<CustomHeaderProps> = ({ links }) => {
+  const router = useRouter();
+
   return (
     <header>
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.left}>
-            <div className={styles.linkWrapper}>
+            <div
+              onClick={() => {
+                router.back();
+              }}
+              className={styles.linkWrapper}
+            >
               <BackArrow />
             </div>
           </div>
