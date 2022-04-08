@@ -1,0 +1,42 @@
+.parent {
+    padding: 0 20px;
+}
+
+.top {
+    h2 {
+        font-size: 18px;
+        font-weight: 600;
+
+        &:nth-child(2) {
+            font-size: 25px;
+        }
+    }
+
+}
+
+.colors {
+    margin: 20px 0;
+    p {
+        margin-bottom: 10px;
+    }
+    div {
+        display: flex;
+
+        .colorBox {
+            display: flex;
+            width: 70px;
+            flex-direction: column;
+            align-items: center;
+
+            div {
+                width: 30px;
+                height: 30px;
+                
+                border-radius: 5px;
+                margin-bottom: 5px;
+                background-color: #2e6e2e;
+            }
+            
+        }
+    }
+}

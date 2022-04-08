@@ -6,3 +6,4 @@ export * from "./recentItems/recentItems";
 export * from "./customHeader/customHeader";
 export * from "./sidebar/sidebar";
 export * from "./productCarousel/productCarousel";
+export * from "./productDetails/productDetails";
