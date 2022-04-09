@@ -34,6 +34,9 @@ export class Product extends Document {
   @Prop({ type: String, required: true })
   brandName: string;
 
+  @Prop({ type: String, required: true })
+  styleName: string;
+
   @Prop([{ type: ProductVariant }])
   variants: ProductVariant[];
 }
