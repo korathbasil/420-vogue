@@ -1,6 +1,6 @@
 import { IsNotEmpty, Length, IsNumberString } from 'class-validator';
 
-export class CreateUSerDto {
+export class CreateUserDto {
   @Length(3, 25)
   @IsNotEmpty({ message: "First Name can't be empty" })
   firstName: string;
