@@ -3,9 +3,18 @@ import { promisify } from 'node:util';
 
 const scrypt = promisify(_scrypt);
 
-export const hashString = async (password: string) => {
+export async function hashString(password: string) {
   const salt = randomBytes(8).toString('hex');
   const hash = (await scrypt(password, salt, 32)) as Buffer;
 
-  return salt + '.' + hash;
-};
+  return salt + '.' + hash.toString('hex');
+}
+
+export async function compareHash(hashedPassword: string, password: string) {
+  const [salt, hash] = hashedPassword.split('.');
+
+  const newHash = (await scrypt(password, salt, 32)) as Buffer;
+
+  if (hash !== newHash.toString('hex')) return false;
+  return true;
+}
