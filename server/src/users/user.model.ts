@@ -31,6 +31,9 @@ class UserAddress extends Document {
 
 @Schema()
 export class User extends Document {
+    @Prop({type: String, required: true});
+    id: string;
+
   @Prop({ type: String, required: true })
   firstName: string;
 
