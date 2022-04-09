@@ -14,10 +14,6 @@ export class ProductsService {
   }
 
   async createProduct(): Promise<Product> {
-    return this.productRepo.insertOne({
-      id: 'jnfjihaiha',
-      name: 'Shirt',
-      price: 3.45,
-    });
+    return;
   }
 }
