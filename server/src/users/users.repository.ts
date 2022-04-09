@@ -7,9 +7,13 @@ import { User } from './user.model';
 export class UsersRepository {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
+  find() {
+    return this.userModel.find();
+  }
+
   insertOne(user: User) {
     const newUser = new this.userModel(user);
 
-    return user.save();
+    return newUser.save();
   }
 }

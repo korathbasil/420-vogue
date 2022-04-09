@@ -8,6 +8,10 @@ import { User } from './user.model';
 export class UsersService {
   constructor(private readonly usersRepo: UsersRepository) {}
 
+  findAllUsers() {
+    return this.usersRepo.find();
+  }
+
   createUser(data: CreateUserDto) {
     const user = {
       ...data,
