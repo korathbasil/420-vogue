@@ -32,9 +32,6 @@ class UserAddress extends Document {
 @Schema()
 export class User extends Document {
   @Prop({ type: String, required: true })
-  id: string;
-
-  @Prop({ type: String, required: true })
   firstName: string;
 
   @Prop({ type: String, required: true })
@@ -49,11 +46,11 @@ export class User extends Document {
   @Prop({ type: String })
   password?: string;
 
-  @Prop([{ type: UserAccount, required: true }])
-  accounts: UserAccount[];
+  @Prop([{ type: UserAccount }])
+  accounts?: UserAccount[];
 
-  @Prop([{ type: UserAddress, required: true }])
-  addresses: UserAddress[];
+  @Prop([{ type: UserAddress }])
+  addresses?: UserAddress[];
 }
 
 export const userSchema = SchemaFactory.createForClass(User);

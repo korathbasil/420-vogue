@@ -7,5 +7,9 @@ import { User } from './user.model';
 export class UsersRepository {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  insertOne() {}
+  insertOne(user: User) {
+    const newUser = new this.userModel(user);
+
+    return user.save();
+  }
 }
