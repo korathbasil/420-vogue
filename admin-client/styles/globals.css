@@ -23,6 +23,7 @@ body {
   /* font-family: "Roboto", sans-serif; */
 
   background-color: var(--col-lightgrey-bg);
+  color: var(--col-grey-text)
 }
 
 a {
