@@ -2,7 +2,7 @@ import styles from "./header.module.scss";
 
 export const Header = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <div className={styles.left}>
         <h1>420VOGUE</h1>
         <h3>MPanel</h3>
@@ -10,7 +10,7 @@ export const Header = () => {
 
       <div className={styles.right}>
         <div className={styles.info}>
-          <h5>Razik Aman</h5>
+          <h4>Razik Aman</h4>
           <p>Manager</p>
         </div>
         <div className={styles.profileImageWrapper}>
