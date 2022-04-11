@@ -1,4 +1,4 @@
-import { Header } from "components";
+import { Header, Sidebar } from "components";
 
 export const PrimaryLayout = ({
   children,
@@ -8,7 +8,10 @@ export const PrimaryLayout = ({
   return (
     <>
       <Header />
-      {children}
+      <div style={{ display: "flex" }}>
+        <Sidebar />
+        {children}
+      </div>
     </>
   );
 };
