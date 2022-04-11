@@ -29,7 +29,7 @@ class UserAddress extends Document {
   pin: string;
 }
 
-@Schema()
+@Schema({ timestamps: { createdAt: true, updatedAt: true } })
 export class User extends Document {
   @Prop({ type: String, required: true })
   firstName: string;
@@ -51,6 +51,9 @@ export class User extends Document {
 
   @Prop([{ type: UserAddress }])
   addresses?: UserAddress[];
+
+  @Prop({ type: Date })
+  createdAt: string;
 }
 
 export const userSchema = SchemaFactory.createForClass(User);
