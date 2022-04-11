@@ -1,23 +1,45 @@
-import styles from "./header.module.scss";
-import { Menu, Cart, Avatar } from "../../assets/icons";
+import Link from "next/link";
 
-export const Header = () => {
+import styles from "./header.module.scss";
+import { Menu, ShoppingBag, Search } from "assets/icons";
+import { FC } from "react";
+
+interface HeaderProps {
+  sidebarToggleHandler: () => void;
+}
+
+export const Header: FC<HeaderProps> = ({ sidebarToggleHandler }) => {
   return (
-    <header className={styles.header}>
-      <div className={styles.left}>
-        <div className={styles.iconWrapper}>
-          <Menu />
-        </div>
-        <div className={styles.logoWrapper}>
-          <h1>420__vogue</h1>
-        </div>
-      </div>
-      <div className={styles.right}>
-        <div className={styles.iconWrapper}>
-          <Cart />
-        </div>
-        <div className={styles.iconWrapper}>
-          <Avatar />
+    <header className={styles.headerParent}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.left}>
+            <div
+              onClick={() => sidebarToggleHandler()}
+              className={styles.iconWrapper}
+            >
+              <Menu />
+            </div>
+          </div>
+          <div className={styles.center}>
+            <h1>420VOGUE</h1>
+          </div>
+          <div className={styles.right}>
+            <div className={styles.iconWrapper}>
+              <Link href={"/search"}>
+                <a>
+                  <Search />
+                </a>
+              </Link>
+            </div>
+            <div className={styles.iconWrapper}>
+              <Link href={"/bag"}>
+                <a>
+                  <ShoppingBag />
+                </a>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </header>

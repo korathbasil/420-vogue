@@ -6,7 +6,12 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
   /* Colors */
+
+  --col-primary: #000055ff;
+  --col-secondary: #ff004c;
   --col-light-bg: #faf4ea;
+  --col-dark-grey: #313030;
+
   background-color: var(--col-light-bg);
 }
 

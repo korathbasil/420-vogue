@@ -9,12 +9,6 @@ export const RecentItems = () => {
       <ProductCard />
       <ProductCard />
       <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
     </section>
   );
 };

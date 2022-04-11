@@ -1,5 +1,8 @@
 export const Menu = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
+  <svg viewBox="0 0 24 24">
+    <path
+      fill="#ff004c"
+      d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+    ></path>
   </svg>
 );

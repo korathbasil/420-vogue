@@ -1,17 +1,36 @@
+.headerParent {
+  width: 100%;
+  position: fixed;
+}
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 2rem;
+  align-items: center;
+  padding: 1.5rem;
+  position: relative;
+  background-color: var(--col-light-bg);
 
   .left {
     display: flex;
 
     .iconWrapper {
+      width: 30px;
+      height: 30px;
       margin-right: 1rem;
     }
+  }
 
-    .logoWrapper > h1 {
-      font-size: 20px;
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    h1 {
+      font-size: 40px;
+      font-family: 'Teko', sans-serif;
+      color: var(--col-primary);
+      transform: translateY(2px);
     }
   }
 
@@ -19,6 +38,8 @@
     display: flex;
 
     .iconWrapper {
+      width: 30px;
+      height: 30px;
       margin-left: 1rem;
     }
   }
