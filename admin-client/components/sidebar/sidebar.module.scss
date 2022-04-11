@@ -1,9 +1,10 @@
 .sidebar {
     width: 200px;
+    padding: 10px;
 }
 
 .link {
-    color: var(--col-primary);
+    color: var(--col-secondary);
     display: flex;
     align-items: center;
     padding: 10px;
@@ -11,6 +12,7 @@
     .iconWrapper {
         width: 20px;
         height: 20px;
+        margin-right: 10px;
     }
 }
 
