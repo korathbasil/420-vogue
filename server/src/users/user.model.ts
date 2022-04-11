@@ -29,6 +29,12 @@ class UserAddress extends Document {
   pin: string;
 }
 
+enum Role {
+  USERUSER = 'SUPERUSER',
+  MANAGER = 'MANAGER',
+  USER = 'USER',
+}
+
 @Schema({ timestamps: { createdAt: true, updatedAt: true } })
 export class User extends Document {
   @Prop({ type: String, required: true })
@@ -48,6 +54,9 @@ export class User extends Document {
 
   @Prop([{ type: UserAccount }])
   accounts?: UserAccount[];
+
+  @Prop({ type: String, required: true })
+  role: Role;
 
   @Prop([{ type: UserAddress }])
   addresses?: UserAddress[];
