@@ -10,7 +10,7 @@ export const PrimaryLayout = ({
       <Header />
       <div style={{ display: "flex", paddingTop: "85px" }}>
         <Sidebar />
-        {children}
+        <aside style={{ padding: "10px" }}>{children}</aside>
       </div>
     </>
   );
