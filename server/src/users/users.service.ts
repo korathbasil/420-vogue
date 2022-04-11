@@ -16,6 +16,7 @@ export class UsersService {
   async createUser(data: CreateUserDto) {
     const user = {
       ...data,
+      role: 'USER',
     } as User;
 
     user.password = await hashString(user.password);
