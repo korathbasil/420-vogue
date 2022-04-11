@@ -8,7 +8,7 @@ export const PrimaryLayout = ({
   return (
     <>
       <Header />
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", paddingTop: "85px" }}>
         <Sidebar />
         {children}
       </div>
