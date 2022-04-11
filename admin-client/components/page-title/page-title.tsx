@@ -6,7 +6,7 @@ export const PageTitle = ({ routes }: { routes: string[] }) => {
     <div className={styles.title}>
       {routes.map((route, n) => (
         <div className={styles.route}>
-          <h2>{route}</h2>
+          <h3>{route}</h3>
           {routes.length != n + 1 && (
             <div className={styles.iconWrapper}>
               <RightArrow />

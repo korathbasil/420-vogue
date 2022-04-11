@@ -39,11 +39,11 @@ a {
   padding: 20px;
   margin-bottom: 20px;
 }
-.hor-spacer {
+.spacer-X {
   width: 100%;
   height: 20px;
 }
-.ver-spacer {
+.spacer-Y {
   height: 100%;
   width: 20px;
 }
