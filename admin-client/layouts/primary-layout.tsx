@@ -1,7 +1,14 @@
+import { Header } from "components";
+
 export const PrimaryLayout = ({
   children,
 }: {
   children: JSX.Element | JSX.Element[];
 }) => {
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
 };
