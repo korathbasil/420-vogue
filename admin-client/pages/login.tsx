@@ -5,7 +5,7 @@ import styles from "../styles/login.module.scss";
 const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
 } = () => {
-  return <section className={styles.loginpage}>Login Page</section>;
+  return <section className={styles.loginpage}></section>;
 };
 
 LoginPage.disablePrimaryLayout = true;

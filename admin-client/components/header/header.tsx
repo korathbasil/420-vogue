@@ -5,7 +5,7 @@ export const Header = () => {
     <header className={styles.header}>
       <div className={styles.left}>
         <h1>420VOGUE</h1>
-        <h3>MPanel</h3>
+        <h3>M-Panel</h3>
       </div>
 
       <div className={styles.right}>
