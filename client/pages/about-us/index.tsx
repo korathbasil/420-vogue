@@ -1,7 +1,13 @@
+import { About, CustomHeader } from "components";
 import { NextPage } from "next";
 
 const AboutUsPage: NextPage = () => {
-  return <h1>About Us</h1>;
+  return (
+    <section>
+      <CustomHeader links={[]} />
+      <About />
+    </section>
+  );
 };
 
 export default AboutUsPage;
