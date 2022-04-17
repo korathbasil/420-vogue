@@ -75,7 +75,7 @@ export const Sidebar: FC<SidebarProps> = ({
           </Link>
         </ul>
         <ul>
-          <Link href={"/about"}>
+          <Link href={"/about-us"}>
             <a className={styles.link}>
               <div className={styles.iconWrapper}>
                 <Info />
