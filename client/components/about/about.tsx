@@ -1,3 +1,5 @@
+import { Help, Instagram } from "assets/icons";
+import Link from "next/link";
 import styles from "./about.module.scss";
 
 export const About = () => {
@@ -12,6 +14,24 @@ export const About = () => {
         reiciendis eum cum totam ullam, molestiae delectus error. Pariatur,
         perspiciatis!
       </p>
+
+      <div className={styles.links}>
+        <Link href={"/help"}>
+          <a>
+            <div className={styles.iconWrapper}>
+              <Help />
+            </div>
+            Help
+          </a>
+        </Link>
+
+        <a href="https://www.instagram.com/420__vogue/" target={"_blank"}>
+          <div className={styles.iconWrapper}>
+            <Instagram />
+          </div>
+          Instagram
+        </a>
+      </div>
     </div>
   );
 };

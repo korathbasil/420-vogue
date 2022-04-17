@@ -6,4 +6,25 @@
         color: var(--col-primary);
         font-family: 'Teko', sans-serif;
     }
+
+    .links {
+        margin-top: 2rem;
+        display: flex;
+        a {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 99px;
+            padding: 10px;
+            width: fit-content;
+            margin-right: 10px;
+            margin-bottom: 10px;
+
+            .iconWrapper {
+                width: 20px;
+                height: 20px;
+                margin-right: 5px;
+            }
+        }
+    }
 }
