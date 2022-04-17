@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 import { CustomHeader } from "components";
-import { Heart, BackArrow } from "assets/icons";
+import { Heart } from "assets/icons";
 
 const BagPage: NextPage = () => {
   return (
