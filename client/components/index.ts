@@ -8,3 +8,4 @@ export * from "./sidebar/sidebar";
 export * from "./productCarousel/productCarousel";
 export * from "./productDetails/productDetails";
 export * from "./about/about";
+export * from "./help/help";
