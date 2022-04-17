@@ -11,10 +11,11 @@ type LinkType = {
 };
 
 interface CustomHeaderProps {
+  title?: string;
   links: LinkType[];
 }
 
-export const CustomHeader: FC<CustomHeaderProps> = ({ links }) => {
+export const CustomHeader: FC<CustomHeaderProps> = ({ title, links }) => {
   const router = useRouter();
 
   return (
@@ -30,6 +31,7 @@ export const CustomHeader: FC<CustomHeaderProps> = ({ links }) => {
             >
               <BackArrow />
             </div>
+            {title && <h2>{title}</h2>}
           </div>
           <div className={styles.right}>
             {links.map(({ url, Icon }) => (

@@ -4,7 +4,7 @@ import { NextPage } from "next";
 const AboutUsPage: NextPage = () => {
   return (
     <section>
-      <CustomHeader links={[]} />
+      <CustomHeader title="ABOUT" links={[]} />
       <About />
     </section>
   );
