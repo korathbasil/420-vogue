@@ -1,0 +1,15 @@
+.title {
+    display: flex;
+    align-items: center;
+
+    .route {
+        display: flex;
+        align-items: center;
+        
+        .iconWrapper {
+            width: 18px;
+            height: 18px;
+            margin: 0 10px;
+        }
+    }
+}

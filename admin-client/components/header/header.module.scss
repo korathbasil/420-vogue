@@ -1,9 +1,12 @@
 .header {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
     background-color: white;
+    box-shadow: var(--shadow-light);
+    position: fixed;
 
     div {
         display: flex;
@@ -11,9 +14,13 @@
 
     .left {
         align-items: baseline;
+        color: var(--col-secondary);
 
         h1 {
-            margin-right: 20px;
+            margin-right: 10px;
+            color: var(--col-primary);
+            font-family: 'Teko', sans-serif;
+            transform: translateY(1px);
         }
     }
 

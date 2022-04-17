@@ -10,3 +10,4 @@ export * from "./close";
 export * from "./help";
 export * from "./info";
 export * from "./order";
+export * from "./instagram";
