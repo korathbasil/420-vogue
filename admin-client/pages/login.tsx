@@ -9,11 +9,13 @@ const LoginPage: NextPage & {
   return (
     <section className={styles.parent}>
       <div className={styles.contents}>
-        <div className={styles.left}></div>
+        <div className={styles.left}>
+          <h1>
+            420VOGUE<span>.</span>
+          </h1>
+          <h3>M-Panel</h3>
+        </div>
         <div className={styles.right}>
-          <h1>420VOGUE</h1>
-          <h2>M-Panel</h2>
-
           <div className={styles.images}>
             <div>
               <Image
