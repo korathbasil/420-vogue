@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { NextPage } from "next";
 import Image from "next/image";
 
@@ -6,6 +7,8 @@ import styles from "../styles/login.module.scss";
 const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
 } = () => {
+  const [emailErr, setEmailErr] = useState<string>("");
+  const [passwordErr, setPAsswordErr] = useState<string>("");
   return (
     <section className={styles.parent}>
       <div className={styles.contents}>
@@ -13,7 +16,21 @@ const LoginPage: NextPage & {
           <h1>
             420VOGUE<span>.</span>
           </h1>
-          <h3>M-Panel</h3>
+          <h3>
+            Welcome to <span>M-Panel</span>
+          </h3>
+          <p>Please login to continue.</p>
+          <form>
+            <label htmlFor="email">Email</label>
+            <input type="email" name="email" />
+            <div className={styles.err}>{emailErr && <p>{emailErr}</p>}</div>
+            <label htmlFor="password">Password</label>
+            <input type="password" name="password" />
+            <div className={styles.err}>
+              {passwordErr && <p>{passwordErr}</p>}
+            </div>
+            <button type="submit">Login</button>
+          </form>
         </div>
         <div className={styles.right}>
           <div className={styles.images}>
