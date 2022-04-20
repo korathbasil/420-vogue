@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import type { NextPage } from "next";
 import Image from "next/image";
 
@@ -7,8 +7,18 @@ import styles from "../styles/login.module.scss";
 const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
 } = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
   const [emailErr, setEmailErr] = useState<string>("");
   const [passwordErr, setPAsswordErr] = useState<string>("");
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    console.log(email, password);
+  };
+
   return (
     <section className={styles.parent}>
       <div className={styles.contents}>
@@ -20,12 +30,22 @@ const LoginPage: NextPage & {
             Welcome to <span>M-Panel</span>
           </h3>
           <p>Please login to continue.</p>
-          <form>
+          <form onSubmit={handleSubmit}>
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" />
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              name="email"
+            />
             <div className={styles.err}>{emailErr && <p>{emailErr}</p>}</div>
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" />
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              name="password"
+            />
             <div className={styles.err}>
               {passwordErr && <p>{passwordErr}</p>}
             </div>
