@@ -1,16 +1,39 @@
+import { FC, PropsWithChildren } from "react";
+
 import styles from "./custom-table.module.scss";
 
-export const CustomTable = () => {
+interface CustomTableProps<T> {
+  columns: {
+    name: string;
+    prop: string;
+  }[];
+  data: T[];
+}
+
+type ModifiedObject = {
+  [key: string]: string;
+};
+
+export const CustomTable = <T extends ModifiedObject>({
+  columns,
+  data,
+}: PropsWithChildren<CustomTableProps<T>>) => {
   return (
     <table className={styles.table}>
       <tr>
-        <th>ID</th>
-        <th>Style Name</th>
-        <th>Brand Name</th>
-        <th>Price</th>
-        <th>Added Date</th>
-        <th>Actions</th>
+        {columns.map((col) => (
+          <th>{col.name}</th>
+        ))}
       </tr>
+      {data.map((item) => {
+        return (
+          <tr>
+            {columns.map((col) => {
+              return <td>{item[col.prop]}</td>;
+            })}
+          </tr>
+        );
+      })}
     </table>
   );
 };
