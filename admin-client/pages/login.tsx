@@ -1,11 +1,7 @@
 import type { NextPage } from "next";
+import Image from "next/image";
 
 import styles from "../styles/login.module.scss";
-
-import ImageCoWorking from "assets/images/co-working.svg";
-import imageGoodTeam from "assets/images/good-team.svg";
-import imageOrganizer from "assets/images/organizer.svg";
-import imageProductManagement from "assets/images/product-management.svg";
 
 const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
@@ -20,7 +16,36 @@ const LoginPage: NextPage & {
 
           <div className={styles.images}>
             <div>
-              <ImageCoWorking />
+              <Image
+                src={"/images/co-working.png"}
+                width={200}
+                height={200}
+                objectFit={"contain"}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/images/good-team.png"}
+                width={200}
+                height={200}
+                objectFit={"contain"}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/images/organizer.png"}
+                width={200}
+                height={200}
+                objectFit={"contain"}
+              />
+            </div>
+            <div>
+              <Image
+                src={"/images/product-management.png"}
+                width={200}
+                height={200}
+                objectFit={"contain"}
+              />
             </div>
           </div>
         </div>
