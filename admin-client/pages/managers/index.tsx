@@ -1,6 +1,13 @@
-import { NextPage } from "next";
+import type { NextPage } from "next";
+
+import { ManagersTable, PageTitle } from "components";
 
 const ManagersPage: NextPage = () => {
-  return <h2>Managers</h2>;
+  return (
+    <section>
+      <PageTitle routes={["Managers"]} />
+      <ManagersTable />
+    </section>
+  );
 };
 export default ManagersPage;
