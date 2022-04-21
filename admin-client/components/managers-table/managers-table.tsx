@@ -1,5 +1,6 @@
-import styles from "./managers-table.module.scss";
+import Link from "next/link";
 
+import styles from "./managers-table.module.scss";
 import { CustomTable } from "../custom-table/custom-table";
 
 const data = [
@@ -17,7 +18,11 @@ export const ManagersTable = () => {
   return (
     <div>
       <div className={styles.top}>
-        <div className={styles.actions}></div>
+        <div className={styles.actions}>
+          <Link href={"/managers/add"}>
+            <a>Add Manager</a>
+          </Link>
+        </div>
       </div>
       <CustomTable
         columns={[
