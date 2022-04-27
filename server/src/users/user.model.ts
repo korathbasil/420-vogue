@@ -30,7 +30,7 @@ class UserAddress extends Document {
 }
 
 export enum Role {
-  USERUSER = 'SUPERUSER',
+  SUPERUSER = 'SUPERUSER',
   MANAGER = 'MANAGER',
   USER = 'USER',
 }

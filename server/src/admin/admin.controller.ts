@@ -18,4 +18,10 @@ export class AdminController {
   createAdmin(@Body() adminData: CreateAdminDto) {
     return this.adminService.createAdmin(adminData);
   }
+
+  @Post('super')
+  @UsePipes(ValidationPipe)
+  createSuperUser(@Body() data: CreateAdminDto) {
+    return this.adminService.createAdmin(data);
+  }
 }
