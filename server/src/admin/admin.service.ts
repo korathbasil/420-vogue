@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Role } from '../users/user.model';
 
-import { UsersService } from '../users/users.service';
 import { CreateAdminDto } from './dtos/create-admin.dto';
+import { Role } from '../users/user.model';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class AdminService {

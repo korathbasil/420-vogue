@@ -1,9 +1,9 @@
 import {
-  Body,
   Controller,
   Post,
   UsePipes,
   ValidationPipe,
+  Body,
 } from '@nestjs/common';
 
 import { AdminService } from './admin.service';
