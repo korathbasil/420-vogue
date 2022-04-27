@@ -5,6 +5,7 @@ import {
   Body,
   UsePipes,
   ValidationPipe,
+  BadRequestException,
 } from '@nestjs/common';
 
 import { UsersService } from './users.service';
@@ -21,7 +22,11 @@ export class UsersController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  createUser(@Body() userData: CreateUserDto) {
-    return this.usersService.createUser(userData);
+  async createUser(@Body() userData: CreateUserDto) {
+    const user = await this.usersService.createUser(userData);
+
+    if (!user) return new BadRequestException('User already exists');
+
+    return user;
   }
 }

@@ -14,13 +14,17 @@ export class UsersService {
   }
 
   async createUser(data: CreateUserDto, role = 'USER' as Role) {
-    const user = {
+    const user = this.usersRepo.findOne({ email: data.email });
+
+    if (user) return;
+
+    const newUser = {
       ...data,
-      role: role,
+      role,
     } as User;
 
-    user.password = await hashString(user.password);
+    newUser.password = await hashString(newUser.password);
 
-    return this.usersRepo.insertOne(user);
+    return this.usersRepo.insertOne(newUser);
   }
 }

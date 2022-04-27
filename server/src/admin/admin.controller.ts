@@ -4,6 +4,7 @@ import {
   UsePipes,
   ValidationPipe,
   Body,
+  BadRequestException,
 } from '@nestjs/common';
 
 import { AdminService } from './admin.service';
@@ -15,13 +16,21 @@ export class AdminController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  createAdmin(@Body() adminData: CreateAdminDto) {
-    return this.adminService.createAdmin(adminData);
+  async createAdmin(@Body() adminData: CreateAdminDto) {
+    const admin = await this.adminService.createAdmin(adminData);
+
+    if (!admin) return new BadRequestException('User already exists');
+
+    return admin;
   }
 
   @Post('super')
   @UsePipes(ValidationPipe)
-  createSuperUser(@Body() data: CreateAdminDto) {
-    return this.adminService.createAdmin(data);
+  async createSuperUser(@Body() data: CreateAdminDto) {
+    const user = await this.adminService.createAdmin(data);
+
+    if (!user) return new BadRequestException('User already exists');
+
+    return user;
   }
 }
