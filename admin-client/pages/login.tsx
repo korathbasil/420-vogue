@@ -1,23 +1,20 @@
 import { useState, FormEvent } from "react";
 import type { NextPage } from "next";
 import Image from "next/image";
+import { useFormik } from "formik";
 
 import styles from "../styles/login.module.scss";
 
 const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
 } = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  const [emailErr, setEmailErr] = useState<string>("");
-  const [passwordErr, setPAsswordErr] = useState<string>("");
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    console.log(email, password);
-  };
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    onSubmit: () => {},
+  });
 
   return (
     <section className={styles.parent}>
@@ -30,24 +27,32 @@ const LoginPage: NextPage & {
             Welcome to <span>M-Panel</span>
           </h3>
           <p>Please login to continue.</p>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={formik.handleSubmit}>
             <label htmlFor="email">Email</label>
             <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
               name="email"
-            />
-            <div className={styles.err}>{emailErr && <p>{emailErr}</p>}</div>
-            <label htmlFor="password">Password</label>
-            <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              name="password"
+              type="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
             <div className={styles.err}>
-              {passwordErr && <p>{passwordErr}</p>}
+              {formik.touched.email && formik.errors.email && (
+                <p>{formik.errors.email}</p>
+              )}
+            </div>
+            <label htmlFor="password">Password</label>
+            <input
+              name="password"
+              type="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            <div className={styles.err}>
+              {formik.touched.email && formik.errors.password && (
+                <p>{formik.errors.password}</p>
+              )}
             </div>
             <button type="submit">Login</button>
           </form>
