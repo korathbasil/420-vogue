@@ -8,6 +8,7 @@ export const AddProductForm = () => {
         <h4>Please fill the form below.</h4>
         <FormInput label="Barand Name" name="brandName" />
         <FormInput label="Style Name" name="styleName" />
+        <FormInput label="Category" name="category" />
 
         <h5>Add base variant details.</h5>
         <div className={styles.compoundInput}>
@@ -18,6 +19,7 @@ export const AddProductForm = () => {
             <FormInput label="Color Code" name="colorCode" />
           </div>
         </div>
+        <FormInput label="Price" name="price" />
       </form>
       <div className="spacer-Y"></div>
       <ProductPreview />
