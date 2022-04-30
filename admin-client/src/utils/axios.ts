@@ -6,4 +6,4 @@ const instance = axios.create({
   baseURL: BASE_URL,
 });
 
-export default instance;
+export { instance as axios };
