@@ -17,7 +17,7 @@ const LoginPage: NextPage & {
     validationSchema: yup.object({
       email: yup
         .string()
-        .email()
+        .email("Please provide a valid email")
         .min(7, "Email should be atleast 7 characters")
         .max(30, "Email can't be more than 30 characters"),
       password: yup
