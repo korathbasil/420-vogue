@@ -1,7 +1,7 @@
-import { useState, FormEvent } from "react";
 import type { NextPage } from "next";
 import Image from "next/image";
 import { useFormik } from "formik";
+import * as yup from "yup";
 
 import styles from "../styles/login.module.scss";
 
@@ -14,6 +14,17 @@ const LoginPage: NextPage & {
       password: "",
     },
     onSubmit: () => {},
+    validationSchema: yup.object({
+      email: yup
+        .string()
+        .email()
+        .min(7, "Email should be atleast 7 characters")
+        .max(30, "Email can't be more than 30 characters"),
+      password: yup
+        .string()
+        .min(8, "Password should be atleast 8 characters")
+        .max(16, "Password can't be more than 16 characters"),
+    }),
   });
 
   return (
