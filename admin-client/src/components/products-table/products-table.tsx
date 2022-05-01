@@ -21,6 +21,7 @@ export const ProductsTable = () => {
             { name: "Brand Name", prop: "randName" },
             { name: "Category", prop: "category" },
             { name: "Sub-Category", prop: "subCategory" },
+            { name: "Status", prop: "status" },
           ]}
           //   data={managers}
           data={[]}
