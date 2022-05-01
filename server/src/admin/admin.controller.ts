@@ -1,5 +1,6 @@
 import {
   Controller,
+  Get,
   Post,
   UsePipes,
   ValidationPipe,
@@ -14,6 +15,11 @@ import { LoginAdminDto } from './dtos/login-admin.dto';
 @Controller('admin')
 export class AdminController {
   constructor(private readonly adminService: AdminService) {}
+
+  @Get()
+  async getAllAdmins() {
+    return this.adminService.getAllAdmins();
+  }
 
   @Post()
   @UsePipes(ValidationPipe)

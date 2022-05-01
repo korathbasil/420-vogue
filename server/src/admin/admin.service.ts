@@ -3,10 +3,18 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateAdminDto } from './dtos/create-admin.dto';
 import { Role } from '../users/user.model';
 import { UsersService } from '../users/users.service';
+import { UsersRepository } from 'src/users/users.repository';
 
 @Injectable()
 export class AdminService {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly usersRepository: UsersRepository,
+  ) {}
+
+  getAllAdmins() {
+    return this.usersRepository.find({ role: 'MANAGER' });
+  }
 
   createAdmin(data: CreateAdminDto) {
     return this.usersService.createUser(data, Role.MANAGER);

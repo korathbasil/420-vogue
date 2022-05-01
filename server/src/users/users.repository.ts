@@ -8,8 +8,8 @@ import { User } from './user.model';
 export class UsersRepository {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  find() {
-    return this.userModel.find();
+  find(query?: FilterQuery<User>) {
+    return this.userModel.find(query);
   }
 
   findOne(query: FilterQuery<User>) {
