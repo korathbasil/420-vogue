@@ -1,6 +1,8 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+import { axios } from "utils";
+
 import styles from "./add-manager-form.module.scss";
 
 export const AddManagerForm = () => {
@@ -18,10 +20,7 @@ export const AddManagerForm = () => {
       .email("Please provide a valid email")
       .min(7, "Minimum 7 characters required")
       .max(30, "Maximum 30 characters allowed"),
-    phone: yup
-      .number()
-      .min(10, "Please provide a valid phone number")
-      .max(10, "Please provide a valid phone number"),
+    phone: yup.number().min(10, "Please provide a valid phone number"),
     password: yup
       .string()
       .min(8, "Minimum 8 characters required")
@@ -37,12 +36,24 @@ export const AddManagerForm = () => {
       password: "",
     },
     validationSchema: yup.object(YupValidationObject),
-    onSubmit: () => {},
+    onSubmit: handleSubmit,
   });
+
+  function handleSubmit() {
+    axios
+      .post("/admin", {
+        ...formik.values,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((e) => console.error(e.response));
+  }
+
   return (
     <div className={styles.AddManager}>
       <h3>Please fill the form below.</h3>
-      <form>
+      <form onSubmit={formik.handleSubmit}>
         <label htmlFor="firstName">First Name</label>
         <input
           type="text"
