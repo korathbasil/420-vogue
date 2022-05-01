@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -6,6 +7,7 @@ import { axios } from "utils";
 import styles from "./add-manager-form.module.scss";
 
 export const AddManagerForm = () => {
+  const router = useRouter();
   const YupValidationObject = {
     firstName: yup
       .string()
@@ -44,9 +46,7 @@ export const AddManagerForm = () => {
       .post("/admin", {
         ...formik.values,
       })
-      .then((res) => {
-        console.log(res.data);
-      })
+      .then((res) => router.push("/managers"))
       .catch((e) => console.error(e.response));
   }
 

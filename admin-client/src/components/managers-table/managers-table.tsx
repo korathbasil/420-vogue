@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import Link from "next/link";
+
+import { axios } from "utils";
 
 import styles from "./managers-table.module.scss";
 import { CustomTable } from "../custom-table/custom-table";
@@ -15,6 +18,16 @@ const data = [
 ];
 
 export const ManagersTable = () => {
+  useEffect(() => {
+    fetchManagers();
+  });
+
+  async function fetchManagers() {
+    axios
+      .get("/admin")
+      .then((res) => console.log(res.data))
+      .catch((e) => console.log(e.response));
+  }
   return (
     <div>
       <div className={styles.top}>
