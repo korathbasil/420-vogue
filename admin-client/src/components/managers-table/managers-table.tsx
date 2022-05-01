@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 import { axios } from "utils";
@@ -17,7 +17,18 @@ const data = [
   },
 ];
 
+type Manager = {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  role: string;
+};
+
 export const ManagersTable = () => {
+  const [managers, setManagers] = useState<Manager[]>([]);
+
   useEffect(() => {
     fetchManagers();
   });
@@ -25,7 +36,20 @@ export const ManagersTable = () => {
   async function fetchManagers() {
     axios
       .get("/admin")
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        const managers = res.data.map((manager: Manager) => {
+          const { _id, firstName, lastName, email, phone, role } = manager;
+          return {
+            _id,
+            firstName,
+            lastName,
+            email,
+            phone,
+            role,
+          };
+        });
+        setManagers(managers);
+      })
       .catch((e) => console.log(e.response));
   }
   return (
@@ -37,13 +61,19 @@ export const ManagersTable = () => {
           </Link>
         </div>
       </div>
-      <CustomTable
-        columns={[
-          { name: "Name", prop: "name" },
-          { name: "Age", prop: "age" },
-        ]}
-        data={data}
-      />
+      <div className="spacer-X"></div>
+      <div className={styles.table}>
+        <CustomTable
+          columns={[
+            { name: "First Name", prop: "firstName" },
+            { name: "Last Name", prop: "lastName" },
+            { name: "Email", prop: "email" },
+            { name: "Phone", prop: "phone" },
+            { name: "Role", prop: "role" },
+          ]}
+          data={managers}
+        />
+      </div>
     </div>
   );
 };
