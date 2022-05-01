@@ -101,7 +101,7 @@ export const AddManagerForm = () => {
 
         <label htmlFor="phone">Phone</label>
         <input
-          type="number"
+          type="text"
           name="phone"
           pattern="[0-9]+"
           required
