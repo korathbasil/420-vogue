@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 import styles from "../styles/login.module.scss";
+import { LogoText } from "components";
 
 const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
@@ -31,9 +32,7 @@ const LoginPage: NextPage & {
     <section className={styles.parent}>
       <div className={styles.contents}>
         <div className={styles.left}>
-          <h1>
-            420VOGUE<span>.</span>
-          </h1>
+          <LogoText />
           <h3>
             Welcome to <span>M-Panel</span>
           </h3>
