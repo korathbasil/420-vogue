@@ -32,7 +32,7 @@ const LoginPage: NextPage & {
     <section className={styles.parent}>
       <div className={styles.contents}>
         <div className={styles.left}>
-          <LogoText />
+          <LogoText fontSize="40px" />
           <h3>
             Welcome to <span>M-Panel</span>
           </h3>
