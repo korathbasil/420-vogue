@@ -1,3 +1,7 @@
+import { FC } from "react";
+
+import { categories } from "sys";
+
 import styles from "./add-product-form.module.scss";
 import { ProductPreview } from "components/product-preview/product-preview";
 
@@ -8,7 +12,17 @@ export const AddProductForm = () => {
         <h4>Please fill the form below.</h4>
         <FormInput label="Barand Name" name="brandName" />
         <FormInput label="Style Name" name="styleName" />
-        <FormInput label="Category" name="category" />
+
+        <FormSelectInput
+          label="Category"
+          name="category"
+          options={categories.map((cat) => {
+            return {
+              name: cat.name,
+              value: cat.value,
+            };
+          })}
+        />
 
         <h5>Add base variant details.</h5>
         <div className={styles.compoundInput}>
@@ -43,3 +57,29 @@ function FormInput({
     </div>
   );
 }
+
+interface FormSelectInputProps {
+  label: string;
+  name: string;
+  options: {
+    name: string;
+    value: string;
+  }[];
+}
+
+const FormSelectInput: FC<FormSelectInputProps> = ({
+  label,
+  name,
+  options,
+}) => {
+  return (
+    <div className={styles.input}>
+      <label htmlFor={name}>{label}</label>
+      <select name={name}>
+        {options.map((option) => (
+          <option value={option.value}>{option.name}</option>
+        ))}
+      </select>
+    </div>
+  );
+};
