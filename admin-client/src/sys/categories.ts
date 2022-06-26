@@ -1,3 +1,12 @@
+export type Category = {
+  name: string;
+  value: string;
+  subCategories: {
+    name: string;
+    value: string;
+  }[];
+};
+
 export const categories = [
   {
     name: "Footwear",
