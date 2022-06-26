@@ -1,15 +1,33 @@
-import { FC, useState } from "react";
-import type { Dispatch, SetStateAction } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { categories, Category } from "sys";
 
 import styles from "./add-product-form.module.scss";
 import { ProductPreview } from "components/product-preview/product-preview";
+import { FormInput, FormSelectInput } from "./form-inputs";
 
 export const AddProductForm = () => {
-  const [selectedCategory, setSelectdeCategory] = useState<Category>(
-    categories[0]
+  const [selectedCategory, setSelectdeCategory] = useState<Category | null>(
+    null
   );
+
+  function findAndSetSelectedCategory(e: ChangeEvent<HTMLSelectElement>) {
+    const selectedCategory = categories.find(
+      (cat) => cat.value === e.target.value
+    );
+
+    if (selectedCategory) setSelectdeCategory(selectedCategory);
+    else setSelectdeCategory(null);
+  }
+
+  function makeSubcategoryItems(category: Category | null) {
+    return category?.subCategories.map((cat) => {
+      return {
+        name: cat.name,
+        value: cat.value,
+      };
+    });
+  }
   return (
     <section className={styles.addProduct}>
       <form>
@@ -26,20 +44,16 @@ export const AddProductForm = () => {
               value: cat.value,
             };
           })}
-          stateHandler={setSelectdeCategory}
+          onChangeHandler={findAndSetSelectedCategory}
         />
 
-        <FormSelectInput
-          label="Sub Category"
-          name="subCategory"
-          options={categories?.map((cat) => {
-            return {
-              name: cat.name,
-              value: cat.value,
-            };
-          })}
-          stateHandler={setSelectdeCategory}
-        />
+        {selectedCategory && (
+          <FormSelectInput
+            label="Sub Category"
+            name="subCategory"
+            options={makeSubcategoryItems(selectedCategory)}
+          />
+        )}
 
         <h5>Add base variant details.</h5>
         <div className={styles.compoundInput}>
@@ -55,60 +69,5 @@ export const AddProductForm = () => {
       <div className="spacer-Y"></div>
       <ProductPreview />
     </section>
-  );
-};
-
-function FormInput({
-  label,
-  type = "text",
-  name,
-}: {
-  label: string;
-  type?: string;
-  name: string;
-}) {
-  return (
-    <div className={styles.input}>
-      <label htmlFor={name}>{label}</label>
-      <input type={type} name={name} />
-    </div>
-  );
-}
-
-interface FormSelectInputProps<T> {
-  label: string;
-  name: string;
-  options: {
-    name: string;
-    value: string;
-  }[];
-  stateHandler: Dispatch<SetStateAction<T>>;
-}
-
-const FormSelectInput: FC<FormSelectInputProps<Category>> = ({
-  label,
-  name,
-  options,
-  stateHandler,
-}) => {
-  function findAndSetSelectedCategory(categoryValue: string) {
-    const selectedCategory = categories.find(
-      (cat) => cat.value === categoryValue
-    );
-
-    if (selectedCategory) stateHandler(selectedCategory);
-  }
-  return (
-    <div className={styles.input}>
-      <label htmlFor={name}>{label}</label>
-      <select
-        onChange={(e) => findAndSetSelectedCategory(e.target.value)}
-        name={name}
-      >
-        {options?.map((option) => (
-          <option value={option.value}>{option.name}</option>
-        ))}
-      </select>
-    </div>
   );
 };
