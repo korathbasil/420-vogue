@@ -64,7 +64,14 @@ export const AddProductForm = () => {
             <FormInput label="Color Code" name="colorCode" />
           </div>
         </div>
-        <FormInput label="Price" name="price" />
+        <div className={styles.compoundInput}>
+          <div>
+            <FormInput label="Price" name="price" />
+          </div>
+          <div>
+            <button>Add more variants</button>
+          </div>
+        </div>
       </form>
       <div className="spacer-Y"></div>
       <ProductPreview />
