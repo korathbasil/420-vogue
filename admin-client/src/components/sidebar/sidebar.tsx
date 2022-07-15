@@ -36,6 +36,7 @@ export const Sidebar = () => {
     const baseRoute = router.pathname.split("/")[1];
     setActiveLink(baseRoute as ActiveLinks);
   }, [router.pathname]);
+
   return (
     <aside className={styles.sidebar}>
       <nav>
@@ -43,20 +44,18 @@ export const Sidebar = () => {
           <li>
             <Link href={"/"}>
               <a
-                className={styles.link}
-                style={{
-                  color:
-                    activeLink === ActiveLinks.Dashboard ? "white" : "#7367f0",
-                  backgroundColor:
-                    activeLink === ActiveLinks.Dashboard
-                      ? "#7367f0"
-                      : "#f8f8f8",
-                }}
+                className={
+                  activeLink == ActiveLinks.Dashboard
+                    ? styles.link__active
+                    : styles.link
+                }
               >
                 <div className={styles.iconWrapper}>
                   <Dashboard
                     color={
-                      activeLink === ActiveLinks.Dashboard ? "white" : "#7367f0"
+                      activeLink === ActiveLinks.Dashboard
+                        ? "white"
+                        : "var(--col-grey-text)"
                     }
                   />
                 </div>
@@ -67,18 +66,18 @@ export const Sidebar = () => {
           <li>
             <Link href={"/orders"}>
               <a
-                className={styles.link}
-                style={{
-                  color:
-                    activeLink === ActiveLinks.Orders ? "white" : "#7367f0",
-                  backgroundColor:
-                    activeLink === ActiveLinks.Orders ? "#7367f0" : "#f8f8f8",
-                }}
+                className={
+                  activeLink == ActiveLinks.Orders
+                    ? styles.link__active
+                    : styles.link
+                }
               >
                 <div className={styles.iconWrapper}>
                   <Orders
                     color={
-                      activeLink === ActiveLinks.Orders ? "white" : "#7367f0"
+                      activeLink === ActiveLinks.Orders
+                        ? "white"
+                        : "var(--col-grey-text)"
                     }
                   />
                 </div>
@@ -89,18 +88,18 @@ export const Sidebar = () => {
           <li>
             <Link href={"/products"}>
               <a
-                className={styles.link}
-                style={{
-                  color:
-                    activeLink === ActiveLinks.Products ? "white" : "#7367f0",
-                  backgroundColor:
-                    activeLink === ActiveLinks.Products ? "#7367f0" : "#f8f8f8",
-                }}
+                className={
+                  activeLink == ActiveLinks.Products
+                    ? styles.link__active
+                    : styles.link
+                }
               >
                 <div className={styles.iconWrapper}>
                   <Products
                     color={
-                      activeLink === ActiveLinks.Products ? "white" : "#7367f0"
+                      activeLink === ActiveLinks.Products
+                        ? "white"
+                        : "var(--col-grey-text)"
                     }
                   />
                 </div>
@@ -111,18 +110,18 @@ export const Sidebar = () => {
           <li>
             <Link href={"/coupons"}>
               <a
-                className={styles.link}
-                style={{
-                  color:
-                    activeLink === ActiveLinks.Coupons ? "white" : "#7367f0",
-                  backgroundColor:
-                    activeLink === ActiveLinks.Coupons ? "#7367f0" : "#f8f8f8",
-                }}
+                className={
+                  activeLink == ActiveLinks.Coupons
+                    ? styles.link__active
+                    : styles.link
+                }
               >
                 <div className={styles.iconWrapper}>
                   <Coupons
                     color={
-                      activeLink === ActiveLinks.Coupons ? "white" : "#7367f0"
+                      activeLink === ActiveLinks.Coupons
+                        ? "white"
+                        : "var(--col-grey-text)"
                     }
                   />
                 </div>
@@ -133,17 +132,18 @@ export const Sidebar = () => {
           <li>
             <Link href={"/users"}>
               <a
-                className={styles.link}
-                style={{
-                  color: activeLink === ActiveLinks.Users ? "white" : "#7367f0",
-                  backgroundColor:
-                    activeLink === ActiveLinks.Users ? "#7367f0" : "#f8f8f8",
-                }}
+                className={
+                  activeLink == ActiveLinks.Users
+                    ? styles.link__active
+                    : styles.link
+                }
               >
                 <div className={styles.iconWrapper}>
                   <Users
                     color={
-                      activeLink === ActiveLinks.Users ? "white" : "#7367f0"
+                      activeLink === ActiveLinks.Users
+                        ? "white"
+                        : "var(--col-grey-text)"
                     }
                   />
                 </div>
@@ -154,18 +154,18 @@ export const Sidebar = () => {
           <li>
             <Link href={"/managers"}>
               <a
-                className={styles.link}
-                style={{
-                  color:
-                    activeLink === ActiveLinks.Managers ? "white" : "#7367f0",
-                  backgroundColor:
-                    activeLink === ActiveLinks.Managers ? "#7367f0" : "#f8f8f8",
-                }}
+                className={
+                  activeLink == ActiveLinks.Managers
+                    ? styles.link__active
+                    : styles.link
+                }
               >
                 <div className={styles.iconWrapper}>
                   <Managers
                     color={
-                      activeLink === ActiveLinks.Managers ? "white" : "#7367f0"
+                      activeLink === ActiveLinks.Managers
+                        ? "white"
+                        : "var(--col-grey-text)"
                     }
                   />
                 </div>
@@ -176,18 +176,18 @@ export const Sidebar = () => {
           <li>
             <Link href={"/profile"}>
               <a
-                className={styles.link}
-                style={{
-                  color:
-                    activeLink === ActiveLinks.Profile ? "white" : "#7367f0",
-                  backgroundColor:
-                    activeLink === ActiveLinks.Profile ? "#7367f0" : "#f8f8f8",
-                }}
+                className={
+                  activeLink == ActiveLinks.Profile
+                    ? styles.link__active
+                    : styles.link
+                }
               >
                 <div className={styles.iconWrapper}>
                   <Profile
                     color={
-                      activeLink === ActiveLinks.Profile ? "white" : "#7367f0"
+                      activeLink === ActiveLinks.Profile
+                        ? "white"
+                        : "var(--col-grey-text)"
                     }
                   />
                 </div>
@@ -198,18 +198,18 @@ export const Sidebar = () => {
           <li>
             <Link href={"/settings"}>
               <a
-                className={styles.link}
-                style={{
-                  color:
-                    activeLink === ActiveLinks.Settings ? "white" : "#7367f0",
-                  backgroundColor:
-                    activeLink === ActiveLinks.Settings ? "#7367f0" : "#f8f8f8",
-                }}
+                className={
+                  activeLink == ActiveLinks.Settings
+                    ? styles.link__active
+                    : styles.link
+                }
               >
                 <div className={styles.iconWrapper}>
                   <Settings
                     color={
-                      activeLink === ActiveLinks.Settings ? "white" : "#7367f0"
+                      activeLink === ActiveLinks.Settings
+                        ? "white"
+                        : "var(--col-grey-text)"
                     }
                   />
                 </div>
