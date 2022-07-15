@@ -1,5 +1,5 @@
 .sidebar {
-  width: 200px;
+  width: 250px;
   padding: 10px;
 }
 
@@ -8,6 +8,8 @@
   align-items: center;
   padding: 10px;
   border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-light);
 
   .iconWrapper {
     width: 20px;
@@ -19,11 +21,14 @@
 .link__active {
   color: white;
   background-color: var(--col-secondary);
+  box-shadow: var(--shadow-light);
 
   display: flex;
   align-items: center;
   padding: 10px;
   border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow-light);
 
   .iconWrapper {
     width: 20px;
