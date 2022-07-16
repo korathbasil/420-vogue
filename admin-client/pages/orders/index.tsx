@@ -1,6 +1,6 @@
 import { OrdersTable, PageTitle } from "components";
 
-const ManagersPage = () => {
+const OrdersPage = () => {
   return (
     <section>
       <PageTitle routes={["Orders"]} />
@@ -9,4 +9,4 @@ const ManagersPage = () => {
     </section>
   );
 };
-export default ManagersPage;
+export default OrdersPage;
