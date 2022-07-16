@@ -72,6 +72,7 @@ export const ManagersTable = () => {
             { name: "Role", prop: "role" },
           ]}
           data={managers}
+          errMsg="No managers added"
         />
       </div>
     </div>

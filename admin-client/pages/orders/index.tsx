@@ -1,6 +1,12 @@
-import { NextPage } from "next";
+import { OrdersTable, PageTitle } from "components";
 
-const OrdersPage: NextPage = () => {
-  return <h2>Orders</h2>;
+const ManagersPage = () => {
+  return (
+    <section>
+      <PageTitle routes={["Orders"]} />
+      <div className="spacer-X"></div>
+      <OrdersTable />
+    </section>
+  );
 };
-export default OrdersPage;
+export default ManagersPage;

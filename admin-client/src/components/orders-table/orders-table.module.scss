@@ -1,0 +1,21 @@
+.top {
+  background-color: white;
+  padding: 20px;
+  box-shadow: var(--shadow-light);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+
+  .actions > a {
+    background-color: var(--col-secondary);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+.table {
+  box-shadow: var(--shadow-light);
+  border-radius: 10px;
+}

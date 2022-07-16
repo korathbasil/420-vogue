@@ -25,6 +25,7 @@ export const ProductsTable = () => {
           ]}
           //   data={managers}
           data={[]}
+          errMsg="No products available!"
         />
       </div>
     </div>
