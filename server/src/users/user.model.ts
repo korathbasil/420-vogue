@@ -29,8 +29,8 @@ class UserAddress extends Document {
   pin: string;
 }
 
-enum Role {
-  USERUSER = 'SUPERUSER',
+export enum Role {
+  SUPERUSER = 'SUPERUSER',
   MANAGER = 'MANAGER',
   USER = 'USER',
 }

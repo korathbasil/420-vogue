@@ -8,15 +8,17 @@ interface CustomTableProps<T> {
     prop: string;
   }[];
   data: T[];
+  errMsg: string;
 }
 
 type ModifiedObject = {
-  [key: string]: string;
+  [key: string]: string | object;
 };
 
 export const CustomTable = <T extends ModifiedObject>({
   columns,
   data,
+  errMsg,
 }: PropsWithChildren<CustomTableProps<T>>) => {
   return (
     <table className={styles.table}>
@@ -34,6 +36,11 @@ export const CustomTable = <T extends ModifiedObject>({
           </tr>
         );
       })}
+      {data.length < 1 && errMsg && (
+        <div className={styles.message}>
+          <p>{errMsg}</p>
+        </div>
+      )}
     </table>
   );
 };

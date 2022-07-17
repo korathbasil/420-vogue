@@ -1,6 +1,12 @@
-import { NextPage } from "next";
+import { UsersTable, PageTitle } from "components";
 
-const UsersPage: NextPage = () => {
-  return <h2>Users</h2>;
+const UsersPage = () => {
+  return (
+    <section>
+      <PageTitle routes={["Users"]} />
+      <div className="spacer-X"></div>
+      <UsersTable />
+    </section>
+  );
 };
 export default UsersPage;

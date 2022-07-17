@@ -1,10 +1,12 @@
 import styles from "./header.module.scss";
 
+import { LogoText } from "../logo-text/logo-text";
+
 export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.left}>
-        <h1>420VOGUE</h1>
+        <LogoText />
         <h3>M-Panel</h3>
       </div>
 

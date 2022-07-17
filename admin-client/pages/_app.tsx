@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import type { AppProps } from "next/app";
 
 import "../styles/globals.css";
-import { PrimaryLayout } from "layouts/primary-layout";
+import { PrimaryLayout } from "../layouts/primary-layout";
 
 type NextPageWithConditionedLayout = NextPage & {
   disablePrimaryLayout: boolean;

@@ -6,6 +6,7 @@ const ManagersPage: NextPage = () => {
   return (
     <section>
       <PageTitle routes={["Managers"]} />
+      <div className="spacer-X"></div>
       <ManagersTable />
     </section>
   );
