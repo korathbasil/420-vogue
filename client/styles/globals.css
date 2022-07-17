@@ -7,9 +7,9 @@ body {
 
   /* Colors */
 
-  --col-primary: #000055ff;
+  --col-primary: rgb(37, 192, 158);
   --col-secondary: #ff004c;
-  --col-light-bg: #faf4ea;
+  --col-light-bg: rgb(253, 253, 253);
   --col-dark-grey: #313030;
 
   background-color: var(--col-light-bg);
