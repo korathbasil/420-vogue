@@ -1,8 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AdminModule } from '../admin/admin.module';
-import { AuthModule } from '../auth/auth.module';
+
+import { UsersModule } from 'src/users/users.module';
+import { MongooseModule } from '@nestjs/mongoose';
+import { AdminModule } from 'src/admin/admin.module';
 
 @Module({
-  imports: [AdminModule, AuthModule],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost:27017/ecommerce'),
+    UsersModule,
+    AdminModule,
+  ],
 })
 export class AppModule {}
