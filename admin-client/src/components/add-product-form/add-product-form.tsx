@@ -1,5 +1,9 @@
 import { ChangeEvent, useState } from "react";
+import { useRouter } from "next/router";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
+import { axios } from "utils";
 import { categories, Category } from "sys";
 
 import styles from "./add-product-form.module.scss";
@@ -7,6 +11,48 @@ import { ProductPreview } from "components/product-preview/product-preview";
 import { FormInput, FormSelectInput } from "./form-inputs";
 
 export const AddProductForm = () => {
+  const router = useRouter();
+  const YupValidationObject = {
+    brand: yup
+      .string()
+      .min(1, "Please enter brand name")
+      .max(20, "Maximum 20 characters allowed"),
+    style: yup
+      .string()
+      .min(4, "Minimum 4 characters required")
+      .max(20, "Maximum 20 characters allowed"),
+    email: yup
+      .string()
+      .email("Please provide a valid email")
+      .min(7, "Minimum 7 characters required")
+      .max(30, "Maximum 30 characters allowed"),
+    phone: yup.number().min(10, "Please provide a valid phone number"),
+    password: yup
+      .string()
+      .min(8, "Minimum 8 characters required")
+      .max(16, "Maximum 16 characters allowed"),
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      brand: "",
+      style: "",
+    },
+    validationSchema: yup.object(YupValidationObject),
+    onSubmit: handleSubmit,
+  });
+
+  function handleSubmit() {
+    // axios
+    //   .post("/products", {
+    //     ...formik.values,
+    //   })
+    //   .then((res) => router.push("/products"))
+    //   .catch((e) => console.error(e.response));
+
+    console.log({ ...formik.values });
+  }
+  // Category logic state
   const [selectedCategory, setSelectdeCategory] = useState<Category | null>(
     null
   );
@@ -30,10 +76,22 @@ export const AddProductForm = () => {
   }
   return (
     <section className={styles.addProduct}>
-      <form>
+      <form onSubmit={formik.handleSubmit}>
         <h4>Please fill the form below.</h4>
-        <FormInput label="Barand Name" name="brandName" />
-        <FormInput label="Style Name" name="styleName" />
+        <FormInput
+          label="Barand Name"
+          name="brand"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.brand}
+        />
+        <FormInput
+          label="Style Name"
+          name="style"
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.style}
+        />
 
         <FormSelectInput
           label="Category"
@@ -55,7 +113,7 @@ export const AddProductForm = () => {
           />
         )}
 
-        <h5>Add base variant details.</h5>
+        <h5>Base variant details.</h5>
         <div className={styles.compoundInput}>
           <div>
             <FormInput label="Color" name="color" />
@@ -68,7 +126,7 @@ export const AddProductForm = () => {
           <div>
             <FormInput label="Price" name="price" />
           </div>
-          <div>
+          <div className={styles.actions}>
             <button>Add more variants</button>
           </div>
         </div>

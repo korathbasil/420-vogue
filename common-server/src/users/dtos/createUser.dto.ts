@@ -1,6 +1,6 @@
-import { Length, IsNotEmpty, IsNumberString } from 'class-validator';
+import { IsNotEmpty, Length, IsNumberString } from 'class-validator';
 
-export class CreateAdminDto {
+export class CreateUserDto {
   @Length(3, 25)
   @IsNotEmpty({ message: "First Name can't be empty" })
   firstName: string;

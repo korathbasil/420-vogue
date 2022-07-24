@@ -8,7 +8,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 
-import { UsersService } from './users.service';
+import { UsersService } from 'common-server';
 import { CreateUserDto } from './dtos/createUser.dto';
 
 @Controller('users')
