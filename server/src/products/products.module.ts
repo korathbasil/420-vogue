@@ -1,13 +1,10 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { ProductsModule as CommonProductsModule } from 'common-server';
 
 import { ProductsController } from './products.controller';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: 'Product', schema: productSchema }]),
-  ],
+  imports: [CommonProductsModule],
   controllers: [ProductsController],
-  providers: [],
 })
 export class ProductsModule {}
