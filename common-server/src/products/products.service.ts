@@ -1,16 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
-import { ProductsRepository } from './products.repository';
-import { Product } from './products.model';
+import { ProductsRepository } from "./products.repository";
+import { Product } from "./products.model";
 
 @Injectable()
 export class ProductsService {
   constructor(private readonly productRepo: ProductsRepository) {}
 
-  async getAllProducts(): Promise<Product[]> {
-    const products = await this.productRepo.find({});
+  getAllProducts(): Promise<Product[]> {
+    return this.productRepo.find({});
+  }
 
-    return products;
+  async getProductWithId(id: string) {
+    const product = await this.productRepo.findById(id);
+
+    if (!product) throw new Error("Product not found");
+
+    return product;
   }
 
   async createProduct(): Promise<Product> {

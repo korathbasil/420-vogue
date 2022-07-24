@@ -22,14 +22,14 @@ class ProductVariant extends Document {
   @Prop({ type: Number, required: true })
   price: number;
 
-  @Prop({ type: ProductStock, required: true })
-  stock: ProductStock;
+  @Prop([{ type: ProductStock, required: true }])
+  stock: ProductStock[];
 }
 
 @Schema()
 export class Product extends Document {
   @Prop({ type: String, required: true })
-  id: string;
+  _id: string;
 
   @Prop({ type: String, required: true })
   brandName: string;
