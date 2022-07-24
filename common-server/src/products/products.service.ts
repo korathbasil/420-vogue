@@ -11,6 +11,10 @@ export class ProductsService {
     return this.productRepo.find({});
   }
 
+  getProductsWithCategory(categoryName: string): Promise<Product[]> {
+    return this.productRepo.find({ category: categoryName });
+  }
+
   async getProductWithId(id: string) {
     const product = await this.productRepo.findById(id);
 
