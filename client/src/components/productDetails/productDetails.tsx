@@ -1,10 +1,18 @@
+import { FC } from "react";
+
+import { Product } from "types";
+
 import styles from "./productDetails.module.scss";
 
-export const ProductDetails = () => {
+interface ProductDetailsProps {
+  product: Product | null;
+}
+
+export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
   return (
     <div className={styles.parent}>
       <div className={styles.top}>
-        <h2>NiKe Jordan Striped LKV</h2>
+        <h2>{product?.styleName}</h2>
         <h2>₹1300</h2>
       </div>
 
