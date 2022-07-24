@@ -1,6 +1,13 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 
-import { ProductsService } from 'common-server';
+import { ProductsService, CreateProductDto } from 'common-server';
 
 @Controller('products')
 export class ProductsController {
@@ -11,5 +18,8 @@ export class ProductsController {
   }
 
   @Post()
-  createProduct() {}
+  @UsePipes(ValidationPipe)
+  createProduct(@Body() body: CreateProductDto) {
+    console.log(body);
+  }
 }
