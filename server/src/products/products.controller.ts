@@ -1,4 +1,10 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  NotFoundException,
+  Param,
+  Query,
+} from '@nestjs/common';
 
 import { ProductsService, Product } from 'common-server';
 
@@ -11,8 +17,25 @@ export class ProductsController {
     return this.productService.getAllProducts();
   }
 
-  @Post()
-  async createProduct(): Promise<Product> {
-    return this.productService.createProduct();
+  @Get('/:id')
+  async getProductWithId(@Param('id') id: string): Promise<Product> {
+    try {
+      const product = await this.productService.getProductWithId(id);
+      return product;
+    } catch (e) {
+      throw new NotFoundException('Product not dound');
+    }
+  }
+
+  @Get('/?category')
+  async getProductsWithCategory(
+    @Query('category') cat: string,
+  ): Promise<Product[]> {
+    try {
+      const product = await this.productService.getProductsWithCategory(cat);
+      return product;
+    } catch (e) {
+      throw new NotFoundException('Product not dound');
+    }
   }
 }
