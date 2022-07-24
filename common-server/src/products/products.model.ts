@@ -29,9 +29,6 @@ class ProductVariant extends Document {
 @Schema()
 export class Product extends Document {
   @Prop({ type: String, required: true })
-  _id: string;
-
-  @Prop({ type: String, required: true })
   brandName: string;
 
   @Prop({ type: String, required: true })
