@@ -8,7 +8,7 @@ import {
   HomeBanner,
   RecentItems,
   Sidebar,
-} from "../components";
+} from "../src/components";
 
 const HomePage: NextPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
