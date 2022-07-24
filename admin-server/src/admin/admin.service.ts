@@ -1,9 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { CreateAdminDto } from './dtos/create-admin.dto';
-import { Role } from '../users/user.model';
-import { UsersService } from '../users/users.service';
-import { UsersRepository } from 'src/users/users.repository';
+import { UsersService, UsersRepository, Role } from 'common-server';
 
 @Injectable()
 export class AdminService {
