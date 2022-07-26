@@ -5,7 +5,7 @@ import { Model, FilterQuery } from "mongoose";
 import { Order } from "./orders.model";
 
 @Injectable()
-export class ProductsRepository {
+export class OrdersRepository {
   constructor(
     @InjectModel("Order") private readonly orderModel: Model<Order>
   ) {}

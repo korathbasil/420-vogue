@@ -1,7 +1,9 @@
-import { Module } from '@nestjs/common';
-import { OrdersService } from './orders.service';
+import { Module } from "@nestjs/common";
+
+import { OrdersService } from "./orders.service";
+import { OrdersRepository } from "./orders.repository";
 
 @Module({
-  providers: [OrdersService]
+  providers: [OrdersService, OrdersRepository],
 })
 export class OrdersModule {}
