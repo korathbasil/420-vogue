@@ -52,12 +52,12 @@ export const Sidebar: FC<SidebarProps> = ({
           </Link>
         </ul>
         <ul>
-          <Link href={"/profile"}>
+          <Link href={"/account"}>
             <a className={styles.link}>
               <div className={styles.iconWrapper}>
                 <Avatar />
               </div>
-              <p>MY PROFILE</p>
+              <p>Account</p>
             </a>
           </Link>
         </ul>
