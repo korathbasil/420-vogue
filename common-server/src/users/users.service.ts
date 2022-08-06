@@ -10,7 +10,7 @@ export class UsersService {
   constructor(private readonly usersRepo: UsersRepository) {}
 
   findAllUsers() {
-    return this.usersRepo.find();
+    return this.usersRepo.find({ role: "USER" });
   }
 
   findAllAdmins() {
