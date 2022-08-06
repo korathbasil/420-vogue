@@ -1,7 +1,9 @@
 import type { NextPage } from "next";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { axios } from "../src/utils/axios";
 
 import styles from "../styles/login.module.scss";
 import { LogoText } from "components";
@@ -9,12 +11,13 @@ import { LogoText } from "components";
 const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
 } = () => {
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    onSubmit: () => {},
+    onSubmit: handleLogin,
     validationSchema: yup.object({
       email: yup
         .string()
@@ -27,6 +30,20 @@ const LoginPage: NextPage & {
         .max(16, "Password can't be more than 16 characters"),
     }),
   });
+
+  async function handleLogin() {
+    axios
+      .post("/auth/login", {
+        email: formik.values.email,
+        password: formik.values.password,
+      })
+      .then((result) => result.data)
+      .then((data) => {
+        console.log(data);
+        router.push("/");
+      })
+      .catch((e) => console.warn(e.response.data));
+  }
 
   return (
     <section className={styles.parent}>
