@@ -13,6 +13,10 @@ export class UsersService {
     return this.usersRepo.find();
   }
 
+  findAllAdmins() {
+    return this.usersRepo.find({ role: "MANAGER" });
+  }
+
   async createUser(data: CreateUserDto, role = "USER" as Role) {
     const user = await this.usersRepo.findOne({ email: data.email });
 
