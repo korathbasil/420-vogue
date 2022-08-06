@@ -14,7 +14,7 @@ export class OrdersService {
     return this.ordersRepo.findById(id);
   }
 
-  createOrder(orderData: object) {
-    return this.ordersRepo.insertOne(orderData as Order);
-  }
+  // createOrder(orderData: object) {
+  //   return this.ordersRepo.insertOne(orderData as Order);
+  // }
 }
