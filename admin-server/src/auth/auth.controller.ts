@@ -18,4 +18,7 @@ export class AuthController {
   async loginAdmin(@Body() data: LoginAdminDto) {
     return this.authService.loginAdmin(data.email, data.password);
   }
+
+  @Post()
+  logoutAdmin() {}
 }
