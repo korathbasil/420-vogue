@@ -21,13 +21,4 @@ export class AdminService {
   createSuperUser(data: CreateAdminDto) {
     return this.usersService.createUser(data, Role.SUPERUSER);
   }
-
-  async loginAdmin(email: string, password: string) {
-    try {
-      const user = await this.usersService.loginUser(email, password);
-      return user;
-    } catch (e) {
-      throw new BadRequestException(e);
-    }
-  }
 }
