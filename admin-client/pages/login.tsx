@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { useDispatch } from "react-redux";
 import { axios } from "../src/utils/axios";
 
 import styles from "../styles/login.module.scss";
@@ -12,6 +13,9 @@ const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
 } = () => {
   const router = useRouter();
+
+  const dispath = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -40,6 +44,15 @@ const LoginPage: NextPage & {
       .then((result) => result.data)
       .then((data) => {
         console.log(data);
+        dispath({
+          type: "auth/login",
+          payload: {
+            _id: data._id,
+            firstname: data.firstName,
+            lastname: data.lastName,
+            email: data.email,
+          },
+        });
         router.push("/");
       })
       .catch((e) => console.warn(e.response.data));
