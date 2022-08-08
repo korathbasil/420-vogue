@@ -2,6 +2,7 @@ import { ReactElement } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
+import { store } from "state/store";
 
 import "../styles/globals.css";
 import { PrimaryLayout } from "../layouts/primary-layout";
@@ -26,7 +27,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithConditionedLayout) => {
     <Component {...pageProps} />
   );
 
-  return <Provider store={{}}>{_myApp}</Provider>;
+  return <Provider store={store}>{_myApp}</Provider>;
 };
 
 export default MyApp;
