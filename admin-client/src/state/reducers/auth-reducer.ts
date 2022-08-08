@@ -12,8 +12,14 @@ const initialState = {
 export function authReducer(
   state = initialState,
   action: { type: string; payload: any }
-) {
+): typeof initialState {
   switch (action.type) {
+    case "auth/login":
+      return {
+        ...state,
+        loggedIn: true,
+        user: action.payload,
+      };
     default:
       return state;
   }
