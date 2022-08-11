@@ -1,16 +1,10 @@
-import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { store } from "state/store";
-
+import { screen } from "@testing-library/react";
+import { render } from "utils";
 import { Header } from "./header";
 
 describe("Header", () => {
   it("renders a heading", () => {
-    render(
-      <Provider store={store}>
-        <Header />
-      </Provider>
-    );
+    render(<Header />);
 
     // const heading = screen.getByRole("heading", {
     //   name: /welcome to next\.js!/i,
