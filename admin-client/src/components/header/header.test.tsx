@@ -1,3 +1,4 @@
+import { expect } from "@jest/globals";
 import { screen } from "@testing-library/react";
 import { render } from "utils";
 import { Header } from "./header";
