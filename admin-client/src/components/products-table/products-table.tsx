@@ -6,7 +6,7 @@ import styles from "./products-table.module.scss";
 import { CustomTable } from "../custom-table/custom-table";
 
 export const ProductsTable = () => {
-  const { data: products, error } = useSwr(
+  const { data: products = [], error } = useSwr(
     "products",
     ProductController.getProducts
   );

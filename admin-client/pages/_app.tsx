@@ -15,8 +15,8 @@ type AppPropsWithConditionedLayout = AppProps & {
   Component: NextPageWithConditionedLayout;
 };
 
-const ApplyPrimaryLayout = (page: ReactElement) => {
-  return <PrimaryLayout>{page}</PrimaryLayout>;
+const ApplyPrimaryLayout = (Page: ReactElement) => {
+  return <PrimaryLayout>{Page}</PrimaryLayout>;
 };
 
 const MyApp = ({ Component, pageProps }: AppPropsWithConditionedLayout) => {
