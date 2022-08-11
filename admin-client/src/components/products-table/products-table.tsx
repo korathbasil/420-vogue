@@ -1,23 +1,15 @@
 import Link from "next/link";
 import useSwr from "swr";
+import { ProductController } from "lib/controllers";
 
 import styles from "./products-table.module.scss";
 import { CustomTable } from "../custom-table/custom-table";
-import { axios } from "utils";
 
 export const ProductsTable = () => {
-  const { data: products, error } = useSwr("products", async () => {
-    const { data } = await axios.get("/products");
-    const products = data.map((p: any) => ({
-      _id: p._id,
-      styleName: p.styleName,
-      brandName: p.brandName,
-      category: p.category,
-      subCategory: p.subCategory,
-      status: "ACTIVE",
-    }));
-    return products;
-  });
+  const { data: products, error } = useSwr(
+    "products",
+    ProductController.getProducts
+  );
   return (
     <div>
       <div className={styles.top}>
