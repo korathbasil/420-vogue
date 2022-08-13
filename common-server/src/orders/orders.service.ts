@@ -14,6 +14,10 @@ export class OrdersService {
     return this.ordersRepo.findById(id);
   }
 
+  getOrdersByUserId(id: string) {
+    return this.ordersRepo.find({ "user._id": id });
+  }
+
   // createOrder(orderData: object) {
   //   return this.ordersRepo.insertOne(orderData as Order);
   // }
