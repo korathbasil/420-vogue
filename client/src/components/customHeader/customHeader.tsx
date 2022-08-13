@@ -19,7 +19,7 @@ export const CustomHeader: FC<CustomHeaderProps> = ({ title, links }) => {
   const router = useRouter();
 
   return (
-    <header>
+    <header className={styles.parent}>
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.left}>
