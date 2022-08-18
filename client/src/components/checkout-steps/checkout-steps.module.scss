@@ -1,3 +1,5 @@
+@import "../../sass/screen-media-queries.scss";
+
 .steps {
   flex: 0.6;
 }
@@ -21,6 +23,34 @@
       color: var(--clr-sand);
       border-radius: 5px;
       margin: 0 1rem 0 0.5rem;
+    }
+  }
+
+  .body {
+    padding: 0.5rem;
+    background-color: var(--clr-sand-light);
+    border-radius: 0 0 10px 10px;
+
+    form {
+      margin-top: 1rem;
+      width: 100%;
+      background-color: white;
+      padding: 0.5rem;
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+
+      div {
+        padding: 0.5rem;
+        background-color: var(--clr-sand-light);
+        border-radius: 10px;
+
+        label {
+          margin-left: 10px;
+          font-size: 14px;
+        }
+      }
     }
   }
 }

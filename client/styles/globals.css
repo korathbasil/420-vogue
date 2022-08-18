@@ -13,6 +13,7 @@ body {
   --col-dark-grey: #313030;
 
   --clr-sand: #F1ECC3;
+  --clr-sand-light: #d3d0bc;
 
   background-color: var(--col-light-bg);
 }
