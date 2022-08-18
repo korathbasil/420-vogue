@@ -1,4 +1,14 @@
 .header {
   height: 4rem;
-  background-color: aqua;
+  background-color: var(--clr-sand);
+}
+
+.child {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+
+  .left {
+    display: flex;
+  }
 }

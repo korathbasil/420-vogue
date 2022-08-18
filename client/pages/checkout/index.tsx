@@ -4,9 +4,9 @@ import { CHeader } from "components";
 
 const CheckoutPage: NextPage = () => {
   return (
-    <section>
+    <main>
       <CHeader />
-    </section>
+    </main>
   );
 };
 

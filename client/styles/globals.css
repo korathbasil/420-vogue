@@ -8,9 +8,11 @@ body {
   /* Colors */
 
   --col-primary: rgb(37, 192, 158);
-  --col-secondary: rgb(37, 192, 158);
-  --col-light-bg: rgb(253, 253, 253);
+  --clr-primary: rgb(37, 192, 158);
+  --col-light-bg: #C9D8B6;
   --col-dark-grey: #313030;
+
+  --clr-sand: #F1ECC3;
 
   background-color: var(--col-light-bg);
 }
