@@ -1,12 +1,12 @@
 import { NextPage } from "next";
 
-import { CustomHeader } from "components";
+import { CHeader } from "components";
 
 const CheckoutPage: NextPage = () => {
   return (
-    <main>
-      <CustomHeader links={[]} />
-    </main>
+    <section>
+      <CHeader />
+    </section>
   );
 };
 

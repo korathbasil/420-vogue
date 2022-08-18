@@ -4,6 +4,7 @@ export * from "./homeBanner/homeBanner";
 export * from "./productCard/productCard";
 export * from "./recentItems/recentItems";
 export * from "./customHeader/customHeader";
+export * from "./custom-header/custom-header";
 export * from "./sidebar/sidebar";
 export * from "./productCarousel/productCarousel";
 export * from "./productDetails/productDetails";

@@ -19,9 +19,9 @@ export const CustomHeader: FC<CustomHeaderProps> = ({ title, links }) => {
   const router = useRouter();
 
   return (
-    <header className={styles.parent}>
-      <div className={styles.container}>
-        <div className={styles.header}>
+    <header className={styles.header}>
+      <div className="container">
+        <div className={styles.child}>
           <div className={styles.left}>
             <div
               onClick={() => {
