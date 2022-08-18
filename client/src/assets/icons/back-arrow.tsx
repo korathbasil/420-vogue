@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { IconProps } from "./types";
 
-export const BackArrow: FC<IconProps> = ({ size = "30px" }) => (
-  <div style={{ width: size, height: size }}>
+export const BackArrow: FC<IconProps> = ({ size = "30px", onClickAction }) => (
+  <div style={{ width: size, height: size }} onClick={onClickAction}>
     <svg viewBox="0 0 24 24">
       <path
         fill="var(--clr-primary)"
