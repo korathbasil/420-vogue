@@ -15,7 +15,7 @@ const CheckoutPage: NextPage = () => {
       <div className="container">
         <div className={styles.checkout}>
           <CheckoutSteps step={step} updateStep={updateStep} />
-          <CheckoutNavigator />
+          <CheckoutNavigator step={step} updateStep={updateStep} />
         </div>
       </div>
     </main>

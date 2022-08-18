@@ -18,25 +18,6 @@ export const CheckoutSteps: FC<CheckoutStepsProps> = ({ step, updateStep }) => {
       {step === 2 && <CheckoutAddress />}
       {step === 3 && <CheckoutSummary />}
       {step === 4 && <CheckoutPayments />}
-
-      <button
-        onClick={() => {
-          if (step > 0) {
-            updateStep((step) => step - 1);
-          }
-        }}
-      >
-        Prev
-      </button>
-      <button
-        onClick={() => {
-          if (step < 5) {
-            updateStep((step) => step + 1);
-          }
-        }}
-      >
-        Next
-      </button>
     </section>
   );
 };
