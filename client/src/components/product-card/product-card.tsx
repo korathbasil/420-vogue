@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import styles from "./productCard.module.scss";
+import styles from "./product-card.module.scss";
 
 export const ProductCard = () => {
   return (

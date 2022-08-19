@@ -8,6 +8,7 @@ import {
   HomeBanner,
   RecentItems,
   Sidebar,
+  FeaturedProducts,
 } from "../src/components";
 
 const HomePage: NextPage = () => {
@@ -34,6 +35,7 @@ const HomePage: NextPage = () => {
       <main style={{ paddingTop: "6rem" }}>
         <Greetings />
         <HomeBanner />
+        <FeaturedProducts />
       </main>
     </div>
   );

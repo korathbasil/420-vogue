@@ -1,5 +1,5 @@
 import styles from "./recentItems.module.scss";
-import { ProductCard } from "../productCard/productCard";
+import { ProductCard } from "../product-card/product-card";
 
 export const RecentItems = () => {
   return (
