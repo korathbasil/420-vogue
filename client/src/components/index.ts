@@ -10,6 +10,7 @@ export * from "./recentItems/recentItems";
 export * from "./sidebar/sidebar";
 export * from "./product-carousel/product-carousel";
 export * from "./product-details/product-details";
+export * from "./product-actions/product-actions";
 export * from "./about/about";
 export * from "./help/help";
 export * from "./checkout-steps/checkout-steps";

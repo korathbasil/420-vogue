@@ -1,0 +1,21 @@
+.actions {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: calc(100% - 2rem);
+  display: flex;
+  gap: 1rem;
+
+  .bag,
+  .cart {
+    flex: 1;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cart {
+    flex: 1;
+  }
+}

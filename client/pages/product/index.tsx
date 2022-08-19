@@ -4,7 +4,7 @@ import { NextPage } from "next";
 import { axios } from "utils";
 
 import styles from "./product.module.scss";
-import { ProductCarousel, ProductDetails } from "components";
+import { ProductCarousel, ProductDetails, ProductActions } from "components";
 import { Product } from "types";
 
 const ProductPage: NextPage = () => {
@@ -37,6 +37,7 @@ const ProductPage: NextPage = () => {
     <section className={styles.parent}>
       <ProductCarousel />
       <ProductDetails product={product} />
+      <ProductActions />
     </section>
   );
 };

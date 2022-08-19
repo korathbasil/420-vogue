@@ -12,11 +12,22 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
   return (
     <div className={styles.parent}>
       <div className={styles.top}>
-        <h2>{product?.styleName}</h2>
-        <h2>₹1300</h2>
+        <h3>Nike</h3>
+        <h4>₹1300</h4>
+        <h2>Jordan Air</h2>
+        <p>SHOES, CASUAL SHOES</p>
+      </div>
+      <div className={styles.description}>
+        <h5>DESCRIPTION</h5>
+        <ul>
+          <li>Lightweight</li>
+          <li>Comfy</li>
+          <li>Water proof and very good</li>
+          <li>Lightweight</li>
+        </ul>
       </div>
 
-      <div className={styles.colors}>
+      {/* <div className={styles.colors}>
         <p>Choose colors</p>
         <div>
           <div className={styles.colorBox}>
@@ -40,7 +51,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
             <p>Green</p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
