@@ -19,6 +19,10 @@ const HomePage: NextPage = () => {
   function sidebarToggleHandler() {
     setIsLoginModalOpen(!isSidebarOpen);
   }
+
+  function loginModalToggleHandler() {
+    setIsLoginModalOpen(true);
+  }
   return (
     <div>
       <Head>
@@ -33,8 +37,11 @@ const HomePage: NextPage = () => {
         isSidebarOpen={isSidebarOpen}
         sidebarToggleHandler={sidebarToggleHandler}
       />
-      <Header sidebarToggleHandler={sidebarToggleHandler} />
-      <main style={{ paddingTop: "6rem" }}>
+      <Header
+        sidebarToggleHandler={sidebarToggleHandler}
+        loginModalToggleHandler={loginModalToggleHandler}
+      />
+      <main style={{ paddingTop: "5.5rem" }}>
         <Greetings />
         <HomeBanner />
         <FeaturedProducts />
