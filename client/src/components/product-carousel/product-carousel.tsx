@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import styles from "./productCarousel.module.scss";
+import styles from "./product-carousel.module.scss";
 import { BackArrow, HeartOutlined } from "assets/icons";
 
 export const ProductCarousel = () => {
@@ -10,9 +10,7 @@ export const ProductCarousel = () => {
     <div className={styles.parent}>
       <header className={styles.header}>
         <div>
-          <div onClick={() => router.back()} className={styles.iconWrapper}>
-            <BackArrow />
-          </div>
+          <BackArrow onClickAction={router.back} size="25px" />
         </div>
 
         <div>

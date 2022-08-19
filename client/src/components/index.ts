@@ -8,7 +8,7 @@ export * from "./featured-products/featured-products";
 export * from "./product-card/product-card";
 export * from "./recentItems/recentItems";
 export * from "./sidebar/sidebar";
-export * from "./productCarousel/productCarousel";
+export * from "./product-carousel/product-carousel";
 export * from "./productDetails/productDetails";
 export * from "./about/about";
 export * from "./help/help";
