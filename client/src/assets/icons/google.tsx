@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { IconProps } from "./types";
 
-export const Close: FC<IconProps> = ({
+export const Google: FC<IconProps> = ({
   size = "30px",
   fill = "var(--clr-primary)",
   bg,
@@ -14,7 +14,7 @@ export const Close: FC<IconProps> = ({
     <svg viewBox="0 0 24 24">
       <path
         fill={fill}
-        d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        d="M12.545,10.239v3.821h5.445c-0.712,2.315-2.647,3.972-5.445,3.972c-3.332,0-6.033-2.701-6.033-6.032s2.701-6.032,6.033-6.032c1.498,0,2.866,0.549,3.921,1.453l2.814-2.814C17.503,2.988,15.139,2,12.545,2C7.021,2,2.543,6.477,2.543,12s4.478,10,10.002,10c8.396,0,10.249-7.85,9.426-11.748L12.545,10.239z"
       ></path>
     </svg>
   </div>

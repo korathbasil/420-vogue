@@ -15,3 +15,5 @@ export * from "./about/about";
 export * from "./help/help";
 export * from "./checkout-steps/checkout-steps";
 export * from "./checkout-navigator/checkout-navigator";
+export * from "./modal/modal";
+export * from "./login-modal/login-modal";

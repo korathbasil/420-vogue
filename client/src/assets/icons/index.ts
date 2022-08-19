@@ -12,3 +12,5 @@ export * from "./info";
 export * from "./order";
 export * from "./instagram";
 export * from "./bolt";
+export * from "./google";
+export * from "./facebook";

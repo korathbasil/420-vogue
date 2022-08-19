@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 
@@ -9,14 +9,19 @@ import {
   RecentItems,
   Sidebar,
   FeaturedProducts,
+  Modal,
+  LoginModal,
 } from "../src/components";
 
 const HomePage: NextPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
   function sidebarToggleHandler() {
-    setIsSidebarOpen(!isSidebarOpen);
+    setIsLoginModalOpen(!isSidebarOpen);
   }
+
+  const loginModalToggleHandler = useCallback(setIsLoginModalOpen, []);
   return (
     <div>
       <Head>
@@ -31,12 +36,20 @@ const HomePage: NextPage = () => {
         isSidebarOpen={isSidebarOpen}
         sidebarToggleHandler={sidebarToggleHandler}
       />
-      <Header sidebarToggleHandler={sidebarToggleHandler} />
-      <main style={{ paddingTop: "6rem" }}>
+      <Header
+        sidebarToggleHandler={sidebarToggleHandler}
+        loginModalToggleHandler={loginModalToggleHandler}
+      />
+      <main style={{ paddingTop: "5.5rem" }}>
         <Greetings />
         <HomeBanner />
         <FeaturedProducts />
       </main>
+      {isLoginModalOpen && (
+        <Modal>
+          <LoginModal closeModal={loginModalToggleHandler} />
+        </Modal>
+      )}
     </div>
   );
 };
