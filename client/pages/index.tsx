@@ -9,13 +9,15 @@ import {
   RecentItems,
   Sidebar,
   FeaturedProducts,
+  Modal,
 } from "../src/components";
 
 const HomePage: NextPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
   function sidebarToggleHandler() {
-    setIsSidebarOpen(!isSidebarOpen);
+    setIsLoginModalOpen(!isSidebarOpen);
   }
   return (
     <div>
@@ -37,6 +39,11 @@ const HomePage: NextPage = () => {
         <HomeBanner />
         <FeaturedProducts />
       </main>
+      {isLoginModalOpen && (
+        <Modal>
+          <p>Hello</p>
+        </Modal>
+      )}
     </div>
   );
 };
