@@ -12,7 +12,7 @@ interface HeaderProps {
 export const Header: FC<HeaderProps> = ({ sidebarToggleHandler }) => {
   return (
     <header className={styles.headerParent}>
-      <div className={styles.container}>
+      <div className="container">
         <div className={styles.header}>
           <div className={styles.left}>
             <div

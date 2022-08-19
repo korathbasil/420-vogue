@@ -1,6 +1,7 @@
 .headerParent {
   width: 100%;
   position: fixed;
+  box-shadow: var(--shadow-light);
 }
 .header {
   display: flex;
