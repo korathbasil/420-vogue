@@ -5,6 +5,30 @@
   background-color: var(--clr-white);
   border-radius: 7px;
 
+  hr {
+    margin: 1rem 0;
+    background-color: var(--clr-grey-text);
+  }
+
+  .socialLogin {
+    display: flex;
+    gap: 1rem;
+
+    .social {
+      flex: 1;
+      border: 2px solid var(--clr-primary);
+      border-radius: 8px;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: center;
+
+      h4 {
+        margin-left: 0.5rem;
+        color: var(--clr-primary);
+      }
+    }
+  }
+
   form {
     display: flex;
     flex-direction: column;

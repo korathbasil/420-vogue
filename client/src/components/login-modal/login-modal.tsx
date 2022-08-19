@@ -2,6 +2,7 @@ import { Dispatch, FC, SetStateAction, useCallback, useState } from "react";
 
 import styles from "./login-modal.module.scss";
 import { LogoText } from "components";
+import { Google, Facebook } from "assets/icons";
 
 export const LoginModal = () => {
   const [showLogin, setShowLogin] = useState(true);
@@ -12,6 +13,17 @@ export const LoginModal = () => {
     <section className={styles.login}>
       {showLogin && <Login switcher={loginSignupSwitcher} />}
       {!showLogin && <Signup switcher={loginSignupSwitcher} />}
+      <hr />
+      <div className={styles.socialLogin}>
+        <div className={styles.social}>
+          <Google size="20px" />
+          <h4>Google</h4>
+        </div>
+        <div className={styles.social}>
+          <Facebook size="20px" />
+          <h4>Facebook</h4>
+        </div>
+      </div>
     </section>
   );
 };
