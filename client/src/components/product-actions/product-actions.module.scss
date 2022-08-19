@@ -4,7 +4,7 @@
   left: 1rem;
   width: calc(100% - 2rem);
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
 
   .bag,
   .cart {
@@ -13,9 +13,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 10px;
+
+    h3 {
+      font-size: 16px;
+      margin-left: 0.25rem;
+    }
+  }
+
+  .bag {
+    background-color: var(--clr-white);
+    color: var(--clr-primary);
+    border: 3px solid var(--clr-primary);
   }
 
   .cart {
-    flex: 1;
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
   }
 }
