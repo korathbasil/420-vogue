@@ -31,14 +31,10 @@ const HomePage: NextPage = () => {
         sidebarToggleHandler={sidebarToggleHandler}
       />
       <Header sidebarToggleHandler={sidebarToggleHandler} />
-      <Greetings />
-      <HomeBanner />
-
-      <style>{`
-        body {
-          overflow: ${isSidebarOpen ? "hidden" : "scroll"};
-        }
-      `}</style>
+      <main style={{ paddingTop: "6rem" }}>
+        <Greetings />
+        <HomeBanner />
+      </main>
     </div>
   );
 };
