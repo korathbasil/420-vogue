@@ -2,15 +2,22 @@ import { Dispatch, FC, SetStateAction, useCallback, useState } from "react";
 
 import styles from "./login-modal.module.scss";
 import { LogoText } from "components";
-import { Google, Facebook } from "assets/icons";
+import { Google, Facebook, Close } from "assets/icons";
 
-export const LoginModal = () => {
+interface LoginModalProps {
+  closeModal: Dispatch<SetStateAction<boolean>>;
+}
+
+export const LoginModal: FC<LoginModalProps> = ({ closeModal }) => {
   const [showLogin, setShowLogin] = useState(true);
 
   const loginSignupSwitcher = useCallback(setShowLogin, []);
 
   return (
     <section className={styles.login}>
+      <div onClick={() => closeModal(false)} className={styles.close}>
+        <Close fill="var(--clr-grey-text)" />
+      </div>
       {showLogin && <Login switcher={loginSignupSwitcher} />}
       {!showLogin && <Signup switcher={loginSignupSwitcher} />}
       <hr />

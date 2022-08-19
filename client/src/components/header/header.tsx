@@ -1,13 +1,13 @@
+import { Dispatch, FC, SetStateAction } from "react";
 import Link from "next/link";
 
 import styles from "./header.module.scss";
 import { Menu, ShoppingBag, Search } from "assets/icons";
-import { FC } from "react";
 import { LogoText } from "components";
 
 interface HeaderProps {
   sidebarToggleHandler: () => void;
-  loginModalToggleHandler: () => void;
+  loginModalToggleHandler: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Header: FC<HeaderProps> = ({
@@ -38,7 +38,10 @@ export const Header: FC<HeaderProps> = ({
                 <Search />
               </Link>
             </div>
-            <div className={styles.login} onClick={loginModalToggleHandler}>
+            <div
+              className={styles.login}
+              onClick={() => loginModalToggleHandler(true)}
+            >
               <p>LOGIN / SIGNUP</p>
             </div>
             <div className={styles.iconWrapper}>

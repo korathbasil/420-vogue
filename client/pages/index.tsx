@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 
@@ -21,9 +21,7 @@ const HomePage: NextPage = () => {
     setIsLoginModalOpen(!isSidebarOpen);
   }
 
-  function loginModalToggleHandler() {
-    setIsLoginModalOpen(true);
-  }
+  const loginModalToggleHandler = useCallback(setIsLoginModalOpen, []);
   return (
     <div>
       <Head>
@@ -49,7 +47,7 @@ const HomePage: NextPage = () => {
       </main>
       {isLoginModalOpen && (
         <Modal>
-          <LoginModal />
+          <LoginModal closeModal={loginModalToggleHandler} />
         </Modal>
       )}
     </div>

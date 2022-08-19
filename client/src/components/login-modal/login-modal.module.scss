@@ -4,6 +4,13 @@
   padding: 2rem;
   background-color: var(--clr-white);
   border-radius: 7px;
+  position: relative;
+
+  .close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
 
   hr {
     margin: 1rem 0;
