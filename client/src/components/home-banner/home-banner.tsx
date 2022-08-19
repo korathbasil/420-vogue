@@ -1,4 +1,4 @@
-import styles from "./homeBanner.module.scss";
+import styles from "./home-banner.module.scss";
 
 export const HomeBanner = () => {
   return (

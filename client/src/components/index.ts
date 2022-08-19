@@ -3,7 +3,7 @@ export * from "./customHeader/customHeader";
 export * from "./custom-header/custom-header";
 export * from "./logo-text/logo-text";
 export * from "./greetings/greentings";
-export * from "./homeBanner/homeBanner";
+export * from "./home-banner/home-banner";
 export * from "./productCard/productCard";
 export * from "./recentItems/recentItems";
 export * from "./sidebar/sidebar";
