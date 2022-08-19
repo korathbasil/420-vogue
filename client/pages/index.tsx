@@ -10,6 +10,7 @@ import {
   Sidebar,
   FeaturedProducts,
   Modal,
+  LoginModal,
 } from "../src/components";
 
 const HomePage: NextPage = () => {
@@ -48,7 +49,7 @@ const HomePage: NextPage = () => {
       </main>
       {isLoginModalOpen && (
         <Modal>
-          <p>Hello</p>
+          <LoginModal />
         </Modal>
       )}
     </div>
