@@ -1,0 +1,64 @@
+@import "../../sass/screen-media-queries.scss";
+
+.steps {
+  flex: 0.6;
+  background-color: var(--clr-white);
+}
+
+.box {
+  .header {
+    background-color: var(--clr-primary);
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    box-shadow: var(--shadow-light);
+    color: var(--clr-white);
+
+    div {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--clr-white);
+      color: var(--clr-primary);
+      border-radius: 5px;
+      margin: 0 1rem 0 0.5rem;
+    }
+  }
+
+  .body {
+    padding: 0.5rem;
+    background-color: var(--clr-white);
+    box-shadow: var(--shadow-light);
+    border-radius: 0 0 10px 10px;
+    color: var(--clr-grey-text);
+
+    p {
+      margin-left: 0.5rem;
+    }
+
+    form {
+      margin-top: 0.5rem;
+      width: 100%;
+      background-color: white;
+      padding: 0.5rem;
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+
+      div {
+        padding: 0.5rem;
+        background-color: var(--clr-lightgrey-bg);
+        border-radius: 10px;
+
+        label {
+          margin-left: 10px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

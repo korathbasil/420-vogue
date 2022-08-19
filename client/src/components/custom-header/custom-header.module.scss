@@ -1,0 +1,19 @@
+.header {
+  width: 100vw;
+  height: 4rem;
+  background-color: var(--clr-white);
+  position: fixed;
+  box-shadow: var(--shadow-light);
+}
+
+.child {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}

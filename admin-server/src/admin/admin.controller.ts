@@ -10,7 +10,6 @@ import {
 
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dtos/create-admin.dto';
-import { LoginAdminDto } from './dtos/login-admin.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -39,11 +38,5 @@ export class AdminController {
     if (!user) return new BadRequestException('User already exists');
 
     return user;
-  }
-
-  @Post('login')
-  @UsePipes(ValidationPipe)
-  async loginAdmin(@Body() data: LoginAdminDto) {
-    return this.adminService.loginAdmin(data.email, data.password);
   }
 }

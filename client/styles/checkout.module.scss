@@ -1,0 +1,11 @@
+@import "../src/sass/screen-media-queries.scss";
+
+.checkout {
+  padding-top: 5rem;
+}
+
+@include tab {
+  .checkout {
+    display: flex;
+  }
+}

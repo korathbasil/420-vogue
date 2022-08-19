@@ -8,11 +8,22 @@ body {
   /* Colors */
 
   --col-primary: rgb(37, 192, 158);
-  --col-secondary: rgb(37, 192, 158);
-  --col-light-bg: rgb(253, 253, 253);
+  --col-light-bg: #C9D8B6;
   --col-dark-grey: #313030;
+  
+  --clr-sand: #F1ECC3;
+  --clr-sand-light: #d3d0bc;
 
-  background-color: var(--col-light-bg);
+  --clr-primary: rgb(37, 192, 158);
+  --clr-white: white;
+  --clr-grey-text: #4b465e;
+  /* --clr-lightgrey-bg: #f8f8f8; */
+  --clr-lightgrey-bg: #f1f3f6;
+
+  background-color: var(--col-lightgrey-bg);
+
+  /********* Shadows *********/
+  --shadow-light: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 a {
@@ -24,4 +35,16 @@ a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.container-small {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }

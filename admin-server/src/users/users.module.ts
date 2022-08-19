@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { UsersModule as CommonUsersModule } from 'common-server';
 
 import { UsersController } from './users.controller';
-
-import { UsersModule as CommonUsersModule } from 'common-server';
 
 @Module({
   imports: [CommonUsersModule],

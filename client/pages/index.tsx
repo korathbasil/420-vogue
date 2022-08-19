@@ -8,7 +8,8 @@ import {
   HomeBanner,
   RecentItems,
   Sidebar,
-} from "../components";
+  FeaturedProducts,
+} from "../src/components";
 
 const HomePage: NextPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -31,14 +32,11 @@ const HomePage: NextPage = () => {
         sidebarToggleHandler={sidebarToggleHandler}
       />
       <Header sidebarToggleHandler={sidebarToggleHandler} />
-      <Greetings />
-      <HomeBanner />
-
-      <style>{`
-        body {
-          overflow: ${isSidebarOpen ? "hidden" : "scroll"};
-        }
-      `}</style>
+      <main style={{ paddingTop: "6rem" }}>
+        <Greetings />
+        <HomeBanner />
+        <FeaturedProducts />
+      </main>
     </div>
   );
 };
