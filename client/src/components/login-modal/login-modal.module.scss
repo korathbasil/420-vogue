@@ -45,6 +45,20 @@
       margin-bottom: 1rem;
     }
 
+    .names {
+      gap: 1rem;
+      div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: baseline;
+
+        input {
+          width: 100%;
+        }
+      }
+    }
+
     label {
       margin-bottom: 0.25rem;
       font-size: 14px;
