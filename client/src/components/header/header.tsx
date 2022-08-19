@@ -3,6 +3,7 @@ import Link from "next/link";
 import styles from "./header.module.scss";
 import { Menu, ShoppingBag, Search } from "assets/icons";
 import { FC } from "react";
+import { LogoText } from "components";
 
 interface HeaderProps {
   sidebarToggleHandler: () => void;
@@ -22,7 +23,7 @@ export const Header: FC<HeaderProps> = ({ sidebarToggleHandler }) => {
             </div>
           </div>
           <div className={styles.center}>
-            <h1>420VOGUE</h1>
+            <LogoText fontSize="40px" />
           </div>
           <div className={styles.right}>
             <div className={styles.iconWrapper}>

@@ -12,7 +12,7 @@ export const CHeader = () => {
       <div className="container">
         <div className={styles.child}>
           <div className={styles.left}>
-            <BackArrow onClickAction={router.back} />
+            <BackArrow onClickAction={router.back} size="25px" />
             <LogoText />
           </div>
         </div>

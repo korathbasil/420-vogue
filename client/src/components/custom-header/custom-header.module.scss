@@ -1,8 +1,9 @@
 .header {
   width: 100vw;
   height: 4rem;
-  background-color: var(--clr-sand);
+  background-color: var(--clr-white);
   position: fixed;
+  box-shadow: var(--shadow-light);
 }
 
 .child {
