@@ -2,7 +2,7 @@ import { FC } from "react";
 
 import { Product } from "types";
 
-import styles from "./productDetails.module.scss";
+import styles from "./product-details.module.scss";
 
 interface ProductDetailsProps {
   product: Product | null;

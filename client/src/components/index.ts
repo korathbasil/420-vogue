@@ -9,7 +9,7 @@ export * from "./product-card/product-card";
 export * from "./recentItems/recentItems";
 export * from "./sidebar/sidebar";
 export * from "./product-carousel/product-carousel";
-export * from "./productDetails/productDetails";
+export * from "./product-details/product-details";
 export * from "./about/about";
 export * from "./help/help";
 export * from "./checkout-steps/checkout-steps";
