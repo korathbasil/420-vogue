@@ -34,9 +34,11 @@ const ProductPage: NextPage = () => {
     fetchProductDetails();
   }, []);
   return (
-    <section className={styles.parent}>
-      <ProductCarousel />
-      <ProductDetails product={product} />
+    <section className="container">
+      <div className={styles.parent}>
+        <ProductCarousel />
+        <ProductDetails product={product} />
+      </div>
       <ProductActions />
     </section>
   );

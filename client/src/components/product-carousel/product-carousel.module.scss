@@ -4,9 +4,9 @@
 
 .header {
   position: absolute;
-  width: calc(100% - 40px);
-  top: 20px;
-  left: 20px;
+  width: calc(100% - 1rem);
+  top: 1.25rem;
+  left: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,7 +20,7 @@
 
 .carousel {
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 0;
 
   img {
     width: 100%;
