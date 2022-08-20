@@ -1,10 +1,17 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { UsersModule as CommonUsersModule } from 'common-server';
 
 import { UsersController } from './users.controller';
 
 @Module({
-  imports: [CommonUsersModule],
+  imports: [
+    JwtModule.register({
+      secret: 'secret',
+      signOptions: { expiresIn: '60s' },
+    }),
+    CommonUsersModule,
+  ],
   controllers: [UsersController],
 })
 export class UsersModule {}

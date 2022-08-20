@@ -10,10 +10,6 @@ import { ProductsModule } from '../products/products.module';
   imports: [
     MongooseModule.forRoot('mongodb://localhost:27017/ecommerce'),
     PassportModule,
-    JwtModule.register({
-      secret: 'secret',
-      signOptions: { expiresIn: '60s' },
-    }),
     UsersModule,
     ProductsModule,
   ],
