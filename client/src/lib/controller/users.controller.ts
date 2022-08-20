@@ -9,8 +9,8 @@ export class UsersController {
   ) {
     axios
       .post("/users", {
-        firstName: firstname,
-        lastName: lastname,
+        firstname,
+        lastname,
         email,
         password,
       })
