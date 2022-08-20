@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
 import { UsersRepository } from "./users.repository";
-import { CreateUserDto } from "./dtos/createUser.dto";
+import { CreateUserDto } from "./dtos/create-user.dto";
 import { Role, User } from "./user.model";
 import { hashString, compareHash } from "../util/crypto-hash";
 
@@ -10,14 +10,14 @@ export class UsersService {
   constructor(private readonly usersRepo: UsersRepository) {}
 
   findAllUsers() {
-    return this.usersRepo.find({ role: "USER" });
+    return this.usersRepo.find({ role: Role.USER });
   }
 
   findAllAdmins() {
-    return this.usersRepo.find({ role: "MANAGER" });
+    return this.usersRepo.find({ role: Role.MANAGER });
   }
 
-  async createUser(data: CreateUserDto, role = "USER" as Role) {
+  async createUser(data: CreateUserDto, role = Role.USER) {
     const user = await this.usersRepo.findOne({ email: data.email });
 
     if (user) return;
@@ -25,7 +25,7 @@ export class UsersService {
     const newUser = {
       ...data,
       role,
-    } as User;
+    } as unknown as User;
 
     newUser.password = await hashString(newUser.password);
 

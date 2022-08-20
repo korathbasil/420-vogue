@@ -1,5 +1,5 @@
-import { Schema, SchemaFactory, Prop } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Schema, SchemaFactory, Prop } from "@nestjs/mongoose";
+import { Document } from "mongoose";
 
 class UserAccount extends Document {
   @Prop({ type: String, required: true })
@@ -30,24 +30,24 @@ class UserAddress extends Document {
 }
 
 export enum Role {
-  SUPERUSER = 'SUPERUSER',
-  MANAGER = 'MANAGER',
-  USER = 'USER',
+  SUPERUSER = "SUPERUSER",
+  MANAGER = "MANAGER",
+  USER = "USER",
 }
 
 @Schema({ timestamps: { createdAt: true, updatedAt: true } })
 export class User extends Document {
   @Prop({ type: String, required: true })
-  firstName: string;
+  firstname: string;
 
   @Prop({ type: String, required: true })
-  lastName: string;
+  lastname: string;
 
   @Prop({ type: String, required: true })
   email: string;
 
-  @Prop({ type: String, required: true })
-  phone: string;
+  @Prop({ type: String })
+  phone?: string;
 
   @Prop({ type: String })
   password?: string;
