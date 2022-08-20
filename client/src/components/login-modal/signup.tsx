@@ -1,4 +1,6 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { Dispatch, FC, FormEvent, SetStateAction } from "react";
+import { useFormik } from "formik";
+import { UsersController } from "lib/controller";
 
 import styles from "./login-modal.module.scss";
 import { LogoText } from "components";
@@ -8,12 +10,27 @@ interface SignupProps {
 }
 
 export const Signup: FC<SignupProps> = ({ switcher }) => {
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const formik = useFormik({
+    initialValues: {
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+    },
+    onSubmit: submitHandler,
+  });
+
+  function submitHandler() {
+    UsersController.SignupUser(
+      formik.values.firstname,
+      formik.values.lastname,
+      formik.values.email,
+      formik.values.password
+    );
+  }
+
   return (
-    <form>
+    <form onSubmit={formik.handleSubmit}>
       <LogoText />
       <h3>Create an account.</h3>
 
@@ -24,21 +41,40 @@ export const Signup: FC<SignupProps> = ({ switcher }) => {
             type="text"
             id="firstname"
             name="firstname"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
+            value={formik.values.firstname}
+            onChange={formik.handleChange}
           />
         </div>
         <div>
           <label htmlFor="lastname">Last Name</label>
-          <input type="text" id="lastname" name="lastname" />
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            onChange={formik.handleChange}
+            value={formik.values.lastname}
+          />
         </div>
       </div>
 
       <label htmlFor="email">Email</label>
-      <input type="email" placeholder="joe@email.com" id="email" name="email" />
+      <input
+        type="email"
+        placeholder="joe@email.com"
+        id="email"
+        name="email"
+        onChange={formik.handleChange}
+        value={formik.values.email}
+      />
 
       <label htmlFor="password">Password</label>
-      <input type="password" name="password" id="password" />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        onChange={formik.handleChange}
+        value={formik.values.password}
+      />
 
       <div>
         <button type="submit">Signup</button>

@@ -69,11 +69,13 @@
     input {
       margin-bottom: 1rem;
       border-radius: 7px;
-      border: 2px solid var(--clr-grey-text);
-      padding: 0.5rem;
+      border: 2px solid var(--clr-lightgrey);
+      padding: 0.75rem 0.5rem;
+      outline: none;
 
       &:focus {
         color: var(--clr-primary);
+        border: 2px solid var(--clr-primary);
       }
     }
 
