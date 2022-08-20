@@ -12,7 +12,7 @@ export const CheckoutPayments = () => {
       <div className={styles.body}>
         <p>Please select a payment methode</p>
 
-        <form>
+        <form className={styles.form}>
           <div>
             <input
               type="radio"
