@@ -7,9 +7,7 @@ import {
   ValidationPipe,
   BadRequestException,
 } from '@nestjs/common';
-
-import { UsersService } from './users.service';
-import { CreateUserDto } from './dtos/createUser.dto';
+import { UsersService, CreateUserDto } from 'common-server';
 
 @Controller('users')
 export class UsersController {
@@ -24,6 +22,7 @@ export class UsersController {
   @UsePipes(ValidationPipe)
   async createUser(@Body() userData: CreateUserDto) {
     const user = await this.usersService.createUser(userData);
+    console.log(23123);
 
     if (!user) return new BadRequestException('User already exists');
 
