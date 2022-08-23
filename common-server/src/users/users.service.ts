@@ -1,4 +1,8 @@
-import { Injectable } from "@nestjs/common";
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from "@nestjs/common";
 
 import { UsersRepository } from "./users.repository";
 import { CreateUserDto } from "./dtos/create-user.dto";
@@ -32,17 +36,16 @@ export class UsersService {
     return this.usersRepo.insertOne(newUser);
   }
 
-  loginUser(email: string, password: string): Promise<User> {
-    return new Promise<User>(async (resolve, reject) => {
-      const user = await this.usersRepo.findOne({ email });
+  async loginUser(email: string, password: string): Promise<User> {
+    const user = await this.usersRepo.findOne({ email });
 
-      if (!user) return reject("User not found");
+    if (!user) throw new NotFoundException("User not found");
 
-      const doesPassworddsMatch = await compareHash(user.password, password);
+    const doesPassworddsMatch = await compareHash(user.password, password);
 
-      if (!doesPassworddsMatch) return reject("Incorrect password");
+    if (!doesPassworddsMatch)
+      throw new UnauthorizedException("Incorrect password");
 
-      resolve(user);
-    });
+    return user;
   }
 }
