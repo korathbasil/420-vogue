@@ -7,9 +7,10 @@ import "../styles/globals.css";
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const AnyComponent = Component as any;
   return (
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
+      <AnyComponent {...pageProps} />
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
