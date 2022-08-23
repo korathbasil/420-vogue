@@ -6,9 +6,11 @@ import {
   UsePipes,
   ValidationPipe,
   BadRequestException,
+  Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService, CreateUserDto } from 'common-server';
+import { UsersService, CreateUserDto, User } from 'common-server';
 
 @Controller('users')
 export class UsersController {
@@ -24,7 +26,10 @@ export class UsersController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  async createUser(@Body() userData: CreateUserDto) {
+  async createUser(
+    @Body() userData: CreateUserDto,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     try {
       const user = await this.usersService.createUser(userData);
       if (!user) return new BadRequestException('User already exists');
@@ -36,7 +41,19 @@ export class UsersController {
         email: user.email,
       });
 
-      return { ...user, token };
+      res.cookie('token', token, {
+        httpOnly: true,
+      });
+
+      delete user.password;
+
+      (
+        user as User & {
+          token: string;
+        }
+      ).token = token;
+
+      return user;
     } catch (e) {
       return e;
     }
