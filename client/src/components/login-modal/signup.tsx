@@ -21,7 +21,7 @@ export const Signup: FC<SignupProps> = ({ switcher }) => {
   });
 
   function submitHandler() {
-    UsersController.SignupUser(
+    UsersController.signupUser(
       formik.values.firstname,
       formik.values.lastname,
       formik.values.email,
