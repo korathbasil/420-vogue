@@ -1,6 +1,8 @@
 import {
   Body,
   Controller,
+  Get,
+  NotFoundException,
   Post,
   Res,
   UnauthorizedException,
@@ -8,26 +10,27 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { User, UsersService } from 'common-server';
+import { User } from 'common-server';
 import { Response } from 'express';
 
 import { LoginUserDto } from './dtos/login-user.dto';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
   constructor(
-    private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly authService: AuthService,
   ) {}
 
   @UsePipes(ValidationPipe)
-  @Post()
+  @Post('/login')
   async login(
     @Res({ passthrough: true }) res: Response,
     @Body() cred: LoginUserDto,
   ) {
     try {
-      const user = await this.usersService.loginUser(cred.email, cred.password);
+      const user = await this.authService.loginUser(cred.email, cred.password);
 
       const token = await this.jwtService.signAsync({
         _id: user._id,
@@ -50,7 +53,7 @@ export class AuthController {
 
       return user;
     } catch (e) {
-      return new UnauthorizedException();
+      throw new UnauthorizedException(e.message);
     }
   }
 }
