@@ -5,21 +5,16 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { UsersController } from "lib/controller";
 
 import "../styles/globals.css";
-import { axios } from "utils";
 
 const queryClient = new QueryClient();
 
 function Auth({ Component, ...pageProps }: AppProps) {
   const AnyComponent = Component as any;
 
-  const { data: user, error } = useQuery(["user"], async function () {
-    const { data } = await axios.get("/auth/current-user");
-    if (!data) throw new Error("Not authorozed");
-
-    return data;
-  });
+  useQuery(["user"], UsersController.getCurrentUser);
 
   return <AnyComponent {...pageProps} />;
 }

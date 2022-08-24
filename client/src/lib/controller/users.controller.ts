@@ -24,15 +24,31 @@ export class UsersController {
 
   static async loginUser(email: string, password: string) {
     try {
-      const result = await axios.post("/auth/login", {
-        email,
-        password,
-      });
+      const result = await axios.post(
+        "/auth/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
 
-      console.log("REs");
       console.log(result);
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  static async getCurrentUser() {
+    try {
+      const { data } = await axios.get("/auth/current-user", {
+        withCredentials: true,
+      });
+      return data;
+    } catch (error) {
+      throw error;
     }
   }
 }

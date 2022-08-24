@@ -4,6 +4,7 @@ import Link from "next/link";
 import styles from "./header.module.scss";
 import { Menu, ShoppingBag, Search } from "assets/icons";
 import { LogoText } from "components";
+import { UsersController } from "lib/controller";
 
 interface HeaderProps {
   sidebarToggleHandler: () => void;
