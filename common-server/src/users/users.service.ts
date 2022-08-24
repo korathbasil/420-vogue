@@ -8,6 +8,7 @@ import { UsersRepository } from "./users.repository";
 import { CreateUserDto } from "./dtos/create-user.dto";
 import { Role, User } from "./user.model";
 import { hashString, compareHash } from "../util/crypto-hash";
+import { Types } from "mongoose";
 
 @Injectable()
 export class UsersService {
@@ -19,6 +20,10 @@ export class UsersService {
 
   findAllAdmins() {
     return this.usersRepo.find({ role: Role.MANAGER });
+  }
+
+  getUserById(id: string) {
+    return this.usersRepo.findOne({ id: new Types.ObjectId(id) });
   }
 
   async createUser(data: CreateUserDto, role = Role.USER) {

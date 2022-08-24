@@ -1,7 +1,7 @@
 import { Schema, SchemaFactory, Prop } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
-class UserAccount extends Document {
+class UserAccount {
   @Prop({ type: String, required: true })
   kind: string;
 
@@ -9,7 +9,7 @@ class UserAccount extends Document {
   uid: string;
 }
 
-class UserAddress extends Document {
+class UserAddress {
   @Prop({ type: String, required: true })
   name: string;
 
