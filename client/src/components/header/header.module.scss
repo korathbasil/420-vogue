@@ -55,6 +55,23 @@
       margin-right: 1rem;
     }
 
+    .profile {
+      display: flex;
+      align-items: center;
+      background-color: var(--clr-primary);
+      border-radius: 99px;
+      padding: 3px;
+      margin-right: 1rem;
+
+      p {
+        margin-left: 0.25rem;
+        font-size: 14px;
+        color: var(--clr-white);
+        font-weight: 700;
+        margin-right: 0.25rem;
+      }
+    }
+
     .login {
       background-color: var(--clr-primary);
       padding: 0.25rem;
@@ -85,6 +102,10 @@
   }
 
   .login {
+    display: none;
+  }
+
+  .profile {
     display: none;
   }
 }

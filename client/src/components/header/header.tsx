@@ -2,9 +2,10 @@ import { Dispatch, FC, SetStateAction } from "react";
 import Link from "next/link";
 
 import styles from "./header.module.scss";
-import { Menu, ShoppingBag, Search } from "assets/icons";
+import { Menu, ShoppingBag, Search, Avatar } from "assets/icons";
 import { LogoText } from "components";
 import { UsersController } from "lib/controller";
+import { useQuery } from "@tanstack/react-query";
 
 interface HeaderProps {
   sidebarToggleHandler: () => void;
@@ -15,6 +16,14 @@ export const Header: FC<HeaderProps> = ({
   sidebarToggleHandler,
   loginModalToggleHandler,
 }) => {
+  const { isError, data: user } = useQuery(
+    ["user"],
+    UsersController.getCurrentUser,
+    {
+      cacheTime: 1000 * 50 * 60 * 24,
+    }
+  );
+
   return (
     <header className={styles.headerParent}>
       <div className="container">
@@ -39,12 +48,23 @@ export const Header: FC<HeaderProps> = ({
                 <Search />
               </Link>
             </div>
-            <div
-              className={styles.login}
-              onClick={() => loginModalToggleHandler(true)}
-            >
-              <p>LOGIN / SIGNUP</p>
-            </div>
+
+            {user && (
+              <div className={styles.profile}>
+                <Avatar size="25px" fill="var(--clr-white)" />
+                <p>
+                  {user?.firstname} {user?.lastname}
+                </p>
+              </div>
+            )}
+            {!user && (
+              <div
+                className={styles.login}
+                onClick={() => loginModalToggleHandler(true)}
+              >
+                <p>LOGIN / SIGNUP</p>
+              </div>
+            )}
             <div className={styles.iconWrapper}>
               <Link href={"/bag"}>
                 <ShoppingBag />

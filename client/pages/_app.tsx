@@ -14,7 +14,9 @@ const queryClient = new QueryClient();
 function Auth({ Component, ...pageProps }: AppProps) {
   const AnyComponent = Component as any;
 
-  useQuery(["user"], UsersController.getCurrentUser);
+  useQuery(["user"], UsersController.getCurrentUser, {
+    cacheTime: 1000 * 50 * 60 * 24,
+  });
 
   return <AnyComponent {...pageProps} />;
 }
