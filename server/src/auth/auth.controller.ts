@@ -86,8 +86,6 @@ export class AuthController {
         httpOnly: true,
       });
 
-      delete user.password;
-
       (
         user as User & {
           token: string;
