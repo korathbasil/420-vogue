@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useQuery } from "@tanstack/react-query";
+import { axios } from "utils";
 
 import {
   Header,
@@ -16,6 +18,13 @@ import {
 const HomePage: NextPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
+
+  const { data: user, error } = useQuery(["user"], async function () {
+    const { data } = await axios.get("/auth/current-user");
+    if (!data) throw new Error("Not authorozed");
+
+    return data;
+  });
 
   function sidebarToggleHandler() {
     setIsLoginModalOpen(!isSidebarOpen);
