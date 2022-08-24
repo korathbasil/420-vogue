@@ -65,6 +65,11 @@
       font-weight: 700;
       border-radius: 10px;
       margin: 1rem 0;
+
+      &:disabled {
+        color: var(--clr-lightgrey);
+        border: 2px solid var(--clr-lightgrey);
+      }
     }
   }
 }

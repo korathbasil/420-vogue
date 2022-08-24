@@ -1,6 +1,13 @@
+import { useState } from "react";
+
 import styles from "./checkout-steps.module.scss";
 
 export const CheckoutAddress = () => {
+  const [addAddress, setAddAddress] = useState(false);
+
+  function addAddressSwitcher() {
+    setAddAddress(!addAddress);
+  }
   return (
     <div className={styles.box}>
       <div className={styles.header}>
@@ -49,46 +56,50 @@ export const CheckoutAddress = () => {
             </label>
           </div>
         </form>
-        <button>Add new address</button>
-        <form className={styles.newAddress}>
-          <label htmlFor="name">Name for this address</label>
-          <input type="text" id="name" name="name" />
-          <label htmlFor="line1">Line 1</label>
-          <input type="text" id="line1" name="line1" />
-          <label htmlFor="line2">Line 2</label>
-          <input type="text" id="line2" name="line2" />
-          <label htmlFor="line3">Line 3</label>
-          <input type="text" id="line3" name="line3" />
-          <label htmlFor="phone">Phone</label>
-          <input type="text" id="phone" name="phone" />
-          <div>
+        <button onClick={addAddressSwitcher} disabled={addAddress}>
+          Add new address
+        </button>
+        {addAddress && (
+          <form className={styles.newAddress}>
+            <label htmlFor="name">Name for this address</label>
+            <input type="text" id="name" name="name" />
+            <label htmlFor="line1">Line 1</label>
+            <input type="text" id="line1" name="line1" />
+            <label htmlFor="line2">Line 2</label>
+            <input type="text" id="line2" name="line2" />
+            <label htmlFor="line3">Line 3</label>
+            <input type="text" id="line3" name="line3" />
+            <label htmlFor="phone">Phone</label>
+            <input type="text" id="phone" name="phone" />
             <div>
-              <label htmlFor="city">City</label>
-              <input type="text" id="city" name="city" />
-            </div>
+              <div>
+                <label htmlFor="city">City</label>
+                <input type="text" id="city" name="city" />
+              </div>
 
-            <div>
-              <label htmlFor="pin">PIN</label>
-              <input type="text" id="pin" name="pin" />
-            </div>
-          </div>
-          <div>
-            <div>
-              <label htmlFor="state">State</label>
-              <input type="text" id="state" name="state" />
+              <div>
+                <label htmlFor="pin">PIN</label>
+                <input type="text" id="pin" name="pin" />
+              </div>
             </div>
             <div>
-              <label htmlFor="country">Country</label>
-              <input
-                type="text"
-                id="country"
-                name="country"
-                value="INDIA (IN)"
-                disabled
-              />
+              <div>
+                <label htmlFor="state">State</label>
+                <input type="text" id="state" name="state" />
+              </div>
+              <div>
+                <label htmlFor="country">Country</label>
+                <input
+                  type="text"
+                  id="country"
+                  name="country"
+                  value="INDIA (IN)"
+                  disabled
+                />
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        )}
       </div>
     </div>
   );
