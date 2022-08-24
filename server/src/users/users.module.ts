@@ -8,7 +8,7 @@ import { UsersController } from './users.controller';
   imports: [
     JwtModule.register({
       secret: 'secret',
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: '600s' },
     }),
     CommonUsersModule,
   ],

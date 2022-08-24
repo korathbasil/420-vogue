@@ -12,4 +12,8 @@ export class AuthService {
       throw e;
     }
   }
+
+  getLoggedInUser(id: string) {
+    return this.usersService.getUserById(id);
+  }
 }
