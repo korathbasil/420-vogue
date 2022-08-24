@@ -4,11 +4,13 @@ import styles from "./checkout-navigator.module.scss";
 
 interface CheckoutSNavigatorProps {
   step: number;
+  minStep: number;
   updateStep: Dispatch<SetStateAction<number>>;
 }
 
 export const CheckoutNavigator: FC<CheckoutSNavigatorProps> = ({
   step,
+  minStep,
   updateStep,
 }) => {
   return (
@@ -16,7 +18,7 @@ export const CheckoutNavigator: FC<CheckoutSNavigatorProps> = ({
       Navigator
       <button
         onClick={() => {
-          if (step > 1) {
+          if (step > minStep) {
             updateStep((step) => step - 1);
           }
         }}
