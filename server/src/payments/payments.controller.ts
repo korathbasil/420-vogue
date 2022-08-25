@@ -1,4 +1,4 @@
-import { Controller, Post } from '@nestjs/common';
+import { BadRequestException, Controller, Post } from '@nestjs/common';
 
 import { PaymentsService } from './payments.service';
 
@@ -7,5 +7,13 @@ export class PaymentsController {
   constructor(private readonly paymentsService: PaymentsService) {}
 
   @Post('/razorpay')
-  payWithRazorpay() {}
+  async payWithRazorpay() {
+    try {
+      const order = await this.paymentsService.initPayment(500);
+
+      return order;
+    } catch (e) {
+      throw new BadRequestException('Cannot initialize payment');
+    }
+  }
 }
