@@ -1,7 +1,16 @@
+import { Dispatch, SetStateAction, FC } from "react";
+
 import styles from "./checkout-steps.module.scss";
 import { LoginModal } from "components";
 
-export const CheckoutLogin = () => {
+interface CheckoutLoginProps {
+  updateStep: Dispatch<SetStateAction<number>>;
+}
+
+export const CheckoutLogin: FC<CheckoutLoginProps> = ({ updateStep }) => {
+  function GoToCheckoutAddress() {
+    updateStep(2);
+  }
   return (
     <div className={styles.box}>
       <div className={styles.header}>
@@ -11,7 +20,7 @@ export const CheckoutLogin = () => {
         <h3>LOGIN / SIGNUP</h3>
       </div>
       <div className={styles.body}>
-        <LoginModal closeModal={() => {}} minimal={true} />
+        <LoginModal closeModal={GoToCheckoutAddress} minimal={true} />
       </div>
     </div>
   );
