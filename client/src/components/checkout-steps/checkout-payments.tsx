@@ -1,11 +1,31 @@
 import { PaymentsController } from "lib/controller";
+import { resolve } from "path";
 
 import styles from "./checkout-steps.module.scss";
 
 export const CheckoutPayments = () => {
-  async function makePayment() {
-    const order = await PaymentsController.makePayment();
+  function loadScript() {
+    return new Promise<void>((resolve, reject) => {
+      const scriptTag = document.createElement("script");
+      scriptTag.src = "https://checkout.razorpay.com/v1/checkout.js";
+      document.body.appendChild(scriptTag);
+
+      scriptTag.onload = () => resolve();
+      scriptTag.onerror = () => reject();
+    });
   }
+
+  async function makePayment() {
+    await loadScript();
+
+    const order = await PaymentsController.createOrder();
+
+    // @ts-ignore
+    const Razorpay = window.Razorpay;
+
+    PaymentsController.makePayment(Razorpay, order);
+  }
+
   return (
     <div className={styles.box}>
       <div className={styles.header}>
