@@ -6,7 +6,7 @@ import { Login } from "./login";
 import { Signup } from "./signup";
 
 interface LoginModalProps {
-  closeModal: Dispatch<SetStateAction<boolean>>;
+  closeModal: () => void;
 }
 
 export const LoginModal: FC<LoginModalProps> = ({ closeModal }) => {
@@ -16,10 +16,12 @@ export const LoginModal: FC<LoginModalProps> = ({ closeModal }) => {
 
   return (
     <section className={styles.login}>
-      <div onClick={() => closeModal(false)} className={styles.close}>
+      <div onClick={closeModal} className={styles.close}>
         <Close fill="var(--clr-grey-text)" />
       </div>
-      {showLogin && <Login switcher={loginSignupSwitcher} />}
+      {showLogin && (
+        <Login switcher={loginSignupSwitcher} closeModal={closeModal} />
+      )}
       {!showLogin && <Signup switcher={loginSignupSwitcher} />}
       <hr />
       <div className={styles.socialLogin}>

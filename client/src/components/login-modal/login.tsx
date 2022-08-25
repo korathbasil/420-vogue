@@ -7,9 +7,10 @@ import { LogoText } from "components";
 
 interface LoginProps {
   switcher: Dispatch<SetStateAction<boolean>>;
+  closeModal: () => void;
 }
 
-export const Login: FC<LoginProps> = ({ switcher }) => {
+export const Login: FC<LoginProps> = ({ switcher, closeModal }) => {
   const setUser = useUserStore((state) => state.setUser);
 
   const formik = useFormik({
@@ -34,6 +35,8 @@ export const Login: FC<LoginProps> = ({ switcher }) => {
         email: user.email,
         role: user.role,
       });
+
+      closeModal();
     } catch (e) {}
   }
   return (

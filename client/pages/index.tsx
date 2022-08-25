@@ -47,7 +47,7 @@ const HomePage: NextPage = () => {
       </main>
       {isLoginModalOpen && (
         <Modal>
-          <LoginModal closeModal={loginModalToggleHandler} />
+          <LoginModal closeModal={() => loginModalToggleHandler(false)} />
         </Modal>
       )}
     </div>
