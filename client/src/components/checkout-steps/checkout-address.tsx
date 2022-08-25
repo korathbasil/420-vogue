@@ -60,9 +60,9 @@ export const CheckoutAddress: FC<CheckoutAddressProps> = ({ updateStep }) => {
             </div>
           </label>
         </form>
-        <button onClick={addAddressSwitcher} disabled={addAddress}>
-          Add new address
-        </button>
+        <div className={styles.actions}>
+          <button onClick={() => updateStep(3)}>Next</button>
+        </div>
         {addAddress && (
           <form className={styles.newAddress}>
             <label htmlFor="name">Name for this address</label>
