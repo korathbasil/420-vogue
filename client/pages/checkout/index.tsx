@@ -5,20 +5,20 @@ import styles from "../../styles/checkout.module.scss";
 import { CHeader, CheckoutSteps, CheckoutNavigator } from "components";
 import { useQuery } from "@tanstack/react-query";
 import { UsersController } from "lib/controller";
+import { useUserStore } from "store";
 
 const CheckoutPage: NextPage = () => {
-  const { data: user } = useQuery(["user"], UsersController.getCurrentUser, {
-    cacheTime: 1000 * 50 * 60 * 24,
-  });
+  const user = useUserStore((state) => state.user);
 
   const [minStep, setMinStep] = useState(1);
   const [step, setStep] = useState(0);
   const updateStep = useCallback(setStep, []);
 
   useEffect(() => {
-    console.log(user);
-    if (user) setStep(2);
-    setMinStep(2);
+    if (user) {
+      setStep(2);
+      setMinStep(2);
+    } else setStep(1);
   }, [user]);
 
   return (
