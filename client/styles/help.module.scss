@@ -4,7 +4,10 @@
   .links {
     margin-top: 2rem;
     a {
-      background-color: white;
+      background-color: var(--clr-white);
+      color: var(--clr-primary);
+      border: 2px solid var(--clr-primary);
+      font-weight: 700;
       border-radius: 99px;
       padding: 10px;
     }
