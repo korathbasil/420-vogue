@@ -1,6 +1,11 @@
+import { PaymentsController } from "lib/controller";
+
 import styles from "./checkout-steps.module.scss";
 
 export const CheckoutPayments = () => {
+  async function makePayment() {
+    const order = await PaymentsController.makePayment();
+  }
   return (
     <div className={styles.box}>
       <div className={styles.header}>
@@ -13,38 +18,31 @@ export const CheckoutPayments = () => {
         <p>Please select a payment methode</p>
 
         <form className={styles.form}>
-          <div>
+          <label htmlFor="razorpay">
             <input
               type="radio"
               name="paymentMethode"
-              value="DEBIT_CARD"
-              id="debit-card"
+              value="RAZORPAY"
+              id="razorpay"
             />
-            <label htmlFor="debit-card">DEBIT CARD</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              name="paymentMethode"
-              value="CREDIT_CARD"
-              id="credit-card"
-            />
-            <label htmlFor="credit-card">CREDIT CARD</label>
-          </div>
-          <div>
-            <input type="radio" name="paymentMethode" value="UPI" id="upi" />
-            <label htmlFor="upi">UPI</label>
-          </div>
-          <div>
+            <p>Razorpay (DEBIT CARD, CREDIT CARD, UPI)</p>
+          </label>
+          <label>
             <input
               type="radio"
               name="paymentMethode"
               value="CASH_ON_DELIVERY"
               id="cash-on-delivery"
+              disabled
             />
-            <label htmlFor="cash-on-delivery">Cash on Delivery</label>
-          </div>
+            <p>Cash on Delivery</p>
+          </label>
         </form>
+        <div className={styles.actions}>
+          <button className={styles.payButton} onClick={makePayment}>
+            Make Payment
+          </button>
+        </div>
       </div>
     </div>
   );

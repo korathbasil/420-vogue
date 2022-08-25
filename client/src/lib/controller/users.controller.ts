@@ -1,5 +1,3 @@
-import { AxiosError } from "axios";
-import { unlink } from "fs";
 import { axios } from "utils";
 
 export class UsersController {
