@@ -1,3 +1,4 @@
+import { User } from "lib/interfaces";
 import { axios } from "utils";
 
 export class UsersController {
@@ -36,13 +37,9 @@ export class UsersController {
   }
 
   static async getCurrentUser() {
-    try {
-      const { data } = await axios.get("/auth/current-user", {
-        withCredentials: true,
-      });
-      return data;
-    } catch (error) {
-      throw error;
-    }
+    const { data } = await axios.get("/auth/current-user", {
+      withCredentials: true,
+    });
+    return data as User;
   }
 }

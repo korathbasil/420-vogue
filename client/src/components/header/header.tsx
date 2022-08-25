@@ -6,6 +6,7 @@ import { Menu, ShoppingBag, Search, Avatar } from "assets/icons";
 import { LogoText } from "components";
 import { UsersController } from "lib/controller";
 import { useQuery } from "@tanstack/react-query";
+import { useUserStore } from "store";
 
 interface HeaderProps {
   sidebarToggleHandler: () => void;
@@ -16,13 +17,7 @@ export const Header: FC<HeaderProps> = ({
   sidebarToggleHandler,
   loginModalToggleHandler,
 }) => {
-  const { isError, data: user } = useQuery(
-    ["user"],
-    UsersController.getCurrentUser,
-    {
-      cacheTime: 1000 * 50 * 60 * 24,
-    }
-  );
+  const user = useUserStore((state) => state.user);
 
   return (
     <header className={styles.headerParent}>
