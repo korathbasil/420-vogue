@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-const Razorpay = require('razorpay');
+import * as Razorpay from 'razorpay';
 
 @Injectable()
 export class PaymentsService {
