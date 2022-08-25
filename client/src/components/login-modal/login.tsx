@@ -8,9 +8,14 @@ import { LogoText } from "components";
 interface LoginProps {
   switcher: Dispatch<SetStateAction<boolean>>;
   closeModal: () => void;
+  minimal?: boolean;
 }
 
-export const Login: FC<LoginProps> = ({ switcher, closeModal }) => {
+export const Login: FC<LoginProps> = ({
+  switcher,
+  closeModal,
+  minimal = false,
+}) => {
   const setUser = useUserStore((state) => state.setUser);
 
   const formik = useFormik({
@@ -41,8 +46,8 @@ export const Login: FC<LoginProps> = ({ switcher, closeModal }) => {
   }
   return (
     <form onSubmit={formik.handleSubmit}>
-      <LogoText />
-      <h3>Login to your account.</h3>
+      {!minimal && <LogoText />}
+      {!minimal && <h3>Login to your account.</h3>}
 
       <label htmlFor="email">Email</label>
       <input

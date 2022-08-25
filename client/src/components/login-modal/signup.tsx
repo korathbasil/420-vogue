@@ -7,9 +7,10 @@ import { LogoText } from "components";
 
 interface SignupProps {
   switcher: Dispatch<SetStateAction<boolean>>;
+  minimal: boolean;
 }
 
-export const Signup: FC<SignupProps> = ({ switcher }) => {
+export const Signup: FC<SignupProps> = ({ switcher, minimal = false }) => {
   const formik = useFormik({
     initialValues: {
       firstname: "",
@@ -31,8 +32,8 @@ export const Signup: FC<SignupProps> = ({ switcher }) => {
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <LogoText />
-      <h3>Create an account.</h3>
+      {!minimal && <LogoText />}
+      {!minimal && <h3>Create an account.</h3>}
 
       <div className={styles.names}>
         <div>
