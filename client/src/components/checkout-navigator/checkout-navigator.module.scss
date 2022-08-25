@@ -1,3 +1,27 @@
 .navigator {
+  background-color: var(--clr-white);
+  border-radius: 10px;
+  box-shadow: var(--shadow-light);
   flex: 0.4;
+  height: fit-content;
+  padding: 1rem;
+
+  .steps {
+    display: flex;
+    align-items: center;
+
+    .step {
+      padding: 0.5rem;
+      border-radius: 10px;
+      color: var(--clr-white);
+      background-color: var(--clr-primary);
+      font-weight: 700;
+    }
+
+    .devider {
+      height: 0.5rem;
+      flex: 1;
+      background-color: var(--clr-primary);
+    }
+  }
 }

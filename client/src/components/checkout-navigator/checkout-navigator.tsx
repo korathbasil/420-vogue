@@ -15,6 +15,23 @@ export const CheckoutNavigator: FC<CheckoutSNavigatorProps> = ({
 }) => {
   return (
     <section className={styles.navigator}>
+      <div className={styles.steps}>
+        <div className={styles.step}>
+          <p>LOGIN</p>
+        </div>
+        <div className={styles.devider}></div>
+        <div className={styles.step}>
+          <p>ADDRESS</p>
+        </div>
+        <div className={styles.devider}></div>
+        <div className={styles.step}>
+          <p>SUMMARY</p>
+        </div>
+        <div className={styles.devider}></div>
+        <div className={styles.step}>
+          <p>PAYMENT</p>
+        </div>
+      </div>
       Navigator
       <button
         onClick={() => {
