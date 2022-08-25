@@ -19,7 +19,7 @@ export class SerializeInterceptor implements NestInterceptor {
   ): Observable<any> | Promise<Observable<any>> {
     return next.handle().pipe(
       map((responseData: any) => {
-        if (responseData.username) {
+        if (responseData.email) {
           return plainToInstance(this.dto, responseData, {
             excludeExtraneousValues: true,
           });

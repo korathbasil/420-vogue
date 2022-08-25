@@ -13,15 +13,12 @@ export class UsersRepository {
   }
 
   findOne(query: FilterQuery<User>) {
-    return this.userModel.findOne(query).exec();
+    return this.userModel.findOne(query);
   }
 
   async findById(id: string) {
-    const res = await this.userModel.findOne(new Types.ObjectId(id)).exec();
-
-    console.log(typeof res);
-    console.log(res);
-    return res;
+    return this.userModel.findOne({ id: new Types.ObjectId(id) });
+    // return this.userModel.findById(id).exec();
   }
 
   insertOne(user: User) {

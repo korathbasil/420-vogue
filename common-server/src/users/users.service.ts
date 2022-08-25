@@ -23,7 +23,7 @@ export class UsersService {
   }
 
   getUserById(id: string) {
-    return this.usersRepo.findOne({ id: new Types.ObjectId(id) });
+    return this.usersRepo.findById(id);
   }
 
   async createUser(data: CreateUserDto, role = Role.USER) {
