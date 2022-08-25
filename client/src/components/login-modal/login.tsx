@@ -1,6 +1,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { useFormik } from "formik";
 import { UsersController } from "lib/controller";
+import { useUserStore } from "store";
 
 import { LogoText } from "components";
 
@@ -9,6 +10,8 @@ interface LoginProps {
 }
 
 export const Login: FC<LoginProps> = ({ switcher }) => {
+  const setUser = useUserStore((state) => state.setUser);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -17,8 +20,21 @@ export const Login: FC<LoginProps> = ({ switcher }) => {
     onSubmit: submitHandler,
   });
 
-  function submitHandler() {
-    UsersController.loginUser(formik.values.email, formik.values.password);
+  async function submitHandler() {
+    try {
+      const user = await UsersController.loginUser(
+        formik.values.email,
+        formik.values.password
+      );
+
+      setUser({
+        _id: user._id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        role: user.role,
+      });
+    } catch (e) {}
   }
   return (
     <form onSubmit={formik.handleSubmit}>

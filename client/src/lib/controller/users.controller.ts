@@ -21,22 +21,18 @@ export class UsersController {
   }
 
   static async loginUser(email: string, password: string) {
-    try {
-      const result = await axios.post(
-        "/auth/login",
-        {
-          email,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
+    const { data } = await axios.post(
+      "/auth/login",
+      {
+        email,
+        password,
+      },
+      {
+        withCredentials: true,
+      }
+    );
 
-      console.log(result);
-    } catch (error) {
-      console.error(error);
-    }
+    return data;
   }
 
   static async getCurrentUser() {
