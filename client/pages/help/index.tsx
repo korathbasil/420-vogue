@@ -1,12 +1,29 @@
-import { CustomHeader, Help } from "components";
 import { NextPage } from "next";
+
+import styles from "../../styles/help.module.scss";
+import { CHeader } from "components";
 
 const HelpPage: NextPage = () => {
   return (
-    <section>
-      <CustomHeader title="Help" links={[]} />
-      <Help />
-    </section>
+    <main>
+      <CHeader />
+      <div className="container">
+        <div className={styles.help}>
+          <p>
+            Please contact our dupport team for any enquiry. Please attach
+            relevent screenshots.
+          </p>
+          <div className={styles.links}>
+            <a
+              href="mailto:support@420vogue.in?subject=Enquiry"
+              target={"_blank"}
+            >
+              support@420vogue.in
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
   );
 };
 
