@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState, FC } from "react";
 
 import styles from "./checkout-steps.module.scss";
 
-export const CheckoutAddress = () => {
+interface CheckoutAddressProps {
+  updateStep: Dispatch<SetStateAction<number>>;
+}
+
+export const CheckoutAddress: FC<CheckoutAddressProps> = ({ updateStep }) => {
   const [addAddress, setAddAddress] = useState(false);
 
   function addAddressSwitcher() {
@@ -19,9 +23,9 @@ export const CheckoutAddress = () => {
       <div className={styles.body}>
         <p>Select an address.</p>
         <form className={styles.form}>
-          <div className={styles.addressRadio}>
+          <label className={styles.addressRadio} htmlFor="address1">
             <input type="radio" name="address" id="address1" />
-            <label htmlFor="address1">
+            <div>
               <h5>HOME</h5>
               <p>#322/1, Alberto Road</p>
               <p>Albenia Center</p>
@@ -29,11 +33,11 @@ export const CheckoutAddress = () => {
               <p>9876543210</p>
               <p>Calicut, 678564</p>
               <p>Kerala, India</p>
-            </label>
-          </div>
-          <div className={styles.addressRadio}>
+            </div>
+          </label>
+          <label className={styles.addressRadio} htmlFor="address2">
             <input type="radio" name="address" id="address2" />
-            <label htmlFor="address2">
+            <div>
               <h5>HOME</h5>
               <p>#322/1, Alberto Road</p>
               <p>Albenia Center</p>
@@ -41,11 +45,11 @@ export const CheckoutAddress = () => {
               <p>9876543210</p>
               <p>Calicut, 678564</p>
               <p>Kerala, India</p>
-            </label>
-          </div>
-          <div className={styles.addressRadio}>
+            </div>
+          </label>
+          <label className={styles.addressRadio} htmlFor="address3">
             <input type="radio" name="address" id="address3" />
-            <label htmlFor="address3">
+            <div>
               <h5>HOME</h5>
               <p>#322/1, Alberto Road</p>
               <p>Albenia Center</p>
@@ -53,8 +57,8 @@ export const CheckoutAddress = () => {
               <p>9876543210</p>
               <p>Calicut, 678564</p>
               <p>Kerala, India</p>
-            </label>
-          </div>
+            </div>
+          </label>
         </form>
         <button onClick={addAddressSwitcher} disabled={addAddress}>
           Add new address

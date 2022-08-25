@@ -44,16 +44,16 @@
       grid-template-columns: 1fr 1fr;
       gap: 0.5rem;
 
-      div {
-        padding: 0.5rem;
-        background-color: var(--clr-lightgrey-bg);
-        border-radius: 10px;
+      // div {
+      //   padding: 0.5rem;
+      //   background-color: var(--clr-lightgrey-bg);
+      //   border-radius: 10px;
 
-        label {
-          margin-left: 10px;
-          font-size: 14px;
-        }
-      }
+      //   label {
+      //     margin-left: 10px;
+      //     font-size: 14px;
+      //   }
+      // }
 
       label {
         padding: 0.5rem;
@@ -66,9 +66,21 @@
         p {
           margin-left: 0.5rem;
         }
+      }
 
-        &:last-child {
-          color: grey;
+      .disabledLabel {
+        color: grey;
+      }
+
+      .addressRadio {
+        align-items: baseline;
+
+        div {
+          margin-left: 0.5rem;
+
+          P {
+            margin: 0;
+          }
         }
       }
     }

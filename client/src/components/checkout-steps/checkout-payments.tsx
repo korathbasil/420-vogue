@@ -54,6 +54,7 @@ export const CheckoutPayments = () => {
               value="CASH_ON_DELIVERY"
               id="cash-on-delivery"
               disabled
+              className={styles.disabledLabel}
             />
             <p>Cash on Delivery</p>
           </label>
