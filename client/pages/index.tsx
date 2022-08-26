@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 
+import styles from "../styles/home.module.scss";
 import {
   Header,
   Greetings,
@@ -47,10 +48,12 @@ const HomePage: NextPage = () => {
             <LoginModal closeModal={() => loginModalToggleHandler(false)} />
           </Modal>
         )}
-        <Sidebar
-          isSidebarOpen={isSidebarOpen}
-          sidebarToggleHandler={sidebarToggleHandler}
-        />
+        <div className={styles.sidebarHolder}>
+          <Sidebar
+            isSidebarOpen={isSidebarOpen}
+            sidebarToggleHandler={sidebarToggleHandler}
+          />
+        </div>
       </main>
     </>
   );
