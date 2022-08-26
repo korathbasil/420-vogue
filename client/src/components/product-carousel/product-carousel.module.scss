@@ -6,16 +6,21 @@
 .header {
   position: absolute;
   width: calc(100% - 1rem);
-  top: 1.25rem;
+  top: 0.5rem;
   left: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 10px;
 
   div {
     background-color: var(--clr-white);
     border-radius: 10px;
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -34,8 +39,6 @@
     background: transparent;
     display: none;
   }
-
-  background-color: aquamarine;
 
   img {
     scroll-snap-align: start;

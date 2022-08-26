@@ -21,6 +21,7 @@ body {
   --clr-lightgrey: lightgrey;
   --clr-lightgrey-bg: #f1f3f6;
   --clr-black-50: rgba(0, 0, 0, 0.479);
+  --clr-pink: #ff004c;
 
   color: var(--clr-grey-text);
   background-color: var(--col-lightgrey-bg);

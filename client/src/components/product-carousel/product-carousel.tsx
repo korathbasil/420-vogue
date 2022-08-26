@@ -50,13 +50,13 @@ export const ProductCarousel = () => {
   return (
     <div className={styles.parent}>
       <header className={styles.header}>
-        <div>
-          <BackArrow onClickAction={router.back} size="25px" />
+        <div onClick={router.back}>
+          <BackArrow size="30px" />
         </div>
 
         <div>
           <div className={styles.iconWrapper}>
-            <HeartOutlined />
+            <HeartOutlined fill="var(--clr-pink)" />
           </div>
         </div>
       </header>
