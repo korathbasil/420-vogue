@@ -24,6 +24,24 @@ export const ProductCarousel = () => {
           src="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg"
           alt=""
         />
+        <img
+          src="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg"
+          alt=""
+        />
+        <img
+          src="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg"
+          alt=""
+        />
+        <img
+          src="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg"
+          alt=""
+        />
+      </div>
+      <div className={styles.indicator}>
+        <div></div>
+        <div className={styles.selected}></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
   );
