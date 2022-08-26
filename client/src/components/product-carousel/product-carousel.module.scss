@@ -45,25 +45,3 @@
     object-fit: cover;
   }
 }
-
-.indicator {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0.5rem;
-
-  div {
-    width: 0.25rem;
-    height: 0.25rem;
-    background-color: var(--clr-lightgrey);
-    margin: 0 0.5rem;
-    border-radius: 999px;
-  }
-
-  .selected {
-    width: 0.73rem;
-    height: 0.75rem;
-    background-color: var(--clr-primary);
-  }
-}
