@@ -14,8 +14,8 @@ interface CheckoutStepsProps {
 export const CheckoutSteps: FC<CheckoutStepsProps> = ({ step, updateStep }) => {
   return (
     <section className={styles.steps}>
-      {step === 1 && <CheckoutLogin />}
-      {step === 2 && <CheckoutAddress />}
+      {step === 1 && <CheckoutLogin updateStep={updateStep} />}
+      {step === 2 && <CheckoutAddress updateStep={updateStep} />}
       {step === 3 && <CheckoutSummary />}
       {step === 4 && <CheckoutPayments />}
     </section>

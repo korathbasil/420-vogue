@@ -1,5 +1,9 @@
 .parent {
+  background-color: var(--clr-white);
   color: var(--clr-grey-text);
+  box-shadow: var(--shadow-light);
+  padding: 1rem;
+  border-radius: 10px;
 }
 
 .top {

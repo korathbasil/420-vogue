@@ -1,0 +1,7 @@
+@import "../src/sass/screen-media-queries.scss";
+
+@include tab {
+  .sidebarHolder {
+    display: none;
+  }
+}
