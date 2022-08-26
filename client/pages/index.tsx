@@ -18,12 +18,12 @@ const HomePage: NextPage = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
   function sidebarToggleHandler() {
-    setIsLoginModalOpen(!isSidebarOpen);
+    setIsSidebarOpen(!isSidebarOpen);
   }
 
   const loginModalToggleHandler = useCallback(setIsLoginModalOpen, []);
   return (
-    <div>
+    <>
       <Head>
         <title>420VOGUE - Mens fashion store</title>
         <meta
@@ -32,25 +32,27 @@ const HomePage: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Sidebar
-        isSidebarOpen={isSidebarOpen}
-        sidebarToggleHandler={sidebarToggleHandler}
-      />
-      <Header
-        sidebarToggleHandler={sidebarToggleHandler}
-        loginModalToggleHandler={loginModalToggleHandler}
-      />
-      <main style={{ paddingTop: "5.5rem" }}>
-        <Greetings />
-        <HomeBanner />
-        <FeaturedProducts />
+      <main>
+        <Header
+          sidebarToggleHandler={sidebarToggleHandler}
+          loginModalToggleHandler={loginModalToggleHandler}
+        />
+        <main style={{ paddingTop: "5.5rem" }}>
+          <Greetings />
+          <HomeBanner />
+          <FeaturedProducts />
+        </main>
+        {isLoginModalOpen && (
+          <Modal>
+            <LoginModal closeModal={() => loginModalToggleHandler(false)} />
+          </Modal>
+        )}
+        <Sidebar
+          isSidebarOpen={isSidebarOpen}
+          sidebarToggleHandler={sidebarToggleHandler}
+        />
       </main>
-      {isLoginModalOpen && (
-        <Modal>
-          <LoginModal closeModal={() => loginModalToggleHandler(false)} />
-        </Modal>
-      )}
-    </div>
+    </>
   );
 };
 
