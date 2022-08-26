@@ -46,7 +46,8 @@ const Product: FC<ProductProps> = () => {
         <div>
           <p>Nike</p>
           <h4>Air Jordan</h4>
-          <h3>7899</h3>
+          <h3>₹7899</h3>
+          <p>Yellow Cream, 44EU</p>
         </div>
       </div>
       <div className={styles.right}></div>

@@ -2,10 +2,9 @@ import { Dispatch, FC, SetStateAction } from "react";
 import Link from "next/link";
 
 import styles from "./header.module.scss";
-import { Menu, ShoppingBag, Search, Avatar } from "assets/icons";
+import { Menu, ShoppingBag, Search, Avatar, Help } from "assets/icons";
 import { LogoText } from "components";
-import { UsersController } from "lib/controller";
-import { useQuery } from "@tanstack/react-query";
+import { HelpMenu } from "./help-menu";
 import { useUserStore } from "store";
 
 interface HeaderProps {
@@ -64,6 +63,10 @@ export const Header: FC<HeaderProps> = ({
               <Link href={"/bag"}>
                 <ShoppingBag />
               </Link>
+            </div>
+            <div className={styles.help}>
+              <Help />
+              <HelpMenu />
             </div>
           </div>
         </div>
