@@ -129,14 +129,17 @@
     padding: 0.5rem;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.2s ease-in;
+    transition: background-color 0.2s ease-in, color 0.2s ease-in;
 
     p {
-      margin-left: 0.5rem;
+      font-size: 14px;
+      font-weight: 600;
+      margin-left: 0.75rem;
     }
 
     &:hover {
       background-color: var(--clr-lightgrey-bg);
+      color: var(--clr-primary);
     }
   }
 }
