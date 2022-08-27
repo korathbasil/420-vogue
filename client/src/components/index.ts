@@ -11,7 +11,6 @@ export * from "./sidebar/sidebar";
 export * from "./product-carousel/product-carousel";
 export * from "./product-details/product-details";
 export * from "./product-actions/product-actions";
-export * from "./about/about";
 export * from "./checkout-steps/checkout-steps";
 export * from "./checkout-navigator/checkout-navigator";
 export * from "./modal/modal";
