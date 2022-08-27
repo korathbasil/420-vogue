@@ -1,10 +1,14 @@
+import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import styles from "./product-carousel.module.scss";
 import { BackArrow, HeartOutlined } from "assets/icons";
-import { useEffect, useState } from "react";
 
-export const ProductCarousel = () => {
+interface ProductCarouselProps {
+  images: string[];
+}
+
+export const ProductCarousel: FC<ProductCarouselProps> = ({ images }) => {
   const router = useRouter();
 
   const [scrollStep, setScrollStep] = useState(0);
@@ -61,28 +65,14 @@ export const ProductCarousel = () => {
         </div>
       </header>
       <div id="product-carousel" className={styles.carousel}>
-        <img
-          src="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg"
-          alt=""
-        />
-        <img
-          src="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg"
-          alt=""
-        />
-        <img
-          src="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg"
-          alt=""
-        />
-        <img
-          src="https://cdn.pixabay.com/photo/2016/11/19/18/06/feet-1840619__340.jpg"
-          alt=""
-        />
+        {images?.map((image) => (
+          <img src={image} />
+        ))}
       </div>
       <div id="indicator" className={styles.indicator}>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        {images?.map(() => (
+          <div></div>
+        ))}
       </div>
     </div>
   );

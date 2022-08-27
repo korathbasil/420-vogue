@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react";
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 
 import { axios } from "utils";
 
 import styles from "./product.module.scss";
 import { ProductCarousel, ProductDetails, ProductActions } from "components";
-import { Product } from "types";
+import { Product, ProductVariant } from "lib/interfaces";
 
 const ProductPage: NextPage = () => {
+  const router = useRouter();
+
   const [product, setProdcut] = useState<Product | null>(null);
-  const [variants, setVariants] = useState<Product[]>([]);
+  const [variants, setVariants] = useState<ProductVariant[]>([]);
 
   async function fetchProductDetails() {
+    const { id: productId } = router.query;
     axios
-      .get("/products/62ddacacb44fe86c3753e11e")
+      .get(`/products/${productId}`)
       .then((result) => {
         const product = {
           _id: result.data.id,
@@ -23,6 +27,20 @@ const ProductPage: NextPage = () => {
           subCategory: result.data.subCategory,
         };
 
+        const { data } = result;
+
+        const variants = data.variants;
+
+        console.log(variants);
+        // const variant = {
+        //   color: data.variants[0].color,
+        //   colorCode: data.variants[0].colorCode,
+        //   images: data.variants[0].images,
+        //   price: data.variants[0].price,
+        //   stock: [],
+        // };
+
+        setVariants(variants);
         setProdcut(product);
       })
       .catch((e) => {
@@ -35,10 +53,12 @@ const ProductPage: NextPage = () => {
   }, []);
   return (
     <section className="container">
-      <div className={styles.parent}>
-        <ProductCarousel />
-        <ProductDetails product={product} />
-      </div>
+      {product && (
+        <div className={styles.parent}>
+          <ProductCarousel images={variants[0].images} />
+          <ProductDetails product={product} variant={variants[0]} />
+        </div>
+      )}
       <ProductActions />
     </section>
   );
