@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import Link from "next/link";
 
 import styles from "./header.module.scss";
@@ -6,6 +6,7 @@ import { Menu, ShoppingBag, Search, Avatar, Help } from "assets/icons";
 import { LogoText } from "components";
 import { HelpMenu } from "./help-menu";
 import { useUserStore } from "store";
+import { UserMenu } from "./user-menu";
 
 interface HeaderProps {
   sidebarToggleHandler: () => void;
@@ -17,6 +18,12 @@ export const Header: FC<HeaderProps> = ({
   loginModalToggleHandler,
 }) => {
   const user = useUserStore((state) => state.user);
+
+  const [openedMenu, setOpenedMenu] = useState("");
+  function handleMenu(menuName: string) {
+    if (openedMenu === menuName) return setOpenedMenu("");
+    setOpenedMenu(menuName);
+  }
 
   return (
     <header className={styles.headerParent}>
@@ -44,11 +51,15 @@ export const Header: FC<HeaderProps> = ({
             </div>
 
             {user && (
-              <div className={styles.profile}>
+              <div
+                onClick={() => handleMenu("user")}
+                className={styles.profile}
+              >
                 <Avatar size="25px" fill="var(--clr-white)" />
-                <p>
+                <p className={styles.name}>
                   {user?.firstname} {user?.lastname}
                 </p>
+                {openedMenu === "user" && <UserMenu />}
               </div>
             )}
             {!user && (
@@ -64,9 +75,9 @@ export const Header: FC<HeaderProps> = ({
                 <ShoppingBag />
               </Link>
             </div>
-            <div className={styles.help}>
+            <div onClick={() => handleMenu("help")} className={styles.help}>
               <Help />
-              <HelpMenu />
+              {openedMenu === "help" && <HelpMenu />}
             </div>
           </div>
         </div>
