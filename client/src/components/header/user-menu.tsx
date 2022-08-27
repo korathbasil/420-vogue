@@ -18,7 +18,7 @@ export const UserMenu = () => {
           <p>My Orders</p>
         </div>
       </Link>
-      <Link href="/about-us">
+      <Link href="/account">
         <div className={styles.item}>
           <Avatar size="25px" />
           <p>My Account</p>
