@@ -31,7 +31,6 @@ const ProductPage: NextPage = () => {
 
         const variants = data.variants;
 
-        console.log(variants);
         // const variant = {
         //   color: data.variants[0].color,
         //   colorCode: data.variants[0].colorCode,
