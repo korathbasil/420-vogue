@@ -41,10 +41,10 @@ export const Sidebar: FC<SidebarProps> = ({
 
         <nav>
           <ul>
-            <Link href={"/wishlist"}>
+            <Link href={"/fav"}>
               <a className={styles.link}>
                 <Heart />
-                <p>MY WISHLIST</p>
+                <p>MY FAVOURITES</p>
               </a>
             </Link>
           </ul>
