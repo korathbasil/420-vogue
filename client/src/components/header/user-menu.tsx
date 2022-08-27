@@ -6,13 +6,13 @@ import { Avatar, Order, Heart } from "assets/icons";
 export const UserMenu = () => {
   return (
     <div onClick={(e) => e.stopPropagation()} className={styles.menu}>
-      <Link href="/help">
+      <Link href="/fav">
         <div className={styles.item}>
           <Heart size="25px" />
-          <p>My Wishlist</p>
+          <p>My Favourites</p>
         </div>
       </Link>
-      <Link href="/about-us">
+      <Link href="/orders">
         <div className={styles.item}>
           <Order size="25px" />
           <p>My Orders</p>
