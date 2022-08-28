@@ -7,6 +7,7 @@ import {
   Req,
   Res,
   UnauthorizedException,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
@@ -16,6 +17,7 @@ import { Response } from 'express';
 
 import { LoginUserDto } from './dtos/login-user.dto';
 import { AuthService } from './auth.service';
+import { AuthGuard } from './guards/auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -24,6 +26,7 @@ export class AuthController {
     private readonly authService: AuthService,
   ) {}
 
+  @UseGuards(AuthGuard)
   @UseSerializeInterceptor(UserDto)
   @Get('/current-user')
   async getCurrentUser(
