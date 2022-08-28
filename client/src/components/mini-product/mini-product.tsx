@@ -1,16 +1,16 @@
 import { AddBox, MinusBox } from "assets/icons";
 import { FC, useState } from "react";
 
-import styles from "./bag.module.scss";
+import styles from "./mini-product.module.scss";
 
-interface ProductProps {
+interface MiniProductProps {
   _id: string;
   brandname: string;
   stylename: string;
   price: number;
 }
 
-export const Product: FC = () => {
+export const MiniProduct: FC = () => {
   const [quantity, setQuantity] = useState(1);
 
   function increaseQty() {

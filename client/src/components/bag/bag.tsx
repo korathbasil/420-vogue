@@ -1,6 +1,6 @@
 import { Bolt } from "assets/icons";
 import styles from "./bag.module.scss";
-import { Product } from "./product";
+import { MiniProduct } from "components";
 
 export const Bag = () => {
   return (
@@ -8,8 +8,8 @@ export const Bag = () => {
       <div className={styles.items}>
         <h3>Items in your bag</h3>
         <div className={styles.products}>
-          <Product />
-          <Product />
+          <MiniProduct />
+          <MiniProduct />
         </div>
       </div>
       <div className={styles.summary}>
