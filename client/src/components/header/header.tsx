@@ -70,11 +70,13 @@ export const Header: FC<HeaderProps> = ({
                 <p>LOGIN / SIGNUP</p>
               </div>
             )}
-            <div className={styles.iconWrapper}>
-              <Link href={"/bag"}>
+
+            <Link href="/bag">
+              <a>
                 <ShoppingBag />
-              </Link>
-            </div>
+              </a>
+            </Link>
+
             <div onClick={() => handleMenu("help")} className={styles.help}>
               <Help />
               {openedMenu === "help" && <HelpMenu />}
