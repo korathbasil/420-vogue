@@ -46,7 +46,9 @@ export const Header: FC<HeaderProps> = ({
           <div className={styles.right}>
             <div className={styles.searchWrapper}>
               <Link href={"/search"}>
-                <Search />
+                <a>
+                  <Search />
+                </a>
               </Link>
             </div>
 
