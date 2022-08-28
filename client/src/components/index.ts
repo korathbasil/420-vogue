@@ -18,3 +18,4 @@ export * from "./login-modal/login-modal";
 export * from "./bag/bag";
 export * from "./mini-product/mini-product";
 export * from "./favourites/favourites";
+export * from "./orders/orders";

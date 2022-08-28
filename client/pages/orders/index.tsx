@@ -1,7 +1,14 @@
-import { NextPage } from "next";
+import { CHeader, Orders } from "components";
 
-const OrdersPage: NextPage = () => {
-  return <h2>My Orders</h2>;
+const OrdersPage = () => {
+  return (
+    <section>
+      <CHeader />
+      <div className="container page-start">
+        <Orders />
+      </div>
+    </section>
+  );
 };
 
 export default OrdersPage;
