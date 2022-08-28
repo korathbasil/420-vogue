@@ -1,21 +1,26 @@
 import { FC } from "react";
-
-import { Product } from "types";
+import { Product, ProductVariant } from "lib/interfaces";
 
 import styles from "./product-details.module.scss";
 
 interface ProductDetailsProps {
-  product: Product | null;
+  product: Product;
+  variant: ProductVariant;
 }
 
-export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
+export const ProductDetails: FC<ProductDetailsProps> = ({
+  product,
+  variant,
+}) => {
   return (
     <div className={styles.parent}>
       <div className={styles.top}>
-        <h3>Nike</h3>
-        <h4>₹1300</h4>
-        <h2>Jordan Air</h2>
-        <p>SHOES, CASUAL SHOES</p>
+        <h3>{product.brandName}</h3>
+        <h4>{variant.price}</h4>
+        <h2>{product.styleName}</h2>
+        <p>
+          {product.category}, {product.subCategory}
+        </p>
       </div>
       <div className={styles.description}>
         <h5>DESCRIPTION</h5>

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const HelpMenu = () => {
   return (
-    <div className={styles.menu}>
+    <div onClick={(e) => e.stopPropagation()} className={styles.menu}>
       <Link href="/help">
         <div className={styles.item}>
           <Help size="25px" />

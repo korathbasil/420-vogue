@@ -14,3 +14,6 @@ export * from "./instagram";
 export * from "./bolt";
 export * from "./google";
 export * from "./facebook";
+export * from "./edit";
+export * from "./add-box";
+export * from "./minus-box";

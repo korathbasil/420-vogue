@@ -1,0 +1,51 @@
+.bag {
+  gap: 2rem;
+
+  color: var(--clr-grey-text);
+
+  .items,
+  .summary {
+    background-color: var(--clr-white);
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    padding: 1rem;
+  }
+
+  .items {
+    flex: 0.6;
+
+    .products {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  .summary {
+    position: fixed;
+    bottom: 1rem;
+    width: calc(100vw - 2rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      color: var(--clr-primary);
+      span {
+        font-size: 16px;
+        color: var(--clr-lightgrey);
+      }
+    }
+
+    .button {
+      display: flex;
+      align-items: center;
+      font-weight: 800;
+      color: var(--clr-white);
+      background-color: var(--clr-primary);
+      padding: 0.5rem;
+      border-radius: 10px;
+    }
+  }
+}

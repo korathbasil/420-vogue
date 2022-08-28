@@ -1,0 +1,29 @@
+.about {
+  padding-top: 5rem;
+  h1 {
+    font-size: 30px;
+    color: var(--col-primary);
+    font-family: "Teko", sans-serif;
+  }
+
+  .links {
+    margin-top: 2rem;
+    display: flex;
+
+    a {
+      display: flex;
+      align-items: center;
+      background-color: bvar(--col-white);
+      box-shadow: var(--shadow-light);
+      border-radius: 99px;
+      width: fit-content;
+      padding: 0.5rem;
+      margin-right: 1rem;
+      color: var(--clr-primary);
+
+      .iconWrapper {
+        margin-right: 5px;
+      }
+    }
+  }
+}

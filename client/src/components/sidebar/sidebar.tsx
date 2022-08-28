@@ -1,5 +1,6 @@
 import { FC, useEffect } from "react";
 import Link from "next/link";
+import { useUserStore } from "store";
 
 import styles from "./sidebar.module.scss";
 import { Close, Heart, Order, Avatar, Help, Info } from "assets/icons";
@@ -14,6 +15,8 @@ export const Sidebar: FC<SidebarProps> = ({
   isSidebarOpen,
   sidebarToggleHandler,
 }) => {
+  const user = useUserStore((state) => state.user);
+
   useEffect(() => {
     const sidebar = document.getElementById("sidebar") as HTMLElement;
     if (isSidebarOpen) {
@@ -33,18 +36,22 @@ export const Sidebar: FC<SidebarProps> = ({
       className={styles.parent}
     >
       <div className={styles.sidebar} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.header}>
-          <h2>Bazil Korath</h2>
-          <p>korathbasil@email.com</p>
-          <p>+918848029932</p>
-        </div>
+        {user && (
+          <div className={styles.header}>
+            <h2>
+              {user.firstname} {user.lastname}
+            </h2>
+            <p>{user.email}</p>
+            <p>+918848029932</p>
+          </div>
+        )}
 
         <nav>
           <ul>
-            <Link href={"/wishlist"}>
+            <Link href={"/fav"}>
               <a className={styles.link}>
                 <Heart />
-                <p>MY WISHLIST</p>
+                <p>MY FAVOURITES</p>
               </a>
             </Link>
           </ul>
