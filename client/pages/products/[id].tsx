@@ -58,7 +58,7 @@ const ProductPage: NextPage = () => {
           <ProductDetails product={product} variant={variants[0]} />
         </div>
       )}
-      <ProductActions />
+      {product && <ProductActions product={product} variant={variants[0]} />}
     </section>
   );
 };
