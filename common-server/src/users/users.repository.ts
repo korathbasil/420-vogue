@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, FilterQuery, Types } from "mongoose";
+import { Model, FilterQuery, Types, UpdateQuery } from "mongoose";
 
 import { User } from "./user.model";
 
@@ -25,5 +25,9 @@ export class UsersRepository {
     const newUser = new this.userModel(user);
 
     return newUser.save();
+  }
+
+  updateOne(id: string, query: UpdateQuery<User>) {
+    return this.userModel.updateOne({ _id: new Types.ObjectId(id) }, query);
   }
 }
