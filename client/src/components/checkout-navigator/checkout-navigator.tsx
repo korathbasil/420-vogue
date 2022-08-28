@@ -32,7 +32,7 @@ export const CheckoutNavigator: FC<CheckoutSNavigatorProps> = ({
           <p>PAYMENT</p>
         </div>
       </div>
-      Navigator
+      {/* Navigator
       <button
         onClick={() => {
           if (step > minStep) {
@@ -50,7 +50,7 @@ export const CheckoutNavigator: FC<CheckoutSNavigatorProps> = ({
         }}
       >
         Next
-      </button>
+      </button> */}
     </section>
   );
 };
