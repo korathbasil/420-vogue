@@ -1,30 +1,6 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
-
-class ProductStock extends Document {
-  @Prop({ type: String, required: true })
-  sizeName: string;
-
-  @Prop([{ type: Number, required: true }])
-  quantity: number;
-}
-
-class ProductVariant extends Document {
-  @Prop({ type: String, required: true })
-  color: string;
-
-  @Prop({ type: String, required: true })
-  colorCode: string;
-
-  @Prop([{ type: String, required: true }])
-  images: string[];
-
-  @Prop({ type: Number, required: true })
-  price: number;
-
-  @Prop([{ type: ProductStock, required: true }])
-  stock: ProductStock[];
-}
+import { Document, Types } from "mongoose";
+import { ProductVariant } from "./product-variants.model";
 
 @Schema()
 export class Product extends Document {
@@ -40,7 +16,7 @@ export class Product extends Document {
   @Prop({ type: String, required: true })
   subCategory: string;
 
-  @Prop([{ type: ProductVariant }])
+  @Prop([{ type: Types.ObjectId, ref: "ProductVariant" }])
   variants: ProductVariant[];
 }
 
