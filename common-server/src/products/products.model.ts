@@ -5,10 +5,10 @@ import { ProductVariant } from "./product-variants.model";
 @Schema()
 export class Product extends Document {
   @Prop({ type: String, required: true })
-  brandName: string;
+  brand: string;
 
   @Prop({ type: String, required: true })
-  styleName: string;
+  style: string;
 
   @Prop({ type: String, required: true })
   category: string;

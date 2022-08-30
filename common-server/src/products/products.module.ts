@@ -5,6 +5,7 @@ import { productSchema } from "./products.model";
 import { productVariantSchema } from "./product-variants.model";
 import { ProductsRepository } from "./products.repository";
 import { ProductsService } from "./products.service";
+import { ProductVariantsRepository } from "./product-variants.repository";
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { ProductsService } from "./products.service";
     ]),
   ],
   controllers: [],
-  providers: [ProductsService, ProductsRepository],
+  providers: [ProductsService, ProductsRepository, ProductVariantsRepository],
   exports: [ProductsService],
 })
 export class ProductsModule {}

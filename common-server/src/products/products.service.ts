@@ -23,7 +23,7 @@ export class ProductsService {
     return product;
   }
 
-  async createProduct(): Promise<Product> {
+  async createProduct() {
     return;
   }
 }
