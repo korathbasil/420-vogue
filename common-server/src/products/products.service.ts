@@ -30,7 +30,13 @@ export class ProductsService {
   }
 
   async createProduct(data: CreateProductDto) {
-    const variants = await this.variantsRepo.insertMany(data.variants);
-    return;
+    const ids = await this.variantsRepo.insertMany(data.variants);
+
+    const product = {
+      ...data,
+      variants: ids,
+    } as unknown as Product;
+
+    return this.productsRepo.insertOne(product);
   }
 }

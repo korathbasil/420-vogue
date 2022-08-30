@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, FilterQuery } from "mongoose";
+import { Model, FilterQuery, Types } from "mongoose";
 
 import {
   ProductVariant,
@@ -35,7 +35,7 @@ export class ProductVariantsRepository {
     return newProduct.save();
   }
 
-  async insertMany(variants: ProductVariant[]) {
+  async insertMany(variants: ProductVariant[]): Promise<Types.ObjectId[]> {
     const res = await this.variantModel.insertMany(variants);
     const ids = res.map((v) => v._id);
 
