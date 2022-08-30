@@ -1,12 +1,16 @@
 import {
+  Body,
   Controller,
   Get,
   NotFoundException,
   Param,
+  Post,
   Query,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 
-import { ProductsService, Product } from 'common-server';
+import { ProductsService, Product, CreateProductDto } from 'common-server';
 
 @Controller('products')
 export class ProductsController {
@@ -37,5 +41,11 @@ export class ProductsController {
     } catch (e) {
       throw new NotFoundException('Product not dound');
     }
+  }
+
+  @Post()
+  @UsePipes(ValidationPipe)
+  async createProduct(@Body() productData: CreateProductDto) {
+    return this.productService.createProduct(productData);
   }
 }
