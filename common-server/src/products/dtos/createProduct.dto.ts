@@ -9,7 +9,7 @@ class ProductVariant {
   @IsNotEmpty({ message: "ColorCode can't be empty" })
   colorCode: string;
 
-  @IsArray("Invalid images")
+  @IsArray({ message: "Please provide more than one image" })
   @IsNotEmpty({ message: "Brand can't be empty" })
   images: string[];
 
