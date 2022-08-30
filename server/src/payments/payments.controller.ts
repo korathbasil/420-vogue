@@ -9,7 +9,7 @@ export class PaymentsController {
   @Post('/razorpay')
   async payWithRazorpay() {
     try {
-      const order = await this.paymentsService.initPayment(500);
+      const order = await this.paymentsService.createOrder(500);
 
       return order;
     } catch (e) {
