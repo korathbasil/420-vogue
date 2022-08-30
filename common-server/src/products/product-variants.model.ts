@@ -9,8 +9,10 @@ class ProductStock {
   quantity: number;
 }
 
+export type ProductVariantDocument = ProductVariant & Document;
+
 @Schema()
-export class ProductVariant extends Document {
+export class ProductVariant {
   @Prop({ type: String, required: true })
   color: string;
 
@@ -23,8 +25,8 @@ export class ProductVariant extends Document {
   @Prop({ type: Number, required: true })
   price: number;
 
-  @Prop([{ type: ProductStock, required: true }])
-  stock: ProductStock[];
+  @Prop([{ type: ProductStock }])
+  stock?: ProductStock[];
 }
 
 export const productVariantSchema =

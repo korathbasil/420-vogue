@@ -1,4 +1,4 @@
-import { IsNotEmpty, Length, isArray, IsArray } from "class-validator";
+import { IsNotEmpty, Length, IsArray } from "class-validator";
 
 class ProductVariant {
   @Length(3, 15)
@@ -34,5 +34,6 @@ export class CreateProductDto {
   @IsNotEmpty({ message: "Sub-category can't be empty" })
   subCategory: string;
 
+  @IsNotEmpty({ message: "Invalid variants" })
   variants: ProductVariant[];
 }

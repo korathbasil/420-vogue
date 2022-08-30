@@ -2,12 +2,13 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, FilterQuery } from "mongoose";
 
-import { Product } from "./products.model";
+import { Product, ProductDocument } from "./products.model";
 
 @Injectable()
 export class ProductsRepository {
   constructor(
-    @InjectModel("Product") private readonly productModel: Model<Product>
+    @InjectModel("Product")
+    private readonly productModel: Model<ProductDocument>
   ) {}
 
   async find(productsFilterQuery: FilterQuery<Product>): Promise<Product[]> {
