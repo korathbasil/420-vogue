@@ -17,14 +17,13 @@ export class UsersRepository {
   }
 
   async findById(id: string) {
-    return this.userModel.findOne({ id: new Types.ObjectId(id) });
-    // return this.userModel.findById(id).exec();
+    return this.userModel.findById(id).exec();
   }
 
-  insertOne(user: User) {
+  async insertOne(user: User) {
     const newUser = new this.userModel(user);
-
-    return newUser.save();
+    const res = await newUser.save();
+    return res;
   }
 
   updateOne(id: string, query: UpdateQuery<User>) {

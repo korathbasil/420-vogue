@@ -1,5 +1,5 @@
 import { Schema, SchemaFactory, Prop } from "@nestjs/mongoose";
-import { Document, Schema as MSchema } from "mongoose";
+import { Document, Schema as MSchema, Types } from "mongoose";
 
 import { Product } from "../products/products.model";
 
