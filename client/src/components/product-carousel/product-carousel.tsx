@@ -66,12 +66,12 @@ export const ProductCarousel: FC<ProductCarouselProps> = ({ images }) => {
       </header>
       <div id="product-carousel" className={styles.carousel}>
         {images?.map((image) => (
-          <img src={image} />
+          <img src={image} key={image} />
         ))}
       </div>
       <div id="indicator" className={styles.indicator}>
-        {images?.map(() => (
-          <div></div>
+        {images?.map((img) => (
+          <div key={img}></div>
         ))}
       </div>
     </div>

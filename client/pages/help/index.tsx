@@ -16,7 +16,8 @@ const HelpPage: NextPage = () => {
           <div className={styles.links}>
             <a
               href="mailto:support@420vogue.in?subject=Enquiry"
-              target={"_blank"}
+              target="_blank"
+              rel="noreferrer"
             >
               support@420vogue.in
             </a>

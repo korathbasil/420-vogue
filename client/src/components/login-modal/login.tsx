@@ -71,7 +71,7 @@ export const Login: FC<LoginProps> = ({
       <div>
         <button type="submit">Login</button>
         <p>
-          Don't have an account?
+          Don&apos;t have an account?
           <span onClick={() => switcher(false)}>SIGNUP</span>
         </p>
       </div>
