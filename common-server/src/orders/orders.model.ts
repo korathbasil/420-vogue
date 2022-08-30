@@ -77,7 +77,7 @@ class Address {
   pin: string;
 }
 
-enum Status {
+export enum Status {
   PENDING = "PENDING",
   ACCEPTED = "ACCEPTED",
   DISPATCHED = "DISPATCHED",
@@ -92,14 +92,14 @@ export class Order extends Document {
   @Prop([{ type: Products, required: true }])
   products: Products[];
 
-  @Prop([{ type: Address, required: true }])
-  address: Address[];
+  @Prop({ type: Address, required: true })
+  address: Address;
 
-  @Prop([{ type: String, required: true }])
+  @Prop({ type: String, required: true })
   phone: string;
 
-  @Prop({ type: Status, required: true, default: Status.PENDING })
+  @Prop({ type: String, required: true, default: "PENDING" })
   status: Status;
 }
 
-export const orderSChema = SchemaFactory.createForClass(Order);
+export const orderSchema = SchemaFactory.createForClass(Order);
