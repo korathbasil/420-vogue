@@ -1,19 +1,18 @@
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as yup from "yup";
-
-import { axios } from "utils";
+import { ManagersController } from "lib/controllers";
 
 import styles from "./add-manager-form.module.scss";
 
 export const AddManagerForm = () => {
   const router = useRouter();
   const YupValidationObject = {
-    firstName: yup
+    firstname: yup
       .string()
       .min(1, "Please enter your First Name")
       .max(20, "Maximum 20 characters allowed"),
-    lastName: yup
+    lastname: yup
       .string()
       .min(1, "Please enter your First Name")
       .max(20, "Maximum 20 characters allowed"),
@@ -31,8 +30,8 @@ export const AddManagerForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      firstname: "",
+      lastname: "",
       email: "",
       phone: "",
       password: "",
@@ -41,46 +40,53 @@ export const AddManagerForm = () => {
     onSubmit: handleSubmit,
   });
 
-  function handleSubmit() {
-    axios
-      .post("/admin", {
-        ...formik.values,
-      })
-      .then((res) => router.push("/managers"))
-      .catch((e) => console.error(e.response));
+  async function handleSubmit() {
+    try {
+      const { firstname, lastname, email, phone, password } = formik.values;
+      await ManagersController.createManager(
+        firstname,
+        lastname,
+        email,
+        phone,
+        password
+      );
+      router.push("/managers");
+    } catch (error: any) {
+      console.log(error.messages);
+    }
   }
 
   return (
     <div className={styles.AddManager}>
       <h3>Please fill the form below.</h3>
       <form onSubmit={formik.handleSubmit}>
-        <label htmlFor="firstName">First Name</label>
+        <label htmlFor="firstname">First Name</label>
         <input
           type="text"
-          name="firstName"
+          name="firstname"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.firstName}
+          value={formik.values.firstname}
           required
         />
         <div className={styles.err}>
-          {formik.touched.firstName && formik.errors.firstName && (
-            <p>{formik.errors.firstName}</p>
+          {formik.touched.firstname && formik.errors.firstname && (
+            <p>{formik.errors.firstname}</p>
           )}
         </div>
 
-        <label htmlFor="lastName">Last Name</label>
+        <label htmlFor="lastname">Last Name</label>
         <input
           type="text"
-          name="lastName"
+          name="lastname"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.lastName}
+          value={formik.values.lastname}
           required
         />
         <div className={styles.err}>
-          {formik.touched.lastName && formik.errors.lastName && (
-            <p>{formik.errors.lastName}</p>
+          {formik.touched.lastname && formik.errors.lastname && (
+            <p>{formik.errors.lastname}</p>
           )}
         </div>
 
