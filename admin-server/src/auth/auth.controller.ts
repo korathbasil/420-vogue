@@ -6,6 +6,8 @@ import {
   Body,
   Req,
   Res,
+  Get,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
@@ -50,6 +52,21 @@ export class AuthController {
     } catch (error) {
       throw error;
     }
+  }
+
+  @Get()
+  async getCurrentUser(@Req() req: Request, @Res() res: Response) {
+    const token = req.cookies['access-token'];
+
+    if (!token) throw new UnauthorizedException();
+
+    const { _id } = await this.authTokenServcie.verify(token);
+
+    const admin = await this.authService.getAdminById(_id);
+
+    if (!admin) throw new UnauthorizedException();
+
+    return admin;
   }
 
   @Post()
