@@ -13,10 +13,18 @@ import { LoginAdminDto } from './dtos/login-admin.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('login')
+  @Post()
   @UsePipes(ValidationPipe)
   async loginAdmin(@Body() data: LoginAdminDto) {
-    return this.authService.loginAdmin(data.email, data.password);
+    try {
+      const admin = await this.authService.loginAdmin(
+        data.email,
+        data.password,
+      );
+      return admin;
+    } catch (error) {
+      throw error;
+    }
   }
 
   @Post()

@@ -14,5 +14,6 @@ import { AdminService } from './admin.service';
   ],
   controllers: [AdminController],
   providers: [AdminService, AdminRepository],
+  exports: [AdminService],
 })
 export class AdminModule {}
