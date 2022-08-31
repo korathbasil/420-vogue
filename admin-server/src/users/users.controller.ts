@@ -20,13 +20,13 @@ export class UsersController {
     return this.usersService.findAllUsers();
   }
 
-  @Post()
-  @UsePipes(ValidationPipe)
-  async createUser(@Body() userData: CreateUserDto) {
-    const user = await this.usersService.createUser(userData);
+  // @Post()
+  // @UsePipes(ValidationPipe)
+  // async createUser(@Body() userData: CreateUserDto) {
+  //   const user = await this.usersService.createUser(userData);
 
-    if (!user) return new BadRequestException('User already exists');
+  //   if (!user) return new BadRequestException('User already exists');
 
-    return user;
-  }
+  //   return user;
+  // }
 }
