@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, FilterQuery, Types, UpdateQuery } from 'mongoose';
 
-import { AdminDocument, Admin } from './admin.model';
+import { AdminDocument, Admin, Role } from './admin.model';
 
 @Injectable()
 export class AdminRepository {

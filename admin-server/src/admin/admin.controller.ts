@@ -25,7 +25,7 @@ export class AdminController {
   async createAdmin(@Body() adminData: CreateAdminDto) {
     const admin = await this.adminService.createAdmin(adminData);
 
-    if (!admin) return new BadRequestException('User already exists');
+    if (!admin) throw new BadRequestException('User already exists');
 
     return admin;
   }

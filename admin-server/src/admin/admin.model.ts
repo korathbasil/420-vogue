@@ -2,8 +2,8 @@ import { Schema, SchemaFactory, Prop } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 export enum Role {
-  SUPERUSER = 'SUPERUSER',
-  MANAGER = 'MANAGER',
+  SUPERUSER = 'SUPERADMIN',
+  MANAGER = 'ADMIN',
 }
 
 export type AdminDocument = Admin & Document;
