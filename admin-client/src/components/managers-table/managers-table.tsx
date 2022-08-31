@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-
-import { axios } from "utils";
+import { Manager } from "lib/interfaces";
 
 import styles from "./managers-table.module.scss";
 import { CustomTable } from "../custom-table/custom-table";
+import { ManagersController } from "lib/controllers";
 
 const data = [
   {
@@ -17,15 +17,6 @@ const data = [
   },
 ];
 
-type Manager = {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  role: string;
-};
-
 export const ManagersTable = () => {
   const [managers, setManagers] = useState<Manager[]>([]);
 
@@ -34,23 +25,8 @@ export const ManagersTable = () => {
   });
 
   async function fetchManagers() {
-    axios
-      .get("/admin")
-      .then((res) => {
-        const managers = res.data.map((manager: Manager) => {
-          const { _id, firstName, lastName, email, phone, role } = manager;
-          return {
-            _id,
-            firstName,
-            lastName,
-            email,
-            phone,
-            role,
-          };
-        });
-        setManagers(managers);
-      })
-      .catch((e) => console.log(e.response));
+    const managers = await ManagersController.getAllManagers();
+    setManagers(managers);
   }
   return (
     <div>
@@ -65,8 +41,8 @@ export const ManagersTable = () => {
       <div className={styles.table}>
         <CustomTable
           columns={[
-            { name: "First Name", prop: "firstName" },
-            { name: "Last Name", prop: "lastName" },
+            { name: "First Name", prop: "firstname" },
+            { name: "Last Name", prop: "lastname" },
             { name: "Email", prop: "email" },
             { name: "Phone", prop: "phone" },
             { name: "Role", prop: "role" },
