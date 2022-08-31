@@ -10,6 +10,7 @@
     "@nestjs/common": "^9.0.5",
     "@nestjs/core": "^9.0.5",
     "@nestjs/mongoose": "^9.2.0",
+    "aws-sdk": "^2.1206.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "mongoose": "^6.5.2",
