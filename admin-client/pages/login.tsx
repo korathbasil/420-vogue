@@ -8,6 +8,7 @@ import { axios } from "../src/utils/axios";
 
 import styles from "../styles/login.module.scss";
 import { LogoText } from "components";
+import { ManagersController } from "lib/controllers";
 
 const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
@@ -36,25 +37,26 @@ const LoginPage: NextPage & {
   });
 
   async function handleLogin() {
-    axios
-      .post("/auth/login", {
-        email: formik.values.email,
-        password: formik.values.password,
-      })
-      .then((result) => result.data)
-      .then((data) => {
-        dispath({
-          type: "auth/login",
-          payload: {
-            _id: data._id,
-            firstname: data.firstName,
-            lastname: data.lastName,
-            email: data.email,
-          },
-        });
-        router.push("/");
-      })
-      .catch((e) => console.warn(e.response.data));
+    try {
+      const manager = await ManagersController.loginManager(
+        formik.values.email,
+        formik.values.password
+      );
+
+      dispath({
+        type: "auth/login",
+        payload: {
+          _id: manager._id,
+          firstname: manager.firstname,
+          lastname: manager.lastname,
+          email: manager.email,
+        },
+      });
+
+      router.push("/");
+    } catch (error: any) {
+      console.log(error.messages);
+    }
   }
 
   return (

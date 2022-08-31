@@ -12,6 +12,19 @@ export class ManagersController {
     }
   }
 
+  static async loginManager(email: string, password: string) {
+    try {
+      const res = await axios.post("/auth", {
+        email,
+        password,
+      });
+
+      return res.data;
+    } catch (e: any) {
+      throw new HttpError(e.response.data.message, e.response.data.statusCode);
+    }
+  }
+
   static async createManager(
     firstname: string,
     lastname: string,
