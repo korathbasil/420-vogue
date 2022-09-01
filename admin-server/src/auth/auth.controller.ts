@@ -28,13 +28,17 @@ export class AuthController {
 
     if (!token) throw new UnauthorizedException();
 
-    const { _id } = await this.authTokenServcie.verify(token);
+    try {
+      const { _id } = await this.authTokenServcie.verify(token);
 
-    const admin = await this.authService.getAdminById(_id);
+      const admin = await this.authService.getAdminById(_id);
 
-    if (!admin) throw new UnauthorizedException();
+      if (!admin) throw new UnauthorizedException();
 
-    return admin;
+      return admin;
+    } catch (error) {
+      throw new UnauthorizedException();
+    }
   }
 
   @Post()
