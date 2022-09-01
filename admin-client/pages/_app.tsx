@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import { ReactElement, useEffect, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import { store } from "state/store";
+import { store, State } from "state/store";
 
 import "../styles/globals.css";
 import { PrimaryLayout } from "../layouts/primary-layout";
@@ -20,11 +20,12 @@ const ApplyPrimaryLayout = (Page: ReactElement) => {
 };
 
 const MyApp = ({ Component, pageProps }: AppPropsWithConditionedLayout) => {
+  const AnyComponent = Component as any;
   let _myApp: JSX.Element;
   _myApp = !Component.disablePrimaryLayout ? (
-    ApplyPrimaryLayout(<Component {...pageProps} />)
+    ApplyPrimaryLayout(<AnyComponent {...pageProps} />)
   ) : (
-    <Component {...pageProps} />
+    <AnyComponent {...pageProps} />
   );
 
   return <Provider store={store}>{_myApp}</Provider>;

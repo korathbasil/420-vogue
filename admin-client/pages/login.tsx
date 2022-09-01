@@ -3,19 +3,21 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
-import { axios } from "../src/utils/axios";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "../styles/login.module.scss";
 import { LogoText } from "components";
 import { ManagersController } from "lib/controllers";
+import { useEffect } from "react";
+import { State } from "state/store";
 
 const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
 } = () => {
   const router = useRouter();
 
-  const dispath = useDispatch();
+  const user = useSelector((st: State) => st.auth.user);
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -43,7 +45,7 @@ const LoginPage: NextPage & {
         formik.values.password
       );
 
-      dispath({
+      dispatch({
         type: "auth/login",
         payload: {
           _id: manager._id,
@@ -53,11 +55,49 @@ const LoginPage: NextPage & {
         },
       });
 
-      router.push("/");
+      router.replace("/");
     } catch (error: any) {
       console.log(error.messages);
     }
   }
+
+  async function authenticateCurrentUser() {
+    try {
+      const manager = await ManagersController.getLoggedInManager();
+      if (!manager) return;
+
+      const { _id, firstname, lastname, email } = manager;
+      dispatch({
+        type: "auth/login",
+        payload: {
+          _id,
+          firstname,
+          lastname,
+          email,
+        },
+      });
+    } catch (e: any) {
+      dispatch({
+        type: "user/set",
+        payload: {
+          loggedIn: false,
+          user: null,
+        },
+      });
+
+      router.push("/login");
+
+      console.log(e.messages);
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+      router.replace("/");
+    } else {
+      authenticateCurrentUser();
+    }
+  }, [user]);
 
   return (
     <section className={styles.parent}>
