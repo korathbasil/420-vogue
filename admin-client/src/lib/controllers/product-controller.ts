@@ -5,8 +5,8 @@ export class ProductController {
     const { data } = await axios.get("/products");
     const products = data.map((p: any) => ({
       _id: p._id,
-      styleName: p.styleName,
-      brandName: p.brandName,
+      style: p.style,
+      brand: p.brand,
       category: p.category,
       subCategory: p.subCategory,
       status: "ACTIVE",
