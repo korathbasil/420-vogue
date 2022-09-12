@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC, PropsWithChildren } from "react";
 
 import styles from "./custom-table.module.scss";
@@ -9,6 +10,8 @@ interface CustomTableProps<T> {
   }[];
   data: T[];
   errMsg: string;
+  rowLink?: string;
+  linkProp?: string;
 }
 
 type ModifiedObject = {
@@ -19,6 +22,8 @@ export const CustomTable = <T extends ModifiedObject>({
   columns,
   data,
   errMsg,
+  rowLink,
+  linkProp,
 }: PropsWithChildren<CustomTableProps<T>>) => {
   return (
     <table className={styles.table}>
@@ -29,11 +34,15 @@ export const CustomTable = <T extends ModifiedObject>({
       </tr>
       {data.map((item) => {
         return (
-          <tr>
-            {columns.map((col) => {
-              return <td>{item[col.prop]}</td>;
-            })}
-          </tr>
+          <Link
+            href={rowLink && linkProp ? rowLink + "/" + item[linkProp] : ""}
+          >
+            <tr>
+              {columns.map((col) => {
+                return <td>{item[col.prop]}</td>;
+              })}
+            </tr>
+          </Link>
         );
       })}
       {data.length < 1 && errMsg && (
