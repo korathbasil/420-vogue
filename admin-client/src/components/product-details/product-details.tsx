@@ -1,35 +1,42 @@
+import { FC } from "react";
 import Link from "next/link";
+import { Product } from "lib/interfaces";
+
 import styles from "./product-details.module.scss";
 import { VariantCard } from "./variant-card";
 
-export const ProductDetails = () => {
+interface ProductDetailsProps {
+  product: Product;
+}
+
+export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
   return (
     <div className={styles.parent}>
       <div className={styles.top}>
         <table>
           <tr>
             <td className={styles.prop}>Id</td>
-            <td>64973492834928</td>
+            <td>{product._id}</td>
           </tr>
           <tr>
             <td className={styles.prop}>Brand</td>
-            <td>Apple</td>
+            <td>{product.brand}</td>
           </tr>
           <tr>
             <td className={styles.prop}>Style</td>
-            <td>Series 8</td>
+            <td>{product.style}</td>
           </tr>
           <tr>
             <td className={styles.prop}>Category</td>
-            <td>Wearables</td>
+            <td>{product.category}</td>
           </tr>
           <tr>
             <td className={styles.prop}>Sub Category</td>
-            <td>Smart wathces</td>
+            <td>{product.subCategory}</td>
           </tr>
           <tr>
             <td className={styles.prop}>Status</td>
-            <td>DISABLED</td>
+            <td>{product.isActive}</td>
           </tr>
         </table>
       </div>
