@@ -1,0 +1,43 @@
+.parent {
+  background-color: white;
+  padding: 20px;
+  box-shadow: var(--shadow-light);
+  border-radius: 10px;
+
+  .top {
+    table > tr {
+      height: 30px;
+    }
+
+    table > tr > .prop {
+      min-width: 150px;
+      font-size: 14px;
+    }
+
+    table > tr > td:nth-child(2n) {
+      font-weight: 600;
+    }
+  }
+
+  .variants {
+    h4 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+
+      a {
+      }
+    }
+  }
+}
+
+.variantCard {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding: 10px;
+}

@@ -126,25 +126,6 @@ export const AddProductForm = () => {
             }}
           />
         )}
-
-        {/* <h5>Base variant details.</h5>
-        <div className={styles.compoundInput}>
-          <div>
-            <FormInput label="Color" name="color" />
-          </div>
-          <div>
-            <FormInput label="Color Code" name="colorCode" />
-          </div>
-        </div>
-        <div className={styles.compoundInput}>
-          <div>
-            <FormInput label="Price" name="price" />
-          </div>
-          <div className={styles.actions}>
-            <button>Add more variants</button>
-          </div>
-        </div> */}
-
         <button type="submit">Add</button>
       </form>
     </section>
