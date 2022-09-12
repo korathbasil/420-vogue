@@ -5,8 +5,8 @@ type User = {
   email: string;
 };
 
-const initialState = {
-  user: {} as User,
+const initialState: { user: User | null; loggedIn: boolean } = {
+  user: null,
   loggedIn: false,
 };
 
@@ -20,6 +20,13 @@ export function authReducer(
         ...state,
         loggedIn: true,
         user: action.payload,
+      };
+
+    case "user/set":
+      return {
+        ...state,
+        loggedIn: action.payload.loggedIn,
+        user: action.payload.user,
       };
     default:
       return state;

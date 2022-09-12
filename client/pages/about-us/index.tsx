@@ -30,7 +30,11 @@ const AboutUsPage = () => {
               </a>
             </Link>
 
-            <a href="https://www.instagram.com/420__vogue/" target={"_blank"}>
+            <a
+              href="https://www.instagram.com/420__vogue/"
+              target="_blank"
+              rel="noreferrer"
+            >
               <div className={styles.iconWrapper}>
                 <Instagram size="25px" />
               </div>

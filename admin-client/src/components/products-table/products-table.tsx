@@ -23,14 +23,16 @@ export const ProductsTable = () => {
       <div className={styles.table}>
         <CustomTable
           columns={[
-            { name: "Style Name", prop: "styleName" },
-            { name: "Brand Name", prop: "brandName" },
+            { name: "Style", prop: "style" },
+            { name: "Brand", prop: "brand" },
             { name: "Category", prop: "category" },
             { name: "Sub-Category", prop: "subCategory" },
-            { name: "Status", prop: "status" },
+            { name: "Active", prop: "isActive" },
           ]}
           data={products}
           errMsg="No products available!"
+          rowLink="/products"
+          linkProp="_id"
         />
       </div>
     </div>

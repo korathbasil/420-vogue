@@ -6,6 +6,8 @@ import {
   ValidationPipe,
   Body,
   BadRequestException,
+  Delete,
+  Param,
 } from '@nestjs/common';
 
 import { AdminService } from './admin.service';
@@ -25,18 +27,21 @@ export class AdminController {
   async createAdmin(@Body() adminData: CreateAdminDto) {
     const admin = await this.adminService.createAdmin(adminData);
 
-    if (!admin) return new BadRequestException('User already exists');
+    if (!admin) throw new BadRequestException('User already exists');
 
     return admin;
   }
 
   @Post('super')
   @UsePipes(ValidationPipe)
-  async createSuperUser(@Body() data: CreateAdminDto) {
-    const user = await this.adminService.createAdmin(data);
+  async createSuperAdmin(@Body() data: CreateAdminDto) {
+    const user = await this.adminService.createSuperAdmin(data);
 
     if (!user) return new BadRequestException('User already exists');
 
     return user;
   }
+
+  @Delete('/:id')
+  deleteAdmin(@Param('id') id: string) {}
 }

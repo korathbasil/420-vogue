@@ -29,9 +29,14 @@ body {
   color: var(--col-grey-text)
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+
+.spacer-X {
+  width: 100%;
+  height: 20px;
+}
+.spacer-Y {
+  height: 100%;
+  width: 20px;
 }
 
 .content-card {
@@ -40,11 +45,41 @@ a {
   padding: 20px;
   margin-bottom: 20px;
 }
-.spacer-X {
-  width: 100%;
-  height: 20px;
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
-.spacer-Y {
-  height: 100%;
-  width: 20px;
+
+.primary-button {
+  background-color: var(--col-secondary);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+}
+
+.primary-button-link {
+  background-color: var(--col-secondary);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.flex {
+  display: flex;
+  gap: 20px;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-05 {
+  flex: 0.5
 }

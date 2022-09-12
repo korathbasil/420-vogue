@@ -3,11 +3,11 @@ import { Length, IsNotEmpty, IsNumberString } from 'class-validator';
 export class CreateAdminDto {
   @Length(3, 25)
   @IsNotEmpty({ message: "First Name can't be empty" })
-  firstName: string;
+  firstname: string;
 
   @Length(3, 25)
   @IsNotEmpty({ message: "Last Name can't be empty" })
-  lastName: string;
+  lastname: string;
 
   @Length(3, 40)
   @IsNotEmpty({ message: 'Please provide a valid email' })

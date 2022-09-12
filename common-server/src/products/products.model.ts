@@ -1,38 +1,16 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
+import { ProductVariant } from "./product-variants.model";
 
-class ProductStock extends Document {
-  @Prop({ type: String, required: true })
-  sizeName: string;
+export type ProductDocument = Product & Document;
 
-  @Prop([{ type: Number, required: true }])
-  quantity: number;
-}
-
-class ProductVariant extends Document {
-  @Prop({ type: String, required: true })
-  color: string;
-
-  @Prop({ type: String, required: true })
-  colorCode: string;
-
-  @Prop([{ type: String, required: true }])
-  images: string[];
-
-  @Prop({ type: Number, required: true })
-  price: number;
-
-  @Prop([{ type: ProductStock, required: true }])
-  stock: ProductStock[];
-}
-
-@Schema()
+@Schema({ timestamps: { createdAt: true, updatedAt: true } })
 export class Product extends Document {
   @Prop({ type: String, required: true })
-  brandName: string;
+  brand: string;
 
   @Prop({ type: String, required: true })
-  styleName: string;
+  style: string;
 
   @Prop({ type: String, required: true })
   category: string;
@@ -40,8 +18,11 @@ export class Product extends Document {
   @Prop({ type: String, required: true })
   subCategory: string;
 
-  @Prop([{ type: ProductVariant }])
+  @Prop([{ type: Types.ObjectId, ref: "ProductVariant" }])
   variants: ProductVariant[];
+
+  @Prop({ type: Boolean, default: false })
+  isActive: boolean;
 }
 
 export const productSchema = SchemaFactory.createForClass(Product);

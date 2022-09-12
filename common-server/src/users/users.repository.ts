@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, FilterQuery, Types } from "mongoose";
+import { Model, FilterQuery, Types, UpdateQuery } from "mongoose";
 
 import { User } from "./user.model";
 
@@ -17,13 +17,16 @@ export class UsersRepository {
   }
 
   async findById(id: string) {
-    return this.userModel.findOne({ id: new Types.ObjectId(id) });
-    // return this.userModel.findById(id).exec();
+    return this.userModel.findById(id).exec();
   }
 
-  insertOne(user: User) {
+  async insertOne(user: User) {
     const newUser = new this.userModel(user);
+    const res = await newUser.save();
+    return res;
+  }
 
-    return newUser.save();
+  updateOne(id: string, query: UpdateQuery<User>) {
+    return this.userModel.updateOne({ _id: new Types.ObjectId(id) }, query);
   }
 }

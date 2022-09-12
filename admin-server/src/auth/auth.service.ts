@@ -1,15 +1,16 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { UsersService } from 'common-server';
+
+import { AdminService } from 'src/admin/admin.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly usersService: UsersService) {}
-  async loginAdmin(email: string, password: string) {
-    try {
-      const user = await this.usersService.loginUser(email, password);
-      return user;
-    } catch (e) {
-      throw new BadRequestException(e);
-    }
+  constructor(private readonly adminService: AdminService) {}
+
+  getAdminById(id: string) {
+    return this.adminService.getAdminById(id);
+  }
+
+  loginAdmin(email: string, password: string) {
+    return this.adminService.adminLogin(email, password);
   }
 }

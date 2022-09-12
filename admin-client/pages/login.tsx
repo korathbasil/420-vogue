@@ -3,18 +3,21 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
-import { axios } from "../src/utils/axios";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "../styles/login.module.scss";
 import { LogoText } from "components";
+import { ManagersController } from "lib/controllers";
+import { useEffect } from "react";
+import { State } from "state/store";
 
 const LoginPage: NextPage & {
   disablePrimaryLayout: boolean;
 } = () => {
   const router = useRouter();
 
-  const dispath = useDispatch();
+  const user = useSelector((st: State) => st.auth.user);
+  const dispatch = useDispatch();
 
   const formik = useFormik({
     initialValues: {
@@ -36,26 +39,65 @@ const LoginPage: NextPage & {
   });
 
   async function handleLogin() {
-    axios
-      .post("/auth/login", {
-        email: formik.values.email,
-        password: formik.values.password,
-      })
-      .then((result) => result.data)
-      .then((data) => {
-        dispath({
-          type: "auth/login",
-          payload: {
-            _id: data._id,
-            firstname: data.firstName,
-            lastname: data.lastName,
-            email: data.email,
-          },
-        });
-        router.push("/");
-      })
-      .catch((e) => console.warn(e.response.data));
+    try {
+      const manager = await ManagersController.loginManager(
+        formik.values.email,
+        formik.values.password
+      );
+
+      dispatch({
+        type: "auth/login",
+        payload: {
+          _id: manager._id,
+          firstname: manager.firstname,
+          lastname: manager.lastname,
+          email: manager.email,
+        },
+      });
+
+      router.replace("/");
+    } catch (error: any) {
+      console.log(error.messages);
+    }
   }
+
+  async function authenticateCurrentUser() {
+    try {
+      const manager = await ManagersController.getLoggedInManager();
+      if (!manager) return;
+
+      const { _id, firstname, lastname, email } = manager;
+      dispatch({
+        type: "auth/login",
+        payload: {
+          _id,
+          firstname,
+          lastname,
+          email,
+        },
+      });
+    } catch (e: any) {
+      dispatch({
+        type: "user/set",
+        payload: {
+          loggedIn: false,
+          user: null,
+        },
+      });
+
+      router.push("/login");
+
+      console.log(e.messages);
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+      router.replace("/");
+    } else {
+      authenticateCurrentUser();
+    }
+  }, [user]);
 
   return (
     <section className={styles.parent}>

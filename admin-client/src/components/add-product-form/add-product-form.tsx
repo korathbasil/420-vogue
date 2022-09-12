@@ -3,15 +3,17 @@ import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-import { axios } from "utils";
-import { categories, Category } from "sys";
+import { categories } from "sys";
 
 import styles from "./add-product-form.module.scss";
-import { ProductPreview } from "components/product-preview/product-preview";
 import { FormInput, FormSelectInput } from "./form-inputs";
+import { ProductController } from "lib/controllers";
+import { Category, SubCategory } from "lib/interfaces";
 
 export const AddProductForm = () => {
   const router = useRouter();
+
+  // Formik
   const YupValidationObject = {
     brand: yup
       .string()
@@ -32,7 +34,6 @@ export const AddProductForm = () => {
       .min(8, "Minimum 8 characters required")
       .max(16, "Maximum 16 characters allowed"),
   };
-
   const formik = useFormik({
     initialValues: {
       brand: "",
@@ -41,19 +42,27 @@ export const AddProductForm = () => {
     validationSchema: yup.object(YupValidationObject),
     onSubmit: handleSubmit,
   });
+  // Form submit function
+  async function handleSubmit() {
+    try {
+      await ProductController.createProduct(
+        formik.values.brand,
+        formik.values.style,
+        selectedCategory?.name!,
+        selectedSubCategory!
+      );
 
-  function handleSubmit() {
-    // axios
-    //   .post("/products", {
-    //     ...formik.values,
-    //   })
-    //   .then((res) => router.push("/products"))
-    //   .catch((e) => console.error(e.response));
-
-    console.log({ ...formik.values });
+      router.push("/products");
+    } catch (error) {
+      console.error(error);
+    }
   }
+
   // Category logic state
   const [selectedCategory, setSelectdeCategory] = useState<Category | null>(
+    null
+  );
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string | null>(
     null
   );
 
@@ -103,6 +112,7 @@ export const AddProductForm = () => {
             };
           })}
           onChangeHandler={findAndSetSelectedCategory}
+          required={true}
         />
 
         {selectedCategory && (
@@ -110,29 +120,14 @@ export const AddProductForm = () => {
             label="Sub Category"
             name="subCategory"
             options={makeSubcategoryItems(selectedCategory)}
+            required={true}
+            onChangeHandler={(e: ChangeEvent<HTMLSelectElement>) => {
+              setSelectedSubCategory(e.target.value);
+            }}
           />
         )}
-
-        <h5>Base variant details.</h5>
-        <div className={styles.compoundInput}>
-          <div>
-            <FormInput label="Color" name="color" />
-          </div>
-          <div>
-            <FormInput label="Color Code" name="colorCode" />
-          </div>
-        </div>
-        <div className={styles.compoundInput}>
-          <div>
-            <FormInput label="Price" name="price" />
-          </div>
-          <div className={styles.actions}>
-            <button>Add more variants</button>
-          </div>
-        </div>
+        <button type="submit">Add</button>
       </form>
-      <div className="spacer-Y"></div>
-      <ProductPreview />
     </section>
   );
 };

@@ -1,5 +1,7 @@
 import { Schema, SchemaFactory, Prop } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Schema as MSchema, Types } from "mongoose";
+
+import { Product } from "../products/products.model";
 
 class UserAccount {
   @Prop({ type: String, required: true })
@@ -57,6 +59,9 @@ export class User extends Document {
 
   @Prop({ type: String, required: true })
   role: Role;
+
+  @Prop([{ type: MSchema.Types.ObjectId, ref: "Product" }])
+  favourites: Product[];
 
   @Prop([{ type: UserAddress }])
   addresses?: UserAddress[];

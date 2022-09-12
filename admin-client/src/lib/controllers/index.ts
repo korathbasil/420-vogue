@@ -1,1 +1,3 @@
-export * from "./product-controller";
+export * from "./managers-controller";
+export * from "./products-controller";
+export * from "./images-controller";

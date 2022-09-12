@@ -9,3 +9,6 @@ export * from "./users-table/users-table";
 export * from "./managers-table/managers-table";
 export * from "./add-manager-form/add-manager-form";
 export * from "./products-table/products-table";
+export * from "./product-details/product-details";
+export * from "./product-preview/product-preview";
+export * from "./add-product-variant-form/add-product-variant-form";

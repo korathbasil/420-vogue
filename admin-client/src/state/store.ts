@@ -6,3 +6,5 @@ export const store = createStore(
     auth: authReducer,
   })
 );
+
+export type State = ReturnType<typeof store.getState>;

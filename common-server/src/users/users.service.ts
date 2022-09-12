@@ -53,4 +53,10 @@ export class UsersService {
 
     return user;
   }
+
+  addFavourite(productId: string, userId: string) {
+    return this.usersRepo.updateOne(userId, {
+      $push: { favourites: productId },
+    });
+  }
 }

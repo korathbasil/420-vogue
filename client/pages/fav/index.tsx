@@ -1,11 +1,13 @@
-import { CHeader } from "components";
+import { CHeader, Favourite } from "components";
 import { ShoppingBag } from "assets/icons";
 
 const FavouritesPage = () => {
   return (
     <section>
       <CHeader />
-      <div className="container">MY FAv</div>
+      <div className="container page-start">
+        <Favourite />
+      </div>
     </section>
   );
 };
