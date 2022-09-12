@@ -44,8 +44,8 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
         <h4>Variants</h4>
         <div className={styles.actions}>
           <p>No of variants : 0</p>
-          <Link href={"/products/123/variants/add"}>
-            <a className="primary-button">Add Variant</a>
+          <Link href={`/products/${product._id}/variants/add`}>
+            <a className="primary-button-link">Add Variant</a>
           </Link>
         </div>
         <div className={styles.items}>

@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { ImagesController } from "lib/controllers";
 
 import styles from "./add-product-variant-form.module.scss";
 import { InputField } from "components/controls";
@@ -28,10 +29,26 @@ export const AddProductVariantForm = () => {
     }),
   });
 
-  function formSubmitHandler() {
-    console.log("sdsd");
-    console.log(formik.values);
-    console.log(formik.errors.colorCode);
+  async function formSubmitHandler() {
+    const keys = images.map((img) => img.key);
+    try {
+      const urls = await ImagesController.getUploadUrls(keys);
+
+      if (urls.length !== images.length) return;
+
+      const imagesWithUrls = images.map((img) => {
+        const selectedUrl = urls.find((url) => url.key === img.key);
+        if (!selectedUrl) throw new Error("Images mismatch");
+        return {
+          url: selectedUrl.url,
+          image: img.file,
+        };
+      });
+
+      await ImagesController.uploadImages(imagesWithUrls);
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <form className={styles.parent} onSubmit={formik.handleSubmit}>
