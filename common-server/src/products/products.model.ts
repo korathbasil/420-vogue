@@ -4,7 +4,7 @@ import { ProductVariant } from "./product-variants.model";
 
 export type ProductDocument = Product & Document;
 
-@Schema()
+@Schema({ timestamps: { createdAt: true, updatedAt: true } })
 export class Product extends Document {
   @Prop({ type: String, required: true })
   brand: string;
@@ -20,6 +20,9 @@ export class Product extends Document {
 
   @Prop([{ type: Types.ObjectId, ref: "ProductVariant" }])
   variants: ProductVariant[];
+
+  @Prop({ type: Boolean, default: false })
+  isActive: boolean;
 }
 
 export const productSchema = SchemaFactory.createForClass(Product);
