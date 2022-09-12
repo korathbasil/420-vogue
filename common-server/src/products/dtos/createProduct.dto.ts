@@ -22,7 +22,7 @@ export class CreateProductDto {
   @IsNotEmpty({ message: "Brand can't be empty" })
   brand: string;
 
-  @Length(3, 15)
+  @Length(3, 50)
   @IsNotEmpty({ message: "Style can't be empty" })
   style: string;
 
@@ -34,6 +34,6 @@ export class CreateProductDto {
   @IsNotEmpty({ message: "Sub-category can't be empty" })
   subCategory: string;
 
-  @IsNotEmpty({ message: "Invalid variants" })
-  variants: ProductVariant[];
+  // @IsNotEmpty({ message: "Invalid variants" })
+  // variants: ProductVariant[];
 }

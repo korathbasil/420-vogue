@@ -30,11 +30,9 @@ export class ProductsService {
   }
 
   async createProduct(data: CreateProductDto) {
-    const ids = await this.variantsRepo.insertMany(data.variants);
-
     const product = {
       ...data,
-      variants: ids,
+      variants: [],
     } as unknown as Product;
 
     return this.productsRepo.insertOne(product);
