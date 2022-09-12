@@ -5,6 +5,7 @@ import {
   Body,
   UsePipes,
   ValidationPipe,
+  BadRequestException,
 } from '@nestjs/common';
 
 import { ProductsService, CreateProductDto } from 'common-server';
@@ -19,7 +20,12 @@ export class ProductsController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  createProduct(@Body() body: CreateProductDto) {
-    console.log(body);
+  async createProduct(@Body() body: CreateProductDto) {
+    try {
+      const product = await this.productsService.createProduct(body);
+      return product;
+    } catch (e) {
+      throw new BadRequestException();
+    }
   }
 }
