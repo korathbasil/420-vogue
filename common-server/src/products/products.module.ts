@@ -6,6 +6,7 @@ import { productVariantSchema } from "./product-variants.model";
 import { ProductsRepository } from "./products.repository";
 import { ProductsService } from "./products.service";
 import { ProductVariantsRepository } from "./product-variants.repository";
+import { StorageModule } from "../storage/storage.module";
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { ProductVariantsRepository } from "./product-variants.repository";
       { name: "Product", schema: productSchema },
       { name: "ProductVariant", schema: productVariantSchema },
     ]),
+    StorageModule,
   ],
   controllers: [],
   providers: [ProductsService, ProductsRepository, ProductVariantsRepository],

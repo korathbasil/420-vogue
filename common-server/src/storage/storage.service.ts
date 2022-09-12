@@ -18,10 +18,11 @@ export class StorageService {
     });
   }
 
-  getSignedUrls() {
-    return this.s3.getSignedUrlPromise("putObject", {
+  async getSignedUrls(key: string) {
+    const url = await this.s3.getSignedUrlPromise("putObject", {
       ...this.config,
-      Key: "hello",
+      Key: key,
     });
+    return url;
   }
 }
