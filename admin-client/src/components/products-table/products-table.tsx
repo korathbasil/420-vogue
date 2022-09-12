@@ -27,7 +27,7 @@ export const ProductsTable = () => {
             { name: "Brand", prop: "brand" },
             { name: "Category", prop: "category" },
             { name: "Sub-Category", prop: "subCategory" },
-            { name: "Status", prop: "status" },
+            { name: "Active", prop: "isActive" },
           ]}
           data={products}
           errMsg="No products available!"

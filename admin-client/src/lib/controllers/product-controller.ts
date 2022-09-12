@@ -2,16 +2,18 @@ import { axios } from "utils";
 
 export class ProductController {
   static async getProducts() {
-    const { data } = await axios.get("/products");
-    const products = data.map((p: any) => ({
-      _id: p._id,
-      style: p.style,
-      brand: p.brand,
-      category: p.category,
-      subCategory: p.subCategory,
-      status: "ACTIVE",
-    }));
-    return products;
+    try {
+      const res = await axios.get("/products");
+      const products = res.data.map((p: any) => {
+        return {
+          ...p,
+          isActive: p.isActive ? "ACTIVE" : "DIABLED",
+        };
+      });
+      return products;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   static async createProduct(
@@ -20,7 +22,6 @@ export class ProductController {
     category: string,
     subCategory: string
   ) {
-    console.log({ brand, style, category, subCategory });
     try {
       await axios.post(
         "/products",
