@@ -1,6 +1,6 @@
 import type { Dispatch, FC, SetStateAction } from "react";
 
-import { Category } from "sys";
+import { Category } from "lib/interfaces";
 
 import styles from "./add-product-form.module.scss";
 
@@ -11,6 +11,7 @@ export function FormInput({
   onChange,
   onBlur,
   value,
+  required = false,
 }: {
   label: string;
   type?: string;
@@ -18,6 +19,7 @@ export function FormInput({
   onChange?: any;
   onBlur?: any;
   value?: any;
+  required?: boolean;
 }) {
   return (
     <div className={styles.input}>
@@ -28,6 +30,7 @@ export function FormInput({
         onChange={onChange}
         onBlur={onBlur}
         value={value}
+        required={required}
       />
     </div>
   );
@@ -43,6 +46,7 @@ interface FormSelectInputProps<T> {
       }[]
     | undefined;
   onChangeHandler?: any;
+  required: boolean;
 }
 
 export const FormSelectInput: FC<FormSelectInputProps<Category | null>> = ({
@@ -50,11 +54,12 @@ export const FormSelectInput: FC<FormSelectInputProps<Category | null>> = ({
   name,
   options,
   onChangeHandler,
+  required = false,
 }) => {
   return (
     <div className={styles.input}>
       <label htmlFor={name}>{label}</label>
-      <select onChange={onChangeHandler} name={name}>
+      <select onChange={onChangeHandler} name={name} required={required}>
         <option value="">--select--</option>
 
         {options?.map((option) => (

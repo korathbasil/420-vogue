@@ -13,4 +13,27 @@ export class ProductController {
     }));
     return products;
   }
+
+  static async createProduct(
+    brand: string,
+    style: string,
+    category: string,
+    subCategory: string
+  ) {
+    console.log({ brand, style, category, subCategory });
+    try {
+      await axios.post(
+        "/products",
+        {
+          brand,
+          style,
+          category,
+          subCategory,
+        },
+        { withCredentials: true }
+      );
+    } catch (e) {
+      throw e;
+    }
+  }
 }
