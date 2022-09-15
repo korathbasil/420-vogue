@@ -5,23 +5,21 @@ import { S3 } from "aws-sdk";
 export class StorageService {
   private s3: S3;
   private readonly _BUCKET_NAME = "static.420vogue.in";
-  private readonly _EXPIRY = 300; // in seconds
-  private readonly config = {
-    Bucket: this._BUCKET_NAME,
-    Expires: this._EXPIRY,
-  };
+  private readonly _REGION = "ap-south-1";
 
   constructor() {
     this.s3 = new S3({
+      region: this._REGION,
       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     });
   }
 
-  async getSignedUrls(key: string) {
+  async getSignedUrls(keyAndType: { key: string; type: string }) {
     const url = await this.s3.getSignedUrlPromise("putObject", {
-      ...this.config,
-      Key: key,
+      Bucket: this._BUCKET_NAME,
+      Key: keyAndType.key,
+      ContentType: keyAndType.type,
     });
     return url;
   }
