@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, FilterQuery } from "mongoose";
+import { Model, FilterQuery, UpdateQuery } from "mongoose";
 
 import { Product, ProductDocument } from "./products.model";
 
@@ -26,5 +26,12 @@ export class ProductsRepository {
   async insertOne(product: Product): Promise<Product> {
     const newProduct = new this.productModel(product);
     return newProduct.save();
+  }
+
+  async updateOne(
+    filterQuery: FilterQuery<Product>,
+    updateQuery: UpdateQuery<Product>
+  ) {
+    return this.productModel.updateOne(filterQuery, updateQuery);
   }
 }

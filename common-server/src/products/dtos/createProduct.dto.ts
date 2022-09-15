@@ -1,22 +1,5 @@
 import { IsNotEmpty, Length, IsArray } from "class-validator";
 
-class ProductVariant {
-  @Length(3, 15)
-  @IsNotEmpty({ message: "Color can't be empty" })
-  color: string;
-
-  @Length(7, 7)
-  @IsNotEmpty({ message: "ColorCode can't be empty" })
-  colorCode: string;
-
-  @IsArray({ message: "Please provide more than one image" })
-  @IsNotEmpty({ message: "Brand can't be empty" })
-  images: string[];
-
-  @IsNotEmpty({ message: "Price can't be empty" })
-  price: number;
-}
-
 export class CreateProductDto {
   @Length(3, 15)
   @IsNotEmpty({ message: "Brand can't be empty" })
@@ -33,7 +16,4 @@ export class CreateProductDto {
   @Length(3, 15)
   @IsNotEmpty({ message: "Sub-category can't be empty" })
   subCategory: string;
-
-  // @IsNotEmpty({ message: "Invalid variants" })
-  // variants: ProductVariant[];
 }

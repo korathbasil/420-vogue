@@ -29,7 +29,7 @@ export class ProductVariantsRepository {
     return this.variantModel.findOne(productsFilterQuery);
   }
 
-  async insertOne(variant: ProductVariant): Promise<ProductVariant> {
+  async insertOne(variant: ProductVariant) {
     const newProduct = new this.variantModel(variant);
 
     return newProduct.save();
