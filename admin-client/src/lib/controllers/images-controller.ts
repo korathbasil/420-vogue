@@ -14,12 +14,11 @@ export class ImagesController {
 
   static async uploadImages(imagesWithUrls: { url: string; image: File }[]) {
     for await (const image of imagesWithUrls) {
-      const res = await Axios.put(image.url, image.image, {
+      await Axios.put(image.url, image.image, {
         headers: {
           "Content-Type": image.image.type,
         },
       });
-      console.log(res.data);
     }
   }
 }

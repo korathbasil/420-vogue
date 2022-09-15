@@ -3,11 +3,12 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { ImagesController } from "lib/controllers";
+import { ImagesController, VaraintsController } from "lib/controllers";
 
 import styles from "./add-product-variant-form.module.scss";
 import { InputField } from "components/controls";
 import { AddImage, Delete } from "assets/icons";
+import { String } from "cypress/types/lodash";
 
 export const AddProductVariantForm = () => {
   const [images, setImages] = useState<{ file: File; key: string }[]>([]);
@@ -33,6 +34,7 @@ export const AddProductVariantForm = () => {
   });
 
   async function formSubmitHandler() {
+    if (Array.isArray(productId) || productId === undefined) return;
     const keysAndTypes = images.map((img) => {
       return {
         key: img.key,
@@ -54,6 +56,20 @@ export const AddProductVariantForm = () => {
       });
 
       await ImagesController.uploadImages(imagesWithUrls);
+
+      const imageKeys = images.map(
+        (img) =>
+          "https://s3.ap-south-1.amazonaws.com/static.420vogue.in/" + img.key
+      );
+      await VaraintsController.createVariant(
+        productId,
+        formik.values.color,
+        formik.values.colorCode,
+        imageKeys,
+        parseFloat(formik.values.price)
+      );
+
+      router.push("/products/" + productId);
     } catch (error) {
       console.log(error);
     }
