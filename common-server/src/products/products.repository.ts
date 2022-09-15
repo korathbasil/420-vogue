@@ -16,11 +16,14 @@ export class ProductsRepository {
   }
 
   async findOne(productsFilterQuery: FilterQuery<Product>): Promise<Product> {
-    return this.productModel.findOne(productsFilterQuery);
+    return this.productModel
+      .findOne(productsFilterQuery)
+      .populate("variants")
+      .exec();
   }
 
   async findById(id: string): Promise<Product> {
-    return this.productModel.findById(id);
+    return this.productModel.findById(id).populate("variants");
   }
 
   async insertOne(product: Product): Promise<Product> {
