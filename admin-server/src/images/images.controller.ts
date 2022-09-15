@@ -16,12 +16,14 @@ export class ImagesController {
 
   @Post('/urls')
   @UsePipes(ValidationPipe)
-  async getUploadUrls(@Body('fileKeys') keys: string[]) {
+  async getUploadUrls(
+    @Body('keysAndTypes') keysAndTypes: { key: string; type: string }[],
+  ) {
     const urls: { key: string; url: string }[] = [];
     try {
-      for (const key of keys) {
-        const url = await this.imagesService.getPreSignedUrls(key);
-        urls.push({ key, url });
+      for (const keyAndType of keysAndTypes) {
+        const url = await this.imagesService.getPreSignedUrls(keyAndType);
+        urls.push({ key: keyAndType.key, url });
       }
       return urls;
     } catch (error) {

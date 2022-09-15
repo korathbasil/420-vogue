@@ -5,7 +5,7 @@ import { StorageService } from 'common-server';
 export class ImagesService {
   constructor(private readonly storageService: StorageService) {}
 
-  async getPreSignedUrls(key: string) {
-    return this.storageService.getSignedUrls(key);
+  async getPreSignedUrls(keyAndType: { key: string; type: string }) {
+    return this.storageService.getSignedUrls(keyAndType);
   }
 }
