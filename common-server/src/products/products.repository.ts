@@ -12,14 +12,11 @@ export class ProductsRepository {
   ) {}
 
   async find(productsFilterQuery: FilterQuery<Product>): Promise<Product[]> {
-    return this.productModel.find(productsFilterQuery);
+    return this.productModel.find(productsFilterQuery).populate("variants");
   }
 
   async findOne(productsFilterQuery: FilterQuery<Product>): Promise<Product> {
-    return this.productModel
-      .findOne(productsFilterQuery)
-      .populate("variants")
-      .exec();
+    return this.productModel.findOne(productsFilterQuery).populate("variants");
   }
 
   async findById(id: string): Promise<Product> {
