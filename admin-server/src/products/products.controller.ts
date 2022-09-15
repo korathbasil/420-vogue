@@ -9,8 +9,12 @@ import {
   Param,
   NotFoundException,
 } from '@nestjs/common';
-
-import { ProductsService, CreateProductDto } from 'common-server';
+import {
+  ProductsService,
+  CreateProductDto,
+  CreateVariantDto,
+} from 'common-server';
+import { ObjectId } from 'mongoose';
 
 @Controller('products')
 export class ProductsController {
@@ -37,6 +41,27 @@ export class ProductsController {
     try {
       const product = await this.productsService.createProduct(body);
       return product;
+    } catch (e) {
+      throw new BadRequestException();
+    }
+  }
+
+  @Post('/:id/variants')
+  @UsePipes(ValidationPipe)
+  async addVariant(
+    @Param('id') productId: string,
+    @Body() data: CreateVariantDto,
+  ): Promise<any> {
+    try {
+      const id = await this.productsService.createVariant(
+        productId,
+        data.color,
+        data.colorCode,
+        data.images,
+        data.price,
+      );
+
+      return id;
     } catch (e) {
       throw new BadRequestException();
     }
