@@ -24,6 +24,7 @@ export const VariantModal: FC<VariantModalProps> = ({
           <h6>Color</h6>
           {variants.map((v) => (
             <div
+              key={v._id}
               style={{
                 backgroundColor:
                   selectedVariant == v
