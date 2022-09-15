@@ -1,18 +1,21 @@
+import { Product } from "lib/interfaces";
 import Link from "next/link";
+import { FC } from "react";
 
 import styles from "./product-card.module.scss";
 
-export const ProductCard = () => {
+interface ProductCardProps {
+  product: Product;
+}
+
+export const ProductCard: FC<ProductCardProps> = ({ product }) => {
   return (
-    <Link href={"/products/62ddacacb44fe86c3753e11e"}>
+    <Link href={`/products/${product._id}`}>
       <div className={styles.card}>
-        <img
-          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2hvZXN8ZW58MHx8MHx8&w=1000&q=80"
-          alt=""
-        />
+        <img src={product.variants[0].images[0]} alt="" />
         <div className={styles.bottom}>
-          <h4>6756</h4>
-          <p>Jordan Air</p>
+          <h4>{product.variants[0].price}</h4>
+          <p>{product.style}</p>
         </div>
       </div>
     </Link>
