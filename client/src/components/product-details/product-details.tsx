@@ -13,11 +13,11 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
   variant,
 }) => {
   return (
-    <div className={styles.parent}>
+    <div className={styles.parent} onClick={(e) => e.stopPropagation()}>
       <div className={styles.top}>
-        <h3>{product.brandName}</h3>
+        <h3>{product.brand}</h3>
         <h4>{variant.price}</h4>
-        <h2>{product.styleName}</h2>
+        <h2>{product.style}</h2>
         <p>
           {product.category}, {product.subCategory}
         </p>

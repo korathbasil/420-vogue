@@ -1,64 +1,82 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-
-import { axios } from "utils";
+import { ProductController } from "lib/controller";
 
 import styles from "./product.module.scss";
-import { ProductCarousel, ProductDetails, ProductActions } from "components";
+import {
+  ProductCarousel,
+  ProductDetails,
+  ProductActions,
+  Modal,
+  VariantModal,
+} from "components";
 import { Product, ProductVariant } from "lib/interfaces";
 
 const ProductPage: NextPage = () => {
   const router = useRouter();
+  const { id: productId } = router.query;
+
+  const [isVariantModalOpen, setIsVariantModalOpen] = useState(false);
 
   const [product, setProdcut] = useState<Product | null>(null);
-  const [variants, setVariants] = useState<ProductVariant[]>([]);
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(
+    null
+  );
+  const [selectedSize, setSelectedSize] = useState(0);
 
-  async function fetchProductDetails() {
-    const { id: productId } = router.query;
-    axios
-      .get(`/products/${productId}`)
-      .then((result) => {
-        const product = {
-          _id: result.data.id,
-          brandName: result.data.brandName,
-          styleName: result.data.styleName,
-          category: result.data.category,
-          subCategory: result.data.subCategory,
-        };
-
-        const { data } = result;
-
-        const variants = data.variants;
-
-        // const variant = {
-        //   color: data.variants[0].color,
-        //   colorCode: data.variants[0].colorCode,
-        //   images: data.variants[0].images,
-        //   price: data.variants[0].price,
-        //   stock: [],
-        // };
-
-        setVariants(variants);
-        setProdcut(product);
-      })
-      .catch((e) => {
-        console.log(e.response);
-      });
-  }
+  const variantSelector = useCallback(setSelectedVariant, [product?.variants]);
 
   useEffect(() => {
     fetchProductDetails();
-  }, []);
+  }, [productId]);
+
+  async function fetchProductDetails() {
+    if (productId == undefined || Array.isArray(productId)) return;
+
+    try {
+      const product = await ProductController.getProductById(productId);
+      setProdcut(product);
+      setSelectedVariant(product.variants[0]);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <section className="container">
       {product && (
         <div className={styles.parent}>
-          <ProductCarousel images={variants[0].images} />
-          <ProductDetails product={product} variant={variants[0]} />
+          <ProductCarousel images={product.variants[0].images} />
+          <ProductDetails
+            product={product}
+            variant={selectedVariant ? selectedVariant : product.variants[0]}
+          />
         </div>
       )}
-      {product && <ProductActions product={product} variant={variants[0]} />}
+      {product && (
+        <div
+          onClick={() => setIsVariantModalOpen(true)}
+          className={styles.selector}
+        >
+          <p>Color & Size</p>
+        </div>
+      )}
+      {product && (
+        <ProductActions
+          product={product}
+          variant={selectedVariant ? selectedVariant : product.variants[0]}
+        />
+      )}
+      {product && isVariantModalOpen && (
+        <Modal clickHandler={() => setIsVariantModalOpen(false)}>
+          <VariantModal
+            variants={product.variants}
+            selectedVariant={selectedVariant}
+            selector={variantSelector}
+            closeModal={() => setIsVariantModalOpen(false)}
+          />
+        </Modal>
+      )}
     </section>
   );
 };
