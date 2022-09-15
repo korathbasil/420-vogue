@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 import Link from "next/link";
 import { useUserStore } from "store";
 
@@ -9,11 +9,13 @@ import { LogoText } from "components/logo-text/logo-text";
 interface SidebarProps {
   isSidebarOpen: boolean;
   sidebarToggleHandler: () => void;
+  loginModalToggleHandler: Dispatch<SetStateAction<boolean>>;
 }
 
 export const Sidebar: FC<SidebarProps> = ({
   isSidebarOpen,
   sidebarToggleHandler,
+  loginModalToggleHandler,
 }) => {
   const user = useUserStore((state) => state.user);
 
@@ -43,6 +45,22 @@ export const Sidebar: FC<SidebarProps> = ({
             </h2>
             <p>{user.email}</p>
             <p>+918848029932</p>
+          </div>
+        )}
+        {!user && (
+          <div className={styles.header}>
+            <div>
+              <h4>Hello,</h4>
+              <h2>Guest</h2>
+            </div>
+            <button
+              onClick={() => {
+                sidebarToggleHandler();
+                loginModalToggleHandler(true);
+              }}
+            >
+              LOGIN / SIGNUP
+            </button>
           </div>
         )}
 
@@ -106,10 +124,3 @@ export const Sidebar: FC<SidebarProps> = ({
     </aside>
   );
 };
-
-{
-  /* <aside id="sidebar" className={styles.sidebar}>
-      
-      
-    </aside> */
-}
