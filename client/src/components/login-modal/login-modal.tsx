@@ -19,38 +19,52 @@ export const LoginModal: FC<LoginModalProps> = ({
   const loginSignupSwitcher = useCallback(setShowLogin, []);
 
   return (
-    <section
-      style={{
-        maxWidth: minimal ? "900px" : "600px",
-        padding: minimal ? "0" : "2rem",
-      }}
-      className={styles.login}
-    >
-      {!minimal && (
-        <div onClick={closeModal} className={styles.close}>
-          <Close fill="var(--clr-grey-text)" />
+    <section className="login-wrapper">
+      <div className={styles.login}>
+        {!minimal && (
+          <div onClick={closeModal} className={styles.close}>
+            <Close fill="var(--clr-grey-text)" />
+          </div>
+        )}
+        {showLogin && (
+          <Login
+            switcher={loginSignupSwitcher}
+            closeModal={closeModal}
+            minimal={minimal}
+          />
+        )}
+        {!showLogin && (
+          <Signup switcher={loginSignupSwitcher} minimal={minimal} />
+        )}
+        <hr />
+        <div className={styles.socialLogin}>
+          <div className={styles.social}>
+            <Google size="20px" />
+            <h4>Google</h4>
+          </div>
+          <div className={styles.social}>
+            <Facebook size="20px" />
+            <h4>Facebook</h4>
+          </div>
         </div>
-      )}
-      {showLogin && (
-        <Login
-          switcher={loginSignupSwitcher}
-          closeModal={closeModal}
-          minimal={minimal}
-        />
-      )}
-      {!showLogin && (
-        <Signup switcher={loginSignupSwitcher} minimal={minimal} />
-      )}
-      <hr />
-      <div className={styles.socialLogin}>
-        <div className={styles.social}>
-          <Google size="20px" />
-          <h4>Google</h4>
-        </div>
-        <div className={styles.social}>
-          <Facebook size="20px" />
-          <h4>Facebook</h4>
-        </div>
+        <style>
+          {`
+          @media only screen and (min-width: 480px) {
+            .login-warpper {
+              padding: ${minimal ? "0" : "1rem"};
+            }
+          }
+
+          .login-wrapper {
+            max-width: ${minimal ? "900px" : "600px"};
+            padding: ${minimal ? "0" : "2rem"};
+            width: 100%;
+            background-color: var(--clr-white);
+            border-radius: 7px;
+            position: relative;
+          }
+        `}
+        </style>
       </div>
     </section>
   );
