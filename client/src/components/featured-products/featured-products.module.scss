@@ -1,7 +1,17 @@
-.parent {
-  width: 100%;
-  background-color: var(--clr-white);
-  border-radius: 10px;
-  box-shadow: var(--shadow-light);
-  padding: 1rem;
+@import "../../sass/screen-media-queries.scss";
+
+.parent > h4 {
+  margin-bottom: 1rem;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(6, calc((100% - 5rem) / 6));
+}
+
+@include phone {
+  .products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 }
