@@ -16,7 +16,6 @@ export class ManagersController {
   static async getLoggedInManager() {
     try {
       const res = await axios.get("/auth", { withCredentials: true });
-      console.log(res.data);
       return res.data;
     } catch (e: any) {
       throw new HttpError(e.response.data.message, e.response.data.statusCode);

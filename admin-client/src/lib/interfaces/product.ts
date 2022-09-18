@@ -4,7 +4,7 @@ export type Product = {
   style: string;
   category: string;
   subCategory: string;
-  variants: string[];
+  variants: ProductVariant[];
   isActive: boolean | string;
 };
 
@@ -13,7 +13,6 @@ export type ProductVariant = {
   colorCode: string;
   images: string[];
   price: number;
-  stock: ProductStock[];
 };
 
 type ProductStock = {

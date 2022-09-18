@@ -1,22 +1,29 @@
+import { FC } from "react";
 import Link from "next/link";
+import { ProductVariant } from "lib/interfaces";
+
 import styles from "./product-details.module.scss";
 
-export const VariantCard = () => {
+interface VariantCardProps {
+  variant: ProductVariant;
+}
+
+export const VariantCard: FC<VariantCardProps> = ({ variant }) => {
   return (
     <div className={styles.variantCard}>
       <div>
         <table>
           <tr>
             <td>Color</td>
-            <td>Red</td>
+            <td>{variant.color}</td>
           </tr>
           <tr>
             <td>Color Code</td>
-            <td>F33445</td>
+            <td>{variant.colorCode}</td>
           </tr>
           <tr>
             <td>Price</td>
-            <td>1900</td>
+            <td>{variant.price}</td>
           </tr>
         </table>
         <div className={styles.actions}>

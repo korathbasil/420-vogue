@@ -49,7 +49,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
           </Link>
         </div>
         <div className={styles.items}>
-          <VariantCard />
+          <VariantCard variant={product.variants[0]} />
         </div>
       </div>
     </div>
