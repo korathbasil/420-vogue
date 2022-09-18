@@ -9,9 +9,10 @@ import {
   Delete,
   Param,
   UseGuards,
+  Put,
 } from '@nestjs/common';
-import { AuthGuard } from 'src/guards/auth.guard';
 
+import { AuthGuard } from 'src/guards/auth.guard';
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dtos/create-admin.dto';
 
@@ -26,6 +27,7 @@ export class AdminController {
   }
 
   @Post()
+  @UseGuards(AuthGuard)
   @UsePipes(ValidationPipe)
   async createAdmin(@Body() adminData: CreateAdminDto) {
     const admin = await this.adminService.createAdmin(adminData);
@@ -45,6 +47,11 @@ export class AdminController {
     return user;
   }
 
+  @Put('/:id')
+  @UseGuards(AuthGuard)
+  async editAdmin() {}
+
   @Delete('/:id')
+  @UseGuards(AuthGuard)
   deleteAdmin(@Param('id') id: string) {}
 }
