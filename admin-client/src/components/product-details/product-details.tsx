@@ -43,13 +43,15 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
       <div className={styles.variants}>
         <h4>Variants</h4>
         <div className={styles.actions}>
-          <p>No of variants : 0</p>
+          <p>No of variants : {product.variants.length}</p>
           <Link href={`/products/${product._id}/variants/add`}>
-            <a className="primary-button-link">Add Variant</a>
+            <a className="primary-button">Add Variant</a>
           </Link>
         </div>
         <div className={styles.items}>
-          <VariantCard variant={product.variants[0]} />
+          {product.variants.map((v) => (
+            <VariantCard variant={v} />
+          ))}
         </div>
       </div>
     </div>

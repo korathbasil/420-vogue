@@ -19,6 +19,8 @@ body {
   --col-tertiary: #ff004c;
   --col-grey-text: #69647d;
   --col-lightgrey-bg: #f8f8f8;
+  --clr-danger: red;
+  --clr-white: white;
 
   /********* Shadows *********/
   --shadow-light: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -69,6 +71,7 @@ a {
   border-radius: 10px;
   font-size: 14px;
   font-weight: 600;
+  text-align: center;
 }
 
 .flex {
