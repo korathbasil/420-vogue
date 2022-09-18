@@ -5,7 +5,7 @@ import { Request, Response, NextFunction } from 'express';
 import { AdminJwtPayload } from 'src/types/admin-jwt-payload';
 
 @Injectable()
-export class AdminMiddleware implements NestMiddleware {
+export class SetAdminMiddleware implements NestMiddleware {
   constructor(private readonly jwtService: JwtService) {}
   async use(req: Request, res: Response, next: NextFunction) {
     const jwtToken = req.cookies['access-token'];

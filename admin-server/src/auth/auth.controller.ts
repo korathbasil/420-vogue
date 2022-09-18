@@ -27,21 +27,8 @@ export class AuthController {
   @Get()
   @UseGuards(AuthGuard)
   async getCurrentUser(@Req() req: Request) {
-    const token = req.cookies['access-token'];
-
-    if (!token) throw new UnauthorizedException();
-
-    try {
-      const { _id } = await this.authTokenServcie.verify(token);
-
-      const admin = await this.authService.getAdminById(_id);
-
-      if (!admin) throw new UnauthorizedException();
-
-      return admin;
-    } catch (error) {
-      throw new UnauthorizedException();
-    }
+    const admin = req.admin;
+    return admin;
   }
 
   @Post()

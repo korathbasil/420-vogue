@@ -2,7 +2,7 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CryptoModule } from 'common-server';
-import { AdminMiddleware } from 'src/middlewares/admin.middleware';
+import { SetAdminMiddleware } from 'src/middlewares/set-admin.middleware';
 
 import { AdminController } from './admin.controller';
 import { adminSchema } from './admin.model';
@@ -24,6 +24,6 @@ import { AdminService } from './admin.service';
 })
 export class AdminModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AdminMiddleware).forRoutes(AdminController);
+    consumer.apply(SetAdminMiddleware).forRoutes(AdminController);
   }
 }
