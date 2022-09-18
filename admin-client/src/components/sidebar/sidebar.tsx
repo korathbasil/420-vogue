@@ -41,7 +41,7 @@ export const Sidebar = () => {
     <aside className={styles.sidebar}>
       <nav>
         <ul>
-          {/* <li>
+          <li>
             <Link href={"/"}>
               <a
                 className={
@@ -62,7 +62,7 @@ export const Sidebar = () => {
                 <h3>Dashboard</h3>
               </a>
             </Link>
-          </li> */}
+          </li>
           <li>
             <Link href={"/orders"}>
               <a
