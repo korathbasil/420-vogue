@@ -8,12 +8,14 @@ import {
   Res,
   Get,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
 import { AuthTokenService } from 'src/auth-token/auth-token.service';
 import { AuthService } from './auth.service';
 import { LoginAdminDto } from './dtos/login-admin.dto';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -23,6 +25,7 @@ export class AuthController {
   ) {}
 
   @Get()
+  @UseGuards(AuthGuard)
   async getCurrentUser(@Req() req: Request) {
     const token = req.cookies['access-token'];
 
