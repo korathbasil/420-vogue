@@ -43,13 +43,14 @@ export class AuthController {
         data.password,
       );
 
-      const { _id, firstname, lastname, email } = admin;
+      const { _id, firstname, lastname, email, role } = admin;
 
       const token = await this.authTokenServcie.sign({
         _id,
         firstname,
         lastname,
         email,
+        role,
       });
 
       res.cookie('access-token', token, {

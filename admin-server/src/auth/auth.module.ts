@@ -8,14 +8,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
 @Module({
-  imports: [
-    JwtModule.register({
-      secret: 'secret',
-      signOptions: { expiresIn: '600s' },
-    }),
-    AdminModule,
-    AuthTokenModule,
-  ],
+  imports: [AdminModule, AuthTokenModule],
   controllers: [AuthController],
   providers: [AuthService],
 })

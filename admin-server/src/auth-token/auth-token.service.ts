@@ -1,22 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-
-type JWtPayload = {
-  _id: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-};
+import { AdminJwtPayload } from 'src/types/admin-jwt-payload';
 
 @Injectable()
 export class AuthTokenService {
   constructor(private readonly jwtService: JwtService) {}
 
-  sign(payload: JWtPayload) {
+  sign(payload: AdminJwtPayload) {
     return this.jwtService.signAsync(payload);
   }
 
-  verify(token: string) {
+  verify(token: string): Promise<AdminJwtPayload> {
     return this.jwtService.verifyAsync(token, {
       secret: 'secret',
     });

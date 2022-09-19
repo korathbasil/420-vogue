@@ -3,4 +3,5 @@ export type AdminJwtPayload = {
   firstname: string;
   lastname: string;
   email: string;
+  role: string;
 };
