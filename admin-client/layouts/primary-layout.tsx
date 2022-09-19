@@ -21,7 +21,7 @@ export const PrimaryLayout = ({
       const manager = await ManagersController.getLoggedInManager();
       if (!manager) return;
 
-      const { _id, firstname, lastname, email } = manager;
+      const { _id, firstname, lastname, email, role } = manager;
       dispatch({
         type: "auth/login",
         payload: {
@@ -29,6 +29,7 @@ export const PrimaryLayout = ({
           firstname,
           lastname,
           email,
+          role,
         },
       });
     } catch (e: any) {

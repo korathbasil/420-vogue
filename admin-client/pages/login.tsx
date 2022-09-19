@@ -66,7 +66,7 @@ const LoginPage: NextPage & {
       const manager = await ManagersController.getLoggedInManager();
       if (!manager) return;
 
-      const { _id, firstname, lastname, email } = manager;
+      const { _id, firstname, lastname, email, role } = manager;
       dispatch({
         type: "auth/login",
         payload: {
@@ -74,6 +74,7 @@ const LoginPage: NextPage & {
           firstname,
           lastname,
           email,
+          role,
         },
       });
     } catch (e: any) {
