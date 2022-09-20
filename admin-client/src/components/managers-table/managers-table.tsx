@@ -25,8 +25,12 @@ export const ManagersTable = () => {
   });
 
   async function fetchManagers() {
-    const managers = await ManagersController.getAllManagers();
-    setManagers(managers);
+    try {
+      const managers = await ManagersController.getAllManagers();
+      setManagers(managers);
+    } catch (e) {
+      console.log(e);
+    }
   }
   return (
     <div>
@@ -49,6 +53,9 @@ export const ManagersTable = () => {
           ]}
           data={managers}
           errMsg="No managers added"
+          rowLink="/managers"
+          linkProp="_id"
+          keyProp="_id"
         />
       </div>
     </div>

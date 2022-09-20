@@ -83,6 +83,7 @@ export const OrdersTable = () => {
           ]}
           data={orders}
           errMsg="No orders recieved!"
+          keyProp="_id"
         />
       </div>
     </div>

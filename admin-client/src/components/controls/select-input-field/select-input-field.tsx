@@ -30,7 +30,9 @@ export const SelectInputField: FC<SelectInputFieldProps<Category | null>> = ({
         <option value="">--select--</option>
 
         {options?.map((option) => (
-          <option value={option.value}>{option.name}</option>
+          <option key={option.value} value={option.value}>
+            {option.name}
+          </option>
         ))}
       </select>
     </div>
