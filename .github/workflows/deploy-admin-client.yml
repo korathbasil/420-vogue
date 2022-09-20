@@ -38,18 +38,17 @@ jobs:
       - name: List 1
         run: ls
         
-      - name: Navigate to admin-client
-        run: cd ./admin-client
-      
       - name: Install dependencies with frozen lockfile
+        working-directory: ./admin-client
         run: yarn install --frozen-lockfile
         
       - name: List
+        working-directory: ./admin-client
         run: ls
         
       - name: Build
+        working-directory: ./admin-client
         run: yarn build
-      
       
       - uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -58,4 +57,5 @@ jobs:
           aws-region: ap-south-1
       
       - name: Sync with S3
+        working-directory: ./admin-client
         run: aws s3 sync ./out s3://mpanel.420vogue.in
