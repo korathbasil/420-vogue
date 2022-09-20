@@ -46,6 +46,20 @@ export class ProductsController {
     }
   }
 
+  @Post('/:id/status')
+  @UsePipes(ValidationPipe)
+  async setStatus(
+    @Param('id') id: string,
+    @Body('isActive') isActive: boolean,
+  ): Promise<any> {
+    try {
+      const res = await this.productsService.setStatus(id, isActive);
+      return res.upsertedId;
+    } catch (error) {
+      throw new BadRequestException();
+    }
+  }
+
   @Post('/:id/variants')
   @UsePipes(ValidationPipe)
   async addVariant(
