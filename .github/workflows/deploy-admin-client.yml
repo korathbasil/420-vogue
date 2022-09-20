@@ -26,6 +26,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16
+          
       - name: Navigate to admin-client
         run: cd admin-client
           
