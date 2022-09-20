@@ -13,6 +13,11 @@ export class ManagersController {
     }
   }
 
+  static async getManagerById(id: string) {
+    const res = await axios.get(`/admin/${id}`, { withCredentials: true });
+    return res.data;
+  }
+
   static async getLoggedInManager() {
     try {
       const res = await axios.get("/auth", { withCredentials: true });
