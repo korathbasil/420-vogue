@@ -39,6 +39,12 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
             <td>{product.isActive}</td>
           </tr>
         </table>
+        <div className={styles.actions}>
+          <Link href={`/products/${product._id}/edit`}>
+            <a className="primary-button-link">Edit</a>
+          </Link>
+          <button>Delete</button>
+        </div>
       </div>
       <div className={styles.variants}>
         <h4>Variants</h4>
