@@ -35,6 +35,9 @@ jobs:
       - name: PWD
         run: pwd
         
+      - name: List 1
+        run: ls
+        
       - name: Navigate to admin-client
         run: cd admin-client
       
