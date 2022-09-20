@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <PageTitle routes={["Dashboard"]} />
+      <PageTitle routes={["Dashboard", "All"]} />
     </div>
   );
 };
