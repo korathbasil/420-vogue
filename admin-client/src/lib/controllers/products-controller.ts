@@ -49,7 +49,7 @@ export class ProductController {
     }
   }
 
-  static async setProductStatus(id: string, enabled: boolean) {
+  static async setProductStatus(id: string | undefined, enabled: boolean) {
     await axios.post(
       `/products/${id}/status`,
       { isActive: enabled },
