@@ -27,16 +27,23 @@ jobs:
         with:
           node-version: 16
           
-      - name: Navigate to admin-client
-        run: cd admin-client
+      
           
       - name: Install yarn
         run: npm install -g yarn
+        
+      - name: PWD
+        run: pwd
+        
+      - name: Navigate to admin-client
+        run: cd admin-client
       
       - name: Install dependencies with frozen lockfile
         run: yarn install --frozen-lockfile
+        
       - name: List
         run: ls
+        
       - name: Build
         run: yarn build
       
