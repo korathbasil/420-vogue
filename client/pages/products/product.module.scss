@@ -1,0 +1,13 @@
+.selector {
+  position: absolute;
+  bottom: 4.5rem;
+  left: 1rem;
+  background-color: var(--clr-white);
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  box-shadow: var(--shadow-light);
+  border: 2px solid var(--clr-primary);
+  color: var(--clr-primary);
+  font-size: 14px;
+  font-weight: 600;
+}

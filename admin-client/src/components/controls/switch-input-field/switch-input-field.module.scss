@@ -1,0 +1,16 @@
+.switch {
+  width: 60px;
+  height: 30px;
+  border-radius: 99px;
+  background-color: var(--clr-grey);
+  box-shadow: var(--shadow-light);
+  padding: 3px;
+
+  .check {
+    width: 24px;
+    height: 24px;
+    background-color: var(--col-secondary);
+    border-radius: 999px;
+    transition: background-color 0.2 ease-in;
+  }
+}

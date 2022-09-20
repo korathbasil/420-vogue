@@ -4,12 +4,19 @@ import { Product } from "lib/interfaces";
 
 import styles from "./product-details.module.scss";
 import { VariantCard } from "./variant-card";
+import { SwitchInputField } from "components/controls";
 
 interface ProductDetailsProps {
   product: Product;
+  enabled: boolean;
+  setEnabled: () => void;
 }
 
-export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
+export const ProductDetails: FC<ProductDetailsProps> = ({
+  product,
+  enabled,
+  setEnabled,
+}) => {
   return (
     <div className={styles.parent}>
       <div className={styles.top}>
@@ -37,19 +44,30 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
           <tr>
             <td className={styles.prop}>Status</td>
             <td>{product.isActive}</td>
+            <td>
+              <SwitchInputField checked={enabled} onClick={setEnabled} />
+            </td>
           </tr>
         </table>
+        <div className={styles.actions}>
+          <Link href={`/products/${product._id}/edit`}>
+            <a className="primary-button-link">Edit</a>
+          </Link>
+          <button>Delete</button>
+        </div>
       </div>
       <div className={styles.variants}>
         <h4>Variants</h4>
         <div className={styles.actions}>
-          <p>No of variants : 0</p>
+          <p>No of variants : {product.variants.length}</p>
           <Link href={`/products/${product._id}/variants/add`}>
-            <a className="primary-button-link">Add Variant</a>
+            <a className="primary-button">Add Variant</a>
           </Link>
         </div>
         <div className={styles.items}>
-          <VariantCard />
+          {product.variants.map((v) => (
+            <VariantCard variant={v} />
+          ))}
         </div>
       </div>
     </div>

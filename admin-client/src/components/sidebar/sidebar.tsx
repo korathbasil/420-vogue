@@ -107,7 +107,7 @@ export const Sidebar = () => {
               </a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href={"/coupons"}>
               <a
                 className={
@@ -128,8 +128,8 @@ export const Sidebar = () => {
                 <h3>Coupons</h3>
               </a>
             </Link>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Link href={"/users"}>
               <a
                 className={
@@ -150,7 +150,7 @@ export const Sidebar = () => {
                 <h3>Users</h3>
               </a>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link href={"/managers"}>
               <a
@@ -173,7 +173,7 @@ export const Sidebar = () => {
               </a>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link href={"/profile"}>
               <a
                 className={
@@ -194,8 +194,8 @@ export const Sidebar = () => {
                 <h3>Profile</h3>
               </a>
             </Link>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Link href={"/settings"}>
               <a
                 className={
@@ -216,7 +216,7 @@ export const Sidebar = () => {
                 <h3>Settings</h3>
               </a>
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </aside>

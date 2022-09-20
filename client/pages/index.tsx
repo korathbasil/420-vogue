@@ -18,9 +18,10 @@ const HomePage: NextPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
-  function sidebarToggleHandler() {
-    setIsSidebarOpen(!isSidebarOpen);
-  }
+  const sidebarToggleHandler = useCallback(
+    () => setIsSidebarOpen(!isSidebarOpen),
+    [isSidebarOpen]
+  );
 
   const loginModalToggleHandler = useCallback(setIsLoginModalOpen, []);
   return (
@@ -52,6 +53,7 @@ const HomePage: NextPage = () => {
           <Sidebar
             isSidebarOpen={isSidebarOpen}
             sidebarToggleHandler={sidebarToggleHandler}
+            loginModalToggleHandler={loginModalToggleHandler}
           />
         </div>
       </main>

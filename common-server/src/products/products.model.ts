@@ -18,7 +18,7 @@ export class Product extends Document {
   @Prop({ type: String, required: true })
   subCategory: string;
 
-  @Prop([{ type: Types.ObjectId, ref: "ProductVariant" }])
+  @Prop({ type: [{ type: Types.ObjectId, ref: ProductVariant.name }] })
   variants: ProductVariant[];
 
   @Prop({ type: Boolean, default: false })

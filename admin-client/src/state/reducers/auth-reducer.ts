@@ -3,6 +3,7 @@ type User = {
   firstname: string;
   lastname: string;
   email: string;
+  role: string;
 };
 
 const initialState: { user: User | null; loggedIn: boolean } = {

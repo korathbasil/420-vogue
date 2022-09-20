@@ -8,12 +8,14 @@ import {
   Res,
   Get,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 
 import { AuthTokenService } from 'src/auth-token/auth-token.service';
 import { AuthService } from './auth.service';
 import { LoginAdminDto } from './dtos/login-admin.dto';
+import { AuthGuard } from '../guards/auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -23,22 +25,10 @@ export class AuthController {
   ) {}
 
   @Get()
+  @UseGuards(AuthGuard)
   async getCurrentUser(@Req() req: Request) {
-    const token = req.cookies['access-token'];
-
-    if (!token) throw new UnauthorizedException();
-
-    try {
-      const { _id } = await this.authTokenServcie.verify(token);
-
-      const admin = await this.authService.getAdminById(_id);
-
-      if (!admin) throw new UnauthorizedException();
-
-      return admin;
-    } catch (error) {
-      throw new UnauthorizedException();
-    }
+    const admin = req.admin;
+    return admin;
   }
 
   @Post()
@@ -53,13 +43,14 @@ export class AuthController {
         data.password,
       );
 
-      const { _id, firstname, lastname, email } = admin;
+      const { _id, firstname, lastname, email, role } = admin;
 
       const token = await this.authTokenServcie.sign({
         _id,
         firstname,
         lastname,
         email,
+        role,
       });
 
       res.cookie('access-token', token, {

@@ -19,3 +19,4 @@ export * from "./bag/bag";
 export * from "./mini-product/mini-product";
 export * from "./favourites/favourites";
 export * from "./orders/orders";
+export * from "./variant-modal/variant-modal";

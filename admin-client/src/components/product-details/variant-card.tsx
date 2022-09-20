@@ -1,30 +1,40 @@
+import { FC } from "react";
 import Link from "next/link";
+import { ProductVariant } from "lib/interfaces";
+
 import styles from "./product-details.module.scss";
 
-export const VariantCard = () => {
+interface VariantCardProps {
+  variant: ProductVariant;
+}
+
+export const VariantCard: FC<VariantCardProps> = ({ variant }) => {
   return (
     <div className={styles.variantCard}>
-      <div>
-        <table>
-          <tr>
-            <td>Color</td>
-            <td>Red</td>
-          </tr>
-          <tr>
-            <td>Color Code</td>
-            <td>F33445</td>
-          </tr>
-          <tr>
-            <td>Price</td>
-            <td>1900</td>
-          </tr>
-        </table>
-        <div className={styles.actions}>
-          <Link href="/products/123/variants/123/edit">
-            <a className="primary-button">Edit</a>
-          </Link>
-          <button>Delete</button>
-        </div>
+      <table>
+        <tr>
+          <td className={styles.prop}>Color</td>
+          <td>{variant.color}</td>
+        </tr>
+        <tr>
+          <td className={styles.prop}>Color Code</td>
+          <td>#{variant.colorCode}</td>
+        </tr>
+        <tr>
+          <td className={styles.prop}>Price</td>
+          <td>{variant.price}</td>
+        </tr>
+      </table>
+      <div className={styles.images}>
+        {variant.images.map((img) => (
+          <img key={img} src={img} alt="" />
+        ))}
+      </div>
+      <div className={styles.controls}>
+        <Link href="/products/123/variants/123/edit">
+          <a className="primary-button-link">Edit</a>
+        </Link>
+        <button>Delete</button>
       </div>
     </div>
   );

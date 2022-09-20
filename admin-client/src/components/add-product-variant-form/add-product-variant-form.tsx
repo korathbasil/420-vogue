@@ -1,16 +1,20 @@
 import { useState, useRef } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { ImagesController } from "lib/controllers";
+import { ImagesController, VaraintsController } from "lib/controllers";
 
 import styles from "./add-product-variant-form.module.scss";
 import { InputField } from "components/controls";
 import { AddImage, Delete } from "assets/icons";
+import { String } from "cypress/types/lodash";
 
 export const AddProductVariantForm = () => {
   const [images, setImages] = useState<{ file: File; key: string }[]>([]);
   const imagePickerRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const { id: productId } = router.query;
 
   const formik = useFormik({
     initialValues: {
@@ -30,9 +34,15 @@ export const AddProductVariantForm = () => {
   });
 
   async function formSubmitHandler() {
-    const keys = images.map((img) => img.key);
+    if (Array.isArray(productId) || productId === undefined) return;
+    const keysAndTypes = images.map((img) => {
+      return {
+        key: img.key,
+        type: img.file.type,
+      };
+    });
     try {
-      const urls = await ImagesController.getUploadUrls(keys);
+      const urls = await ImagesController.getUploadUrls(keysAndTypes);
 
       if (urls.length !== images.length) return;
 
@@ -46,6 +56,20 @@ export const AddProductVariantForm = () => {
       });
 
       await ImagesController.uploadImages(imagesWithUrls);
+
+      const imageKeys = images.map(
+        (img) =>
+          "https://s3.ap-south-1.amazonaws.com/static.420vogue.in/" + img.key
+      );
+      await VaraintsController.createVariant(
+        productId,
+        formik.values.color,
+        formik.values.colorCode,
+        imageKeys,
+        parseFloat(formik.values.price)
+      );
+
+      router.push("/products/" + productId);
     } catch (error) {
       console.log(error);
     }
@@ -132,9 +156,16 @@ export const AddProductVariantForm = () => {
         ref={imagePickerRef}
         onChange={(e) => {
           if (e.target.files && e.target.files[0] && images.length < 6) {
+            const imgFile = e.target.files[0];
+            const ext =
+              imgFile.name.split(".")[imgFile.name.split(".").length - 1];
+
             setImages([
               ...images,
-              { file: e.target.files[0], key: new Date().toISOString() },
+              {
+                file: e.target.files[0],
+                key: `${productId}/${new Date().toISOString()}.${ext}`,
+              },
             ]);
           }
         }}

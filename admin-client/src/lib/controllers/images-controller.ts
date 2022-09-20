@@ -2,10 +2,10 @@ import Axios from "axios";
 import { axios } from "utils";
 
 export class ImagesController {
-  static async getUploadUrls(fileKeys: string[]) {
+  static async getUploadUrls(keysAndTypes: { key: string; type: string }[]) {
     const res = await axios.post<{ key: string; url: string }[]>(
       "/images/urls",
-      { fileKeys },
+      { keysAndTypes },
       { withCredentials: true }
     );
 
@@ -14,14 +14,11 @@ export class ImagesController {
 
   static async uploadImages(imagesWithUrls: { url: string; image: File }[]) {
     for await (const image of imagesWithUrls) {
-      const res = await Axios.put(image.url, image.image, {
+      await Axios.put(image.url, image.image, {
         headers: {
           "Content-Type": image.image.type,
         },
-        withCredentials: true,
       });
-
-      console.log(res.data);
     }
   }
 }

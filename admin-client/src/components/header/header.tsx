@@ -1,13 +1,41 @@
-import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./header.module.scss";
 import { LogoText } from "../logo-text/logo-text";
+import { State } from "state/store";
 
 export const Header = () => {
-  // @ts-ignore
-  const user = useSelector((state) => state.auth.user);
-  // @ts-ignore
-  const loggedIn = useSelector((state) => state.auth.loggedIn);
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const user = useSelector((state: State) => state.auth.user);
+
+  function logoutHandler() {
+    // dispatch({
+    //   type: "user/set",
+    //   payload: {
+    //     loggedIn: false,
+    //     user: null,
+    //   },
+    // });
+    // Reset all cookies
+    document.cookie =
+      "access-token" +
+      "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/;domain=http://localhost3000 ;";
+    // router.replace("/login");
+
+    // clearAllCookies();
+  }
+
+  function clearAllCookies() {
+    const cookies = document.cookie.split(";");
+
+    cookies.forEach((c) => {
+      document.cookie = c + "=;expires=" + new Date(0).toUTCString();
+    });
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.left}>
@@ -15,18 +43,19 @@ export const Header = () => {
         <h3>M-Panel</h3>
       </div>
 
-      {loggedIn && (
+      {user && (
         <div className={styles.right}>
           <div className={styles.info}>
-            <h4>{`${user?.firstname} ${user?.lastname}`}</h4>
-            <p>Manager</p>
+            <h4>{`${user.firstname} ${user.lastname}`}</h4>
+            <p>{user.role === "ADMIN" ? "Manager" : "Super Admin"}</p>
           </div>
-          <div className={styles.profileImageWrapper}>
-            <img
+          {/* <img
               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
               alt=""
-            />
-          </div>
+            /> */}
+          <button className="primary-button" onClick={logoutHandler}>
+            Logout
+          </button>
         </div>
       )}
     </header>
