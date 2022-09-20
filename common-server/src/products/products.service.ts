@@ -41,6 +41,15 @@ export class ProductsService {
     return this.productsRepo.insertOne(product);
   }
 
+  setStatus(productId: string, isActive: boolean) {
+    return this.productsRepo.updateOne(
+      { _id: productId },
+      {
+        $set: { isActive: isActive },
+      }
+    );
+  }
+
   async createVariant(
     productId: string,
     color: string,
@@ -64,7 +73,7 @@ export class ProductsService {
     return updateResult.upsertedId;
   }
 
-  async updateProduct(
+  updateProduct(
     filterQuery: FilterQuery<Product>,
     updateQuery: UpdateQuery<Product>
   ) {
