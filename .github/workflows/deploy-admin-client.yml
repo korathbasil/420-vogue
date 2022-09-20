@@ -27,24 +27,12 @@ jobs:
         with:
           node-version: 16
           
-      
-          
       - name: Install yarn
         run: npm install -g yarn
-        
-      - name: PWD
-        run: pwd
-        
-      - name: List 1
-        run: ls
         
       - name: Install dependencies with frozen lockfile
         working-directory: ./admin-client
         run: yarn install --frozen-lockfile
-        
-      - name: List
-        working-directory: ./admin-client
-        run: ls
         
       - name: Build
         working-directory: ./admin-client
