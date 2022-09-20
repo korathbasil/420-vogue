@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import styles from "../../../styles/product-details-page.module.scss";
@@ -9,22 +9,24 @@ import { ProductController } from "lib/controllers";
 const ProductPage = () => {
   const router = useRouter();
   const [product, setProduct] = useState<Product | null>(null);
+  const [enabled, setEnabled] = useState(false);
+  const setEnabledHandler = async () => {
+    await ProductController.setProductStatus(product?._id, !enabled);
+    setEnabled(!enabled);
+  };
 
   useEffect(() => {
     getProductDetails();
-  }, [router.query]);
+  }, [router.query, enabled]);
 
   async function getProductDetails() {
     const { id: productId } = router.query;
-    if (!productId) return;
+    if (!productId || Array.isArray(productId)) return;
 
     try {
-      if (!Array.isArray(productId)) {
-        const product = await ProductController.getProductById(productId);
-        setProduct(product);
-      } else {
-        router.replace("/products");
-      }
+      const product = await ProductController.getProductById(productId);
+      setProduct(product);
+      setEnabled(product.isActive === "ENABLED" ? true : false);
     } catch (error) {
       router.replace("/products");
     }
@@ -34,7 +36,15 @@ const ProductPage = () => {
       <PageTitle routes={["Products", "Details"]} />
       <div className="spacer-X"></div>
       <div className={styles.leftRightPane}>
-        <div>{product && <ProductDetails product={product} />}</div>
+        <div>
+          {product && (
+            <ProductDetails
+              product={product}
+              enabled={enabled}
+              setEnabled={setEnabledHandler}
+            />
+          )}
+        </div>
         <div>
           <ProductPreview />
         </div>

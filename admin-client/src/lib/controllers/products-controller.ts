@@ -20,7 +20,7 @@ export class ProductController {
   static async getProductById(id: string) {
     try {
       const res = await axios.get<Product>("/products/" + id);
-      res.data.isActive = res.data.isActive ? "ACTIVE" : "DISABLED";
+      res.data.isActive = res.data.isActive ? "ENABLED" : "DISABLED";
       return res.data;
     } catch (e) {
       throw e;
@@ -47,5 +47,13 @@ export class ProductController {
     } catch (e) {
       throw e;
     }
+  }
+
+  static async setProductStatus(id: string, enabled: boolean) {
+    await axios.post(
+      `/products/${id}/status`,
+      { isActive: enabled },
+      { withCredentials: true }
+    );
   }
 }

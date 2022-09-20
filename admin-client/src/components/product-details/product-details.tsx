@@ -4,12 +4,19 @@ import { Product } from "lib/interfaces";
 
 import styles from "./product-details.module.scss";
 import { VariantCard } from "./variant-card";
+import { SwitchInputField } from "components/controls";
 
 interface ProductDetailsProps {
   product: Product;
+  enabled: boolean;
+  setEnabled: () => void;
 }
 
-export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
+export const ProductDetails: FC<ProductDetailsProps> = ({
+  product,
+  enabled,
+  setEnabled,
+}) => {
   return (
     <div className={styles.parent}>
       <div className={styles.top}>
@@ -37,6 +44,9 @@ export const ProductDetails: FC<ProductDetailsProps> = ({ product }) => {
           <tr>
             <td className={styles.prop}>Status</td>
             <td>{product.isActive}</td>
+            <td>
+              <SwitchInputField checked={enabled} onClick={setEnabled} />
+            </td>
           </tr>
         </table>
         <div className={styles.actions}>
