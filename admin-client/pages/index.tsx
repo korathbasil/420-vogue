@@ -1,3 +1,4 @@
+import { PageTitle } from "components";
 import type { NextPage } from "next";
 import Head from "next/head";
 
@@ -10,7 +11,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h3>Admin</h3>
+      <PageTitle routes={["Dashboard"]} />
     </div>
   );
 };
