@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
@@ -9,6 +9,7 @@ import { ProductsModule } from 'src/products/products.module';
 import { ImagesModule } from 'src/images/images.module';
 import { AuthModule } from 'src/auth/auth.module';
 import { AuthTokenModule } from 'src/auth-token/auth-token.module';
+import { SetAdminMiddleware } from 'src/middlewares/set-admin.middleware';
 
 @Module({
   imports: [
@@ -23,4 +24,8 @@ import { AuthTokenModule } from 'src/auth-token/auth-token.module';
     AuthTokenModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(SetAdminMiddleware).forRoutes('*');
+  }
+}
