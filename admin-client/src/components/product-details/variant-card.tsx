@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ProductVariant } from "lib/interfaces";
 
 import styles from "./product-details.module.scss";
+import Image from "next/image";
 
 interface VariantCardProps {
   variant: ProductVariant;
@@ -27,7 +28,7 @@ export const VariantCard: FC<VariantCardProps> = ({ variant }) => {
       </table>
       <div className={styles.images}>
         {variant.images.map((img) => (
-          <img key={img} src={img} alt="" />
+          <Image height={100} width={100} key={img} src={img} alt="" />
         ))}
       </div>
       <div className={styles.controls}>

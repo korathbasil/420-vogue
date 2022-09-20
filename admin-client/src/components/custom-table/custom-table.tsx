@@ -12,6 +12,7 @@ interface CustomTableProps<T> {
   errMsg: string;
   rowLink?: string;
   linkProp?: string;
+  keyProp: string;
 }
 
 type ModifiedObject = {
@@ -24,22 +25,26 @@ export const CustomTable = <T extends ModifiedObject>({
   errMsg,
   rowLink,
   linkProp,
+  keyProp,
 }: PropsWithChildren<CustomTableProps<T>>) => {
   return (
     <table className={styles.table}>
       <tr>
         {columns.map((col) => (
-          <th>{col.name}</th>
+          <th key={col.name}>{col.name}</th>
         ))}
       </tr>
       {data.map((item) => {
         return (
           <Link
             href={rowLink && linkProp ? rowLink + "/" + item[linkProp] : ""}
+            key={item[keyProp] as string}
           >
             <tr>
               {columns.map((col) => {
-                return <td>{item[col.prop]}</td>;
+                return (
+                  <td key={JSON.stringify(item[col.prop])}>{item[col.prop]}</td>
+                );
               })}
             </tr>
           </Link>

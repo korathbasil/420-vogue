@@ -55,6 +55,7 @@ export const ManagersTable = () => {
           errMsg="No managers added"
           rowLink="/managers"
           linkProp="_id"
+          keyProp="_id"
         />
       </div>
     </div>

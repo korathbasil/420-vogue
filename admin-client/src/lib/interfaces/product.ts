@@ -9,6 +9,7 @@ export type Product = {
 };
 
 export type ProductVariant = {
+  _id: string;
   color: string;
   colorCode: string;
   images: string[];

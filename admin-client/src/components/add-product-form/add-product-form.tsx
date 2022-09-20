@@ -6,9 +6,9 @@ import * as yup from "yup";
 import { categories } from "sys";
 
 import styles from "./add-product-form.module.scss";
-import { FormInput, FormSelectInput } from "./form-inputs";
 import { ProductController } from "lib/controllers";
 import { Category, SubCategory } from "lib/interfaces";
+import { InputField, SelectInputField } from "components/controls";
 
 export const AddProductForm = () => {
   const router = useRouter();
@@ -87,14 +87,14 @@ export const AddProductForm = () => {
     <section className={styles.addProduct}>
       <form onSubmit={formik.handleSubmit}>
         <h4>Please fill the form below.</h4>
-        <FormInput
+        <InputField
           label="Barand Name"
           name="brand"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.brand}
         />
-        <FormInput
+        <InputField
           label="Style Name"
           name="style"
           onChange={formik.handleChange}
@@ -102,7 +102,7 @@ export const AddProductForm = () => {
           value={formik.values.style}
         />
 
-        <FormSelectInput
+        <SelectInputField
           label="Category"
           name="category"
           options={categories?.map((cat) => {
@@ -116,7 +116,7 @@ export const AddProductForm = () => {
         />
 
         {selectedCategory && (
-          <FormSelectInput
+          <SelectInputField
             label="Sub Category"
             name="subCategory"
             options={makeSubcategoryItems(selectedCategory)}

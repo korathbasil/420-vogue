@@ -66,7 +66,7 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
         </div>
         <div className={styles.items}>
           {product.variants.map((v) => (
-            <VariantCard variant={v} />
+            <VariantCard key={v._id} variant={v} />
           ))}
         </div>
       </div>

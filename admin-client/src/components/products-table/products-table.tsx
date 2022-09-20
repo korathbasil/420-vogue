@@ -33,6 +33,7 @@ export const ProductsTable = () => {
           errMsg="No products available!"
           rowLink="/products"
           linkProp="_id"
+          keyProp="_id"
         />
       </div>
     </div>
