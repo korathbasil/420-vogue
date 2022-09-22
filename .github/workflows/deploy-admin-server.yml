@@ -88,7 +88,7 @@ jobs:
         run: cp ./admin-server/yarn.lock ./_out/admin-server/yarn.lock
         
       - name: Copy admin-server dist to _out dir
-        run: cp -R ./admin-server/dist/ ./_out/common-server/dist/
+        run: cp -R ./admin-server/dist/ ./_out/admin-server/dist/
         
       # Package api
       
