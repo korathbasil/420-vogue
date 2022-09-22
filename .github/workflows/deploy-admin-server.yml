@@ -28,9 +28,12 @@ jobs:
           
       - name: Install yarn
         run: npm install -g yarn
+        
+      - name: auild
+        run: pwd
       
       - name: Install dependencies with frozen lockfile
         run: yarn install --frozen-lockfile
       
       - name: Build
-        run: pwd
+        run: yarn build
