@@ -79,10 +79,13 @@ jobs:
         run: cp ./common-server/yarn.lock ./_out/common-server/yarn.lock
         
       - name: Copy comon-server dist to _out dir
-        run: cp -a ./common-server/dist ./_out/common-server/
+        run: cp ./common-server/dist ./_out/common-server/dist
         
-      - name: Copy admin-server files to _out dir
-        run: cp -a ./admin-server ./_out/admin-server
+      - name: Copy admin-server package.json to _out dir
+        run: cp ./admin-server/package.json ./_out/admin-server/package.json
+        
+      - name: Copy admin-server yarn.lock to _out dir
+        run: cp ./admin-server/yarn.lock ./_out/admin-server/yarn.lock
         
       # Package api
       
