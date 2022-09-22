@@ -99,4 +99,4 @@ jobs:
       
       - name: Sync with S3
         working-directory: ./admin-server
-        run: aws sync latest.tar.gz s3://api.420bogue.in/admin-server
+        run: aws s3 sync latest.tar.gz s3://api.420bogue.in/admin-server
