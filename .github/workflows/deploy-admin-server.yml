@@ -29,11 +29,42 @@ jobs:
       - name: Install yarn
         run: npm install -g yarn
         
-      - name: auild
-        run: pwd
-      
-      - name: Install dependencies with frozen lockfile
+      - name: Install dependencies for common-server with frozen lockfile
+        working-directory: ./common-server
         run: yarn install --frozen-lockfile
-      
-      - name: Build
+        
+      - name: Build common-server
+        working-directory: ./common-server
         run: yarn build
+        
+      - name: Delete source files in common-server
+        working-directory: ./common-server
+        run: rm -r ./src
+        
+      - name: Make yarn link common-server
+        working-directory: ./common-server
+        run: yarn link
+        
+      - name: Install dependencies for admin-server with frozen lockfile
+        working-directory: ./admin-client
+        run: yarn install --frozen-lockfile
+        
+      - name: Build admin-server
+        working-directory: ./admin-server
+        run: yarn build
+        
+      - name: Delete source files in admin-server
+        working-directory: ./admin-server
+        run: rm -r ./src
+        
+      - name: Yarn link common-server
+        working-directory: ./common-server
+        run: yarn link common-server
+        
+      - name: Copy comon-server files to apps dir
+        working-directory: ./comon-server
+        run: cp . /home/manager/apps
+        
+      - name: Copy admin-server files to apps dir
+        working-directory: ./admin-server
+        run: cp . /home/manager/apps
