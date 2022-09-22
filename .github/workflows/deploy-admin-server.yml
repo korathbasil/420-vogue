@@ -98,4 +98,4 @@ jobs:
           aws-region: ap-south-1
           
       - name: Sync with S3
-        run: aws s3 cp ./latest.tar.gz s3://api.420bogue.in/admin-server
+        run: aws s3 cp ./latest.tar.gz s3://api.420vogue.in/admin-server
