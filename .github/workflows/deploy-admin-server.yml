@@ -73,10 +73,10 @@ jobs:
         run: mkdir _out
         
       - name: Copy comon-server files to _out dir
-        run: cp ./common-server ./_out
+        run: cp -r ./common-server ./_out
         
       - name: Copy admin-server files to _out dir
-        run: cp ./admin-server ./_out
+        run: cp -r ./admin-server ./_out
         
       # Package api
       
