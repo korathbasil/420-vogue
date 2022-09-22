@@ -41,12 +41,12 @@ jobs:
         working-directory: ./common-server
         run: rm -r ./src
         
-      - name: Make yarn link common-server
+      - name: Delete noed_modules in common-server
         working-directory: ./common-server
-        run: yarn link
+        run: rm -r ./node_modules
         
       - name: Install dependencies for admin-server with frozen lockfile
-        working-directory: ./admin-client
+        working-directory: ./admin-server
         run: yarn install --frozen-lockfile
         
       - name: Build admin-server
@@ -57,14 +57,41 @@ jobs:
         working-directory: ./admin-server
         run: rm -r ./src
         
-      - name: Yarn link common-server
-        working-directory: ./common-server
-        run: yarn link common-server
-        
-      - name: Copy comon-server files to apps dir
-        working-directory: ./comon-server
-        run: cp . /home/manager/apps
-        
-      - name: Copy admin-server files to apps dir
+      - name: Delete node_modules in admin-server
         working-directory: ./admin-server
-        run: cp . /home/manager/apps
+        run: rm -r ./node_modules
+        
+      - name: Create a _out dir
+        run: mkdir _out
+        
+      - name: Copy comon-server files to _out dir
+        run: cp ./common-server ./_out
+        
+      - name: Copy admin-server files to _out dir
+        run: cp ./admin-server ./_out
+        
+      # Package api
+      
+      - name: Pack api into a tar file
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          cwd: ./_out
+          files: |
+            ./common-server
+            ./admin-server
+          outPath: admin-server.latest.tar.gz
+          
+      - name: List items
+        working-directory: ./_out
+        run: ls
+        
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.S3_SYNC_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.S3_SYNC_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+      
+      - name: Sync with S3
+        run: aws s3 sync ./out s3://api.420bogue.in
