@@ -37,6 +37,22 @@ jobs:
         working-directory: ./common-server
         run: yarn build
         
+      - name: Yarn link
+        working-directory: ./common-server
+        run: yarn link
+        
+      - name: Install dependencies for admin-server with frozen lockfile
+        working-directory: ./admin-server
+        run: yarn install --frozen-lockfile
+        
+      - name: Yarn link common-server
+        working-directory: ./admin-server
+        run: yarn link common-server
+        
+      - name: Build admin-server
+        working-directory: ./admin-server
+        run: yarn build
+        
       - name: Delete source files in common-server
         working-directory: ./common-server
         run: rm -r ./src
@@ -44,14 +60,6 @@ jobs:
       - name: Delete noed_modules in common-server
         working-directory: ./common-server
         run: rm -r ./node_modules
-        
-      - name: Install dependencies for admin-server with frozen lockfile
-        working-directory: ./admin-server
-        run: yarn install --frozen-lockfile
-        
-      - name: Build admin-server
-        working-directory: ./admin-server
-        run: yarn build
         
       - name: Delete source files in admin-server
         working-directory: ./admin-server
