@@ -89,11 +89,7 @@ jobs:
           files: |
             ./common-server
             ./admin-server
-          outPath: admin-server.latest.tar.gz
-          
-      - name: List items
-        working-directory: ./_out
-        run: ls admin-server
+          outPath: admin-server\/latest.tar.gz
         
       - uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -102,4 +98,5 @@ jobs:
           aws-region: ap-south-1
       
       - name: Sync with S3
-        run: aws s3 sync ./out s3://api.420bogue.in
+        working-directory: ./admin-server
+        run: aws admin-server\/latest.tar.gz sync ./out s3://api.420bogue.in
