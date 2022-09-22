@@ -98,5 +98,5 @@ jobs:
           aws-region: ap-south-1
       
       - name: Sync with S3
-        working-directory: ./admin-server
+        working-directory: ./-out
         run: aws s3 sync latest.tar.gz s3://api.420bogue.in/admin-server
