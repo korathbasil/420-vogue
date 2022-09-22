@@ -69,14 +69,14 @@ jobs:
         working-directory: ./admin-server
         run: rm -r ./node_modules
         
-      - name: Create a _out dir
-        run: mkdir _out
+      - name: Create a _out dir sub sub directories
+        run: mkdir -p _out/common-server && mkdir -p _out/admin-server
         
       - name: Copy comon-server files to _out dir
-        run: cp -r ./common-server ./_out
+        run: cp -a ./common-server ./_out/common-server
         
       - name: Copy admin-server files to _out dir
-        run: cp -r ./admin-server ./_out
+        run: cp -a ./admin-server ./_out/admin-server
         
       # Package api
       
@@ -93,7 +93,7 @@ jobs:
           
       - name: List items
         working-directory: ./_out
-        run: ls
+        run: ls admin-server
         
       - uses: aws-actions/configure-aws-credentials@v1
         with:
