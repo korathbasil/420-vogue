@@ -106,4 +106,4 @@ jobs:
       
       - name: Sync with S3
         working-directory: ./_out
-        run: aws s3 copy ./latest.tar.gz s3://api.420bogue.in/admin-server
+        run: aws s3 cp ./latest.tar.gz s3://api.420bogue.in/admin-server
