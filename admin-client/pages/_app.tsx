@@ -1,8 +1,8 @@
-import { ReactElement, useEffect, ReactNode } from "react";
+import { ReactElement } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import { store, State } from "state/store";
+import { store } from "state/store";
 
 import "../styles/globals.css";
 import { PrimaryLayout } from "../layouts/primary-layout";
