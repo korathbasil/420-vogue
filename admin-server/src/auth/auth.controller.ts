@@ -7,7 +7,6 @@ import {
   Req,
   Res,
   Get,
-  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
