@@ -1,0 +1,98 @@
+# This is a basic workflow to help you get started with Actions
+
+name: server-deploy
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    paths: "./server"
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          
+      - name: Install yarn
+        run: npm install -g yarn
+        
+      - name: Install dependencies for common-server with frozen lockfile
+        working-directory: ./common-server
+        run: yarn install --frozen-lockfile
+        
+      - name: Build common-server
+        working-directory: ./common-server
+        run: yarn build
+        
+      - name: Yarn link
+        working-directory: ./common-server
+        run: yarn link
+        
+      - name: Install dependencies for server with frozen lockfile
+        working-directory: ./server
+        run: yarn install --frozen-lockfile
+        
+      - name: Yarn link common-server
+        working-directory: ./server
+        run: yarn link common-server
+        
+      - name: Build server
+        working-directory: ./server
+        run: yarn build
+        
+      - name: Create a _out dir sub sub directories
+        run: mkdir -p _out/common-server && mkdir -p _out/server
+        
+      - name: Copy comon-server package.json to _out dir
+        run: cp ./common-server/package.json ./_out/common-server/package.json
+        
+      - name: Copy comon-server yarn.lock to _out dir
+        run: cp ./common-server/yarn.lock ./_out/common-server/yarn.lock
+        
+      - name: Copy comon-server dist to _out dir
+        run: cp -R ./common-server/dist/ ./_out/common-server/dist/
+        
+      - name: Copy server package.json to _out dir
+        run: cp ./server/package.json ./_out/server/package.json
+        
+      - name: Copy server yarn.lock to _out dir
+        run: cp ./server/yarn.lock ./_out/server/yarn.lock
+        
+      - name: Copy admin-server dist to _out dir
+        run: cp -R ./server/dist/ ./_out/server/dist/
+        
+      # Package api
+      
+      - name: Pack api into a tar file
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          cwd: ./_out
+          files: |
+            ./common-server
+            ./server
+          outPath: latest.tar.gz
+        
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.S3_SYNC_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.S3_SYNC_AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+          
+      - name: Sync with S3
+        run: aws s3 cp ./latest.tar.gz s3://api.420vogue.in/server.tar.gz
