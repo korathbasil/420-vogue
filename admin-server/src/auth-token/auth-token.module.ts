@@ -6,7 +6,7 @@ import { AuthTokenService } from './auth-token.service';
 @Module({
   imports: [
     JwtModule.register({
-      secret: process.env.ADMIN_SERVER_JWT_TOKEN,
+      secret: process.env.ADMIN_SERVER_JWT_SECRET,
       signOptions: { expiresIn: '259200s' },
     }),
   ],
