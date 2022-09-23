@@ -54,22 +54,6 @@ jobs:
         working-directory: ./admin-server
         run: yarn build
         
-      - name: Delete source files in common-server
-        working-directory: ./common-server
-        run: rm -r ./src
-        
-      - name: Delete noed_modules in common-server
-        working-directory: ./common-server
-        run: rm -r ./node_modules
-        
-      - name: Delete source files in admin-server
-        working-directory: ./admin-server
-        run: rm -r ./src
-        
-      - name: Delete node_modules in admin-server
-        working-directory: ./admin-server
-        run: rm -r ./node_modules
-        
       - name: Create a _out dir sub sub directories
         run: mkdir -p _out/common-server && mkdir -p _out/admin-server
         
