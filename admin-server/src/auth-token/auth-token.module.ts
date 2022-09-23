@@ -6,8 +6,8 @@ import { AuthTokenService } from './auth-token.service';
 @Module({
   imports: [
     JwtModule.register({
-      secret: 'secret',
-      signOptions: { expiresIn: '600s' },
+      secret: process.env.JWT_TOKEN,
+      signOptions: { expiresIn: '259200s' },
     }),
   ],
   providers: [AuthTokenService],

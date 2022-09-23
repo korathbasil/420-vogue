@@ -11,10 +11,18 @@ import { AuthModule } from 'src/auth/auth.module';
 import { AuthTokenModule } from 'src/auth-token/auth-token.module';
 import { SetAdminMiddleware } from 'src/middlewares/set-admin.middleware';
 
+function getDatabaseUrl() {
+  if (process.env.NODE_ENV === 'prod') {
+    return `${process.env.DATABASE_URL_WITH_HOST_AND_PORT}/${process.env.DATABASE_NAME}`;
+  }
+
+  return 'mongodb://localhost:27017/ecommerce';
+}
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    MongooseModule.forRoot('mongodb://localhost:27017/ecommerce'),
+    MongooseModule.forRoot(getDatabaseUrl()),
     PassportModule,
     AuthModule,
     AdminModule,
