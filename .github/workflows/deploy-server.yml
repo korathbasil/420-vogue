@@ -72,7 +72,7 @@ jobs:
       - name: Copy server yarn.lock to _out dir
         run: cp ./server/yarn.lock ./_out/server/yarn.lock
         
-      - name: Copy admin-server dist to _out dir
+      - name: Copy server dist to _out dir
         run: cp -R ./server/dist/ ./_out/server/dist/
         
       # Package api
