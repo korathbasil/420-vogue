@@ -173,7 +173,7 @@ export const Sidebar = () => {
               </a>
             </Link>
           </li>
-          {/* <li>
+          <li>
             <Link href={"/profile"}>
               <a
                 className={
@@ -194,7 +194,7 @@ export const Sidebar = () => {
                 <h3>Profile</h3>
               </a>
             </Link>
-          </li> */}
+          </li>
           {/* <li>
             <Link href={"/settings"}>
               <a

@@ -2,12 +2,17 @@ import { FC } from "react";
 import { Manager } from "lib/interfaces";
 
 import styles from "./manager-details.module.scss";
+import Link from "next/link";
 
 interface ManagerDetailsProps {
   manager: Manager;
+  ownProfile?: boolean;
 }
 
-export const ManagerDetails: FC<ManagerDetailsProps> = ({ manager }) => {
+export const ManagerDetails: FC<ManagerDetailsProps> = ({
+  manager,
+  ownProfile = false,
+}) => {
   return (
     <div className={styles.parent}>
       <div className={styles.top}>
@@ -49,7 +54,12 @@ export const ManagerDetails: FC<ManagerDetailsProps> = ({ manager }) => {
           {/* <Link href={`/products/${product._id}/edit`}>
             <a className="primary-button-link">Edit</a>
           </Link> */}
-          <button>Delete</button>
+          {!ownProfile && (
+            <button className={styles.dangerButton}>Delete</button>
+          )}
+          <Link href="/profile/edit">
+            {ownProfile && <button>Edit</button>}
+          </Link>
         </div>
       </div>
     </div>
