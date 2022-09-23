@@ -26,6 +26,17 @@ export class AdminController {
     return this.adminService.getAllAdmins();
   }
 
+  @Get('/:id')
+  @UseGuards(AuthGuard)
+  async getAdminById(@Param('id') id: string) {
+    try {
+      const admin = await this.adminService.getAdminById(id);
+      return admin;
+    } catch (error) {
+      throw new BadRequestException();
+    }
+  }
+
   @Post()
   @UseGuards(AuthGuard)
   @UsePipes(ValidationPipe)

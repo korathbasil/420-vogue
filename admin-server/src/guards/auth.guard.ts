@@ -14,6 +14,8 @@ export class AuthGuard implements CanActivate {
       .getRequest();
 
     if (!request.admin) return false;
+    if (request.admin.role !== 'ADMIN' && request.admin.role !== 'SUPERADMIN')
+      return false;
     return true;
   }
 }
