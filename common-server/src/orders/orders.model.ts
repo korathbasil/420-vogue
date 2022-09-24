@@ -1,5 +1,5 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 class User {
   @Prop({ type: String, required: true })
@@ -84,9 +84,12 @@ export enum Status {
   DELIVERED = "DELIVERED",
 }
 
-@Schema()
+@Schema({ timestamps: { createdAt: true, updatedAt: true } })
 export class Order extends Document {
-  @Prop({ type: User, required: true })
+  @Prop({
+    type: { type: Types.ObjectId, ref: User.name },
+    required: true,
+  })
   user: User;
 
   @Prop([{ type: Products, required: true }])
@@ -103,3 +106,6 @@ export class Order extends Document {
 }
 
 export const orderSchema = SchemaFactory.createForClass(Order);
+
+// @Prop({ type: [{ type: Types.ObjectId, ref: ProductVariant.name }] })
+// variants: ProductVariant[];
