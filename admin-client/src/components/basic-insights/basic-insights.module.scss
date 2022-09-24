@@ -1,0 +1,68 @@
+.parent {
+  width: 100%;
+  display: flex;
+  grid-template-columns: repeat(auto, 5);
+  gap: 20px;
+
+  .card {
+    height: 150px;
+    width: calc((100% - 80px) / 5);
+    border-radius: 20px;
+    padding: 25px;
+    color: var(--clr-white);
+    position: relative;
+
+    h4 {
+      padding: 10px;
+      border-radius: 10px;
+      width: fit-content;
+    }
+
+    h2 {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      font-size: 25px;
+
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .card:nth-child(1) {
+    background-color: #23494c;
+
+    h4 {
+      background-color: #2b5f5d;
+    }
+  }
+  .card:nth-child(2) {
+    background-color: #ec7e49;
+
+    h4 {
+      background-color: #f69261;
+    }
+  }
+  .card:nth-child(3) {
+    background-color: #369867;
+
+    h4 {
+      background-color: #50ab7f;
+    }
+  }
+  .card:nth-child(4) {
+    background-color: #8b1919;
+
+    h4 {
+      background-color: #8e4444;
+    }
+  }
+  .card:nth-child(5) {
+    background-color: #4444ff;
+
+    h4 {
+      background-color: #5656ff;
+    }
+  }
+}
