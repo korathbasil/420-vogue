@@ -1,0 +1,25 @@
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
+
+@Schema({ timestamps: { createdAt: true, updatedAt: true } })
+export class Address extends Document {
+  @Prop({ type: String, required: true, min: 5, max: 40 })
+  line1: string;
+
+  @Prop({ type: String, required: true, min: 5, max: 40 })
+  line2: string;
+
+  @Prop({ type: String, required: true, min: 3, max: 30 })
+  city: string;
+
+  @Prop({ type: String, required: true, min: 6, max: 6 })
+  pin: string;
+
+  @Prop({ type: String, required: true, min: 3, max: 30 })
+  state: string;
+
+  @Prop({ type: String, required: true, default: "INDIA (IN)" })
+  country: string;
+}
+
+export const addressSchema = SchemaFactory.createForClass(Address);
