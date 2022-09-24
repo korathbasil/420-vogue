@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
+import { Model, UpdateQuery } from "mongoose";
 import { Address } from "./address.model";
 
 @Injectable()
@@ -12,5 +12,13 @@ export class AddressesRepository {
   insertOne(address: Address) {
     const newAddress = new this.addressModel(address);
     return newAddress.save();
+  }
+
+  updateOne(id: string, query: UpdateQuery<Address>) {
+    return this.addressModel.updateOne({ _id: id }, query);
+  }
+
+  deleteOne(id: string) {
+    return this.addressModel.deleteOne({ _id: id });
   }
 }
