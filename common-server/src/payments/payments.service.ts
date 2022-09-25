@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 
-import { RazorpayService } from "src/razorpay/razorpay.service";
-import { OrdersService } from "src/orders/orders.service";
+import { RazorpayService } from "../razorpay/razorpay.service";
+import { OrdersService } from "../orders/orders.service";
 import { Payment, Status } from "./payment.model";
 import { PaymentsRepository } from "./payments.repository";
-import { ProductsService } from "src/products/products.service";
+import { ProductsService } from "../products/products.service";
 
 @Injectable()
 export class PaymentsService {

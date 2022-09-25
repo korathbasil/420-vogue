@@ -1,9 +1,9 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
-import { Payment } from "src/payments/payment.model";
 
-import { ProductVariant } from "src/products/product-variants.model";
-import { Product } from "src/products/products.model";
+import { Payment } from "../payments/payment.model";
+import { ProductVariant } from "../products/product-variants.model";
+import { Product } from "../products/products.model";
 import { Address } from "../addresses/address.model";
 
 export type OrderDocument = Order & Document;
@@ -26,11 +26,11 @@ class User {
 }
 
 class ProductWithVariantAndQty {
-  @Prop({ type: { type: Types.ObjectId, ref: Product.name }, required: true })
+  @Prop({ type: [{ type: Types.ObjectId, ref: Product.name }], required: true })
   product: Product;
 
   @Prop({
-    type: { type: Types.ObjectId, ref: ProductVariant.name },
+    type: [{ type: Types.ObjectId, ref: ProductVariant.name }],
     required: true,
   })
   variant: ProductVariant;
@@ -57,13 +57,13 @@ export class Order {
   @Prop({ type: String, required: true })
   contactPhone: string;
 
-  @Prop({ type: { type: Types.ObjectId, ref: Address.name }, required: true })
+  @Prop({ type: [{ type: Types.ObjectId, ref: Address.name }], required: true })
   address: Address;
 
   @Prop([{ type: ProductWithVariantAndQty, required: true }])
   products: ProductWithVariantAndQty[];
 
-  @Prop({ type: { type: Types.ObjectId, ref: Payment.name }, required: true })
+  @Prop({ type: [{ type: Types.ObjectId, ref: Payment.name }], required: true })
   payment: Payment;
 
   @Prop({ type: Boolean, default: false })
