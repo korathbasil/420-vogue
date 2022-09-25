@@ -11,7 +11,7 @@ export class OrdersRepository {
   ) {}
 
   async find(ordersFilterQuery: FilterQuery<Order>): Promise<Order[]> {
-    return this.orderModel.find(ordersFilterQuery);
+    return this.orderModel.find(ordersFilterQuery).populate("payment");
   }
 
   async findOne(orderFilterQuery: FilterQuery<Order>): Promise<Order> {
