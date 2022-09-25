@@ -23,16 +23,6 @@ export const AddProductForm = () => {
       .string()
       .min(4, "Minimum 4 characters required")
       .max(20, "Maximum 20 characters allowed"),
-    email: yup
-      .string()
-      .email("Please provide a valid email")
-      .min(7, "Minimum 7 characters required")
-      .max(30, "Maximum 30 characters allowed"),
-    phone: yup.number().min(10, "Please provide a valid phone number"),
-    password: yup
-      .string()
-      .min(8, "Minimum 8 characters required")
-      .max(16, "Maximum 16 characters allowed"),
   };
   const formik = useFormik({
     initialValues: {
@@ -93,6 +83,7 @@ export const AddProductForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.brand}
+          error={formik.errors.brand}
         />
         <InputField
           label="Style Name"
@@ -100,6 +91,7 @@ export const AddProductForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.style}
+          error={formik.errors.style}
         />
 
         <SelectInputField
