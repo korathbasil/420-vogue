@@ -11,13 +11,13 @@ export class RazorpayService {
     });
   }
 
-  async createOrder(amount: number) {
+  async createOrder(amount: number, paymentId: string) {
     const CURRENCY = "INR";
 
     const order = await this.instance.orders.create({
       amount,
       currency: CURRENCY,
-      receipt: new Date().toISOString(),
+      receipt: paymentId,
     });
 
     return {

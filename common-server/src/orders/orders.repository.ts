@@ -22,7 +22,7 @@ export class OrdersRepository {
     return this.orderModel.findById(id);
   }
 
-  async insertOne(order: Order): Promise<Order> {
+  async insertOne(order: Order) {
     const newOrder = new this.orderModel(order);
 
     return newOrder.save();

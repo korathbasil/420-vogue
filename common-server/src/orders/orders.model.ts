@@ -1,5 +1,6 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
+import { Payment } from "src/payments/payment.model";
 
 import { ProductVariant } from "src/products/product-variants.model";
 import { Product } from "src/products/products.model";
@@ -12,10 +13,10 @@ class User {
   _id: string;
 
   @Prop({ type: String, required: true })
-  firstName: string;
+  firstname: string;
 
   @Prop({ type: String, required: true })
-  lastName: string;
+  lastname: string;
 
   @Prop({ type: String, required: true })
   email: string;
@@ -59,14 +60,14 @@ export class Order {
   @Prop([{ type: ProductWithVariantAndQty, required: true }])
   products: ProductWithVariantAndQty[];
 
-  @Prop({ type: ProductWithVariantAndQty, required: true })
-  paymentTransaction: ProductWithVariantAndQty[];
+  @Prop({ type: { type: Types.ObjectId, ref: Payment.name }, required: true })
+  payment: Payment;
+
+  @Prop({ type: Boolean, default: false })
+  hasPaid?: boolean;
 
   @Prop({ type: String, required: true, default: "PENDING" })
   status: Status;
 }
 
 export const orderSchema = SchemaFactory.createForClass(Order);
-
-// @Prop({ type: [{ type: Types.ObjectId, ref: ProductVariant.name }] })
-// variants: ProductVariant[];
