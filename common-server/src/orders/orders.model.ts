@@ -26,10 +26,13 @@ class User {
 }
 
 class ProductWithVariantAndQty {
-  @Prop({ type: Product, required: true })
+  @Prop({ type: { type: Types.ObjectId, ref: Product.name }, required: true })
   product: Product;
 
-  @Prop({ type: Product, required: true })
+  @Prop({
+    type: { type: Types.ObjectId, ref: ProductVariant.name },
+    required: true,
+  })
   variant: ProductVariant;
 
   @Prop([{ type: Number, required: true }])
