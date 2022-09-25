@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, UpdateQuery } from "mongoose";
-import { Address } from "./address.model";
+import { Address, AddressDoc } from "./address.model";
 
 @Injectable()
 export class AddressesRepository {
   constructor(
-    @InjectModel("Address") private readonly addressModel: Model<Address>
+    @InjectModel("Address") private readonly addressModel: Model<AddressDoc>
   ) {}
 
   insertOne(address: Address) {

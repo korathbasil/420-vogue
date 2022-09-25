@@ -1,8 +1,10 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document } from "mongoose";
 
+export type AddressDoc = Address & Document;
+
 @Schema({ timestamps: { createdAt: true, updatedAt: true } })
-export class Address extends Document {
+export class Address {
   @Prop({ type: String, required: true, min: 5, max: 40 })
   line1: string;
 
