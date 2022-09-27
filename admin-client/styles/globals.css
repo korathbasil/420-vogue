@@ -22,6 +22,7 @@ body {
   --clr-lightgrey: lightgrey;
   --clr-secondary: #7367f0;
   --clr-grey: rgba(128, 128, 128, 0.651);
+  --clr-black-50: rgba(0, 0, 0, 0.521);
   --clr-info: rgb(0, 110, 255);
   --clr-danger: red;
   --clr-white: white;

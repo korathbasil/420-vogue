@@ -1,10 +1,15 @@
+import { FC } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import styles from "./edit-profile-form.module.scss";
 import { InputField as TextInput } from "components/controls";
 
-export const EditProfileForm = () => {
+interface EditProfileFormProps {
+  modalOpener: () => void;
+}
+
+export const EditProfileForm: FC<EditProfileFormProps> = ({ modalOpener }) => {
   const YupValidationObject = {
     firstname: yup
       .string()
@@ -65,7 +70,9 @@ export const EditProfileForm = () => {
             <button className="primary-button" type="submit">
               Add Manager
             </button>
-            <div className="primary-button">Change Password</div>
+            <div onClick={modalOpener} className="primary-button">
+              Change Password
+            </div>
           </div>
         </form>
       </div>
