@@ -1,10 +1,18 @@
+import { FC, MouseEvent } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import styles from "./change-password-modal.module.scss";
 import { InputField as TextInput } from "components/controls";
+import { Close } from "assets/icons";
 
-export const ChangePasswordModal = () => {
+interface ChangePasswordModalProps {
+  closeModal: () => void;
+}
+
+export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
+  closeModal,
+}) => {
   const YupValidationObject = {
     old: yup
       .string()
@@ -30,7 +38,7 @@ export const ChangePasswordModal = () => {
     onSubmit: () => {},
   });
   return (
-    <div className={styles.modal}>
+    <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
       <form>
         <h3>Change your password.</h3>
         <TextInput
@@ -64,6 +72,9 @@ export const ChangePasswordModal = () => {
           <button className="primary-button">Submit</button>
         </div>
       </form>
+      <div onClick={closeModal} className={styles.closeIcon}>
+        <Close />
+      </div>
     </div>
   );
 };

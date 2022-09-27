@@ -9,3 +9,4 @@ export * from "./settings";
 export * from "./right-arrow";
 export * from "./add-image";
 export * from "./delete";
+export * from "./close";

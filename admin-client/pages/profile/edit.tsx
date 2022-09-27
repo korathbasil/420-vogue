@@ -19,8 +19,16 @@ const EditProfilePage = () => {
         }}
       />
       {isModalOpen && (
-        <Modal>
-          <ChangePasswordModal />
+        <Modal
+          clickHandler={() => {
+            setIsModalOpen(false);
+          }}
+        >
+          <ChangePasswordModal
+            closeModal={() => {
+              setIsModalOpen(false);
+            }}
+          />
         </Modal>
       )}
     </main>
