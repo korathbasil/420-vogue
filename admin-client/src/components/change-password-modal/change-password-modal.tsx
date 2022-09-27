@@ -1,10 +1,12 @@
-import { FC, MouseEvent } from "react";
+import { FC } from "react";
+import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 import styles from "./change-password-modal.module.scss";
 import { InputField as TextInput } from "components/controls";
 import { Close } from "assets/icons";
+import { ManagersController } from "lib/controllers";
 
 interface ChangePasswordModalProps {
   closeModal: () => void;
@@ -13,6 +15,7 @@ interface ChangePasswordModalProps {
 export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
   closeModal,
 }) => {
+  const router = useRouter();
   const YupValidationObject = {
     old: yup
       .string()
@@ -35,15 +38,35 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
       new2: "",
     },
     validationSchema: yup.object(YupValidationObject),
-    onSubmit: () => {},
+    onSubmit: handleSubmit,
   });
+
+  async function handleSubmit() {
+    if (formik.values.new !== formik.values.new2) {
+      formik.setErrors({
+        new2: "Passwords mismatch",
+      });
+      return;
+    }
+
+    try {
+      await ManagersController.ChangePassword(
+        formik.values.old,
+        formik.values.new
+      );
+      router.replace("/profile");
+    } catch (error) {
+      console.error(error);
+    }
+  }
   return (
     <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
-      <form>
+      <form onSubmit={formik.handleSubmit}>
         <h3>Change your password.</h3>
         <TextInput
           label="Old Password"
           name="old"
+          type="password"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.old}
@@ -53,6 +76,7 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
         <TextInput
           label="New Password"
           name="new"
+          type="password"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.new}
@@ -62,6 +86,7 @@ export const ChangePasswordModal: FC<ChangePasswordModalProps> = ({
         <TextInput
           label="Retype New Password"
           name="new2"
+          type="password"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           value={formik.values.new2}

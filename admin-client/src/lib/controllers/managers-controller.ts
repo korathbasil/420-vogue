@@ -70,4 +70,15 @@ export class ManagersController {
       throw new HttpError(e.response.data.message, e.response.data.statusCode);
     }
   }
+
+  static async ChangePassword(oldPassword: string, newPassword: string) {
+    return axios.put(
+      "/admin/password",
+      {
+        oldPassword,
+        newPassword,
+      },
+      { withCredentials: true }
+    );
+  }
 }
