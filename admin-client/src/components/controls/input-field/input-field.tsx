@@ -31,21 +31,6 @@ export function InputField({
         required={required}
       />
       <div>{error && <p>{error}</p>}</div>
-      <style>{`
-        input {
-          border: ${
-            error ? "2px solid var(--clr-danger)" : "2px solid var(--clr-grey)"
-          };
-        }
-
-        input:focus {
-          border: ${
-            error
-              ? "2px solid var(--clr-danger)"
-              : "2px solid var(--clr-secondary)"
-          };
-        }
-      `}</style>
     </div>
   );
 }
