@@ -10,11 +10,14 @@ import {
   Param,
   UseGuards,
   Put,
+  Req,
 } from '@nestjs/common';
+import { Request } from 'express';
 
 import { AuthGuard } from 'src/guards/auth.guard';
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dtos/create-admin.dto';
+import { UpdatePasswordDto } from './dtos/update-password.dto';
 
 @Controller('admin')
 export class AdminController {
@@ -61,6 +64,22 @@ export class AdminController {
   @Put('/:id')
   @UseGuards(AuthGuard)
   async editAdmin() {}
+
+  @Post('password')
+  @UseGuards(AuthGuard)
+  async updatePassword(@Req() req: Request, @Body() data: UpdatePasswordDto) {
+    try {
+      await this.adminService.updatePassword(
+        req.admin._id,
+        data.oldPassword,
+        data.newPassword,
+      );
+
+      return;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   @Delete('/:id')
   @UseGuards(AuthGuard)

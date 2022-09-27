@@ -28,7 +28,7 @@ export class AdminRepository {
     return res;
   }
 
-  updateOne(id: string, query: UpdateQuery<Admin>) {
-    return this.adminModel.updateOne({ _id: new Types.ObjectId(id) }, query);
+  updateOne(filter: FilterQuery<Admin>, update: UpdateQuery<Admin>) {
+    return this.adminModel.updateOne(filter, update);
   }
 }
