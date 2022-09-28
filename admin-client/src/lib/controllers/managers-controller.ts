@@ -1,7 +1,7 @@
 import { axios } from "utils";
 import { HttpError } from "lib/http";
 import { Manager } from "lib/interfaces";
-import { TRUE } from "sass";
+import { AxiosError } from "axios";
 
 export class ManagersController {
   static async getAllManagers(): Promise<Manager[]> {
@@ -14,8 +14,14 @@ export class ManagersController {
   }
 
   static async getManagerById(id: string) {
-    const res = await axios.get(`/admin/${id}`, { withCredentials: true });
-    return res.data;
+    try {
+      const res = await axios.get<Manager>(`/admin/${id}`, {
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (e: any) {
+      throw new HttpError(e.response.data.message, e.response.data.statusCode);
+    }
   }
 
   static async getLoggedInManager() {

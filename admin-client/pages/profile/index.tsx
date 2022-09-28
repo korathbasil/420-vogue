@@ -1,30 +1,19 @@
-import { useEffect, useState } from "react";
 import { NextPage } from "next";
 import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
 import { State } from "state/store";
-import { Manager } from "lib/interfaces";
+import { ManagersController } from "lib/controllers";
 
 import { ManagerDetails, PageTitle } from "components";
-import { ManagersController } from "lib/controllers";
 
 const ProfilePage: NextPage = () => {
   const user = useSelector((state: State) => state.auth.user);
 
-  const [manager, setManager] = useState<Manager | null>(null);
-
-  useEffect(() => {
-    loadManagerDetails();
-  }, []);
-
-  async function loadManagerDetails() {
+  const { data: manager } = useQuery([`managers/${user?._id}`], () => {
     if (!user) return;
-    try {
-      const manager = await ManagersController.getManagerById(user._id);
-      setManager(manager);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+
+    return ManagersController.getManagerById(user._id);
+  });
 
   return (
     <main>
