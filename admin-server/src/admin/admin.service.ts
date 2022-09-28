@@ -81,4 +81,22 @@ export class AdminService {
       },
     );
   }
+
+  async updateAdmin(
+    id: string,
+    obj: {
+      firstname?: string;
+      lastname?: string;
+      phone?: string;
+    },
+  ) {
+    const res = await this.adminRepo.updateOne(
+      { _id: id },
+      {
+        $set: obj,
+      },
+    );
+
+    return res.upsertedId;
+  }
 }

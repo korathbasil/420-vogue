@@ -11,12 +11,14 @@ import {
   UseGuards,
   Put,
   Req,
+  Patch,
 } from '@nestjs/common';
 import { Request } from 'express';
 
 import { AuthGuard } from 'src/guards/auth.guard';
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dtos/create-admin.dto';
+import { UpdateAdminDto } from './dtos/update-admin-dto';
 import { UpdatePasswordDto } from './dtos/update-password.dto';
 
 @Controller('admin')
@@ -61,11 +63,22 @@ export class AdminController {
     return user;
   }
 
-  @Put('/:id')
+  @Patch('/:id')
   @UseGuards(AuthGuard)
-  async editAdmin() {}
+  @UsePipes(ValidationPipe)
+  async update(@Param('id') id: string, @Body() data: UpdateAdminDto) {
+    if (!data.firstname && !data.lastname && !data.phone)
+      throw new BadRequestException();
 
-  @Post('password')
+    try {
+      const fields = await this.adminService.updateAdmin(id, data);
+      return fields;
+    } catch (error) {
+      throw new BadRequestException();
+    }
+  }
+
+  @Put('password')
   @UseGuards(AuthGuard)
   async updatePassword(@Req() req: Request, @Body() data: UpdatePasswordDto) {
     try {
