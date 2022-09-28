@@ -87,4 +87,24 @@ export class ManagersController {
       { withCredentials: true }
     );
   }
+
+  static async updateManager(
+    id: string,
+    obj: {
+      firstname?: string;
+      lastname?: string;
+      email?: string;
+      phone?: string;
+    }
+  ) {
+    try {
+      const res = await axios.patch<string[]>(`/admin/${id}`, obj, {
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (e: any) {
+      console.log(e);
+      throw new HttpError(e.response.data.message, e.response.data.statusCode);
+    }
+  }
 }
