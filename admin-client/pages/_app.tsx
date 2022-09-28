@@ -39,7 +39,9 @@ const MyApp = ({ Component, pageProps }: AppPropsWithConditionedLayout) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>{_myApp}</Provider>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {process.env.NODE_ENV !== "production" && (
+        <ReactQueryDevtools initialIsOpen={false} />
+      )}
     </QueryClientProvider>
   );
 };
