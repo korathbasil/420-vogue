@@ -2,6 +2,12 @@ import { ReactElement } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { store } from "state/store";
 
 import "../styles/globals.css";
@@ -14,6 +20,8 @@ type NextPageWithConditionedLayout = NextPage & {
 type AppPropsWithConditionedLayout = AppProps & {
   Component: NextPageWithConditionedLayout;
 };
+
+const queryClient = new QueryClient();
 
 const ApplyPrimaryLayout = (Page: ReactElement) => {
   return <PrimaryLayout>{Page}</PrimaryLayout>;
@@ -28,7 +36,12 @@ const MyApp = ({ Component, pageProps }: AppPropsWithConditionedLayout) => {
     <AnyComponent {...pageProps} />
   );
 
-  return <Provider store={store}>{_myApp}</Provider>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>{_myApp}</Provider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 };
 
 export default MyApp;
