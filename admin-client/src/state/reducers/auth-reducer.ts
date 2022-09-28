@@ -6,9 +6,8 @@ type User = {
   role: string;
 };
 
-const initialState: { user: User | null; loggedIn: boolean } = {
+const initialState: { user: User | null } = {
   user: null,
-  loggedIn: false,
 };
 
 export function authReducer(
@@ -19,14 +18,12 @@ export function authReducer(
     case "auth/login":
       return {
         ...state,
-        loggedIn: true,
         user: action.payload,
       };
 
     case "user/set":
       return {
         ...state,
-        loggedIn: action.payload.loggedIn,
         user: action.payload.user,
       };
     default:

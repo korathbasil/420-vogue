@@ -81,7 +81,6 @@ const LoginPage: NextPage & {
       dispatch({
         type: "user/set",
         payload: {
-          loggedIn: false,
           user: null,
         },
       });
