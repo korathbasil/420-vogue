@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
@@ -10,6 +10,12 @@ interface EditProfileFormProps {
 }
 
 export const EditProfileForm: FC<EditProfileFormProps> = ({ modalOpener }) => {
+  const [data, setData] = useState<{
+    firstname: string;
+    lastname: string;
+    email: string;
+  } | null>(null);
+
   const YupValidationObject = {
     firstname: yup
       .string()
