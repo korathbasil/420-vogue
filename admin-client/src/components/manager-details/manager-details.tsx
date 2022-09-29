@@ -8,7 +8,6 @@ import { State } from "state/store";
 
 interface ManagerDetailsProps {
   manager: Manager;
-  ownProfile?: boolean;
 }
 
 export const ManagerDetails: FC<ManagerDetailsProps> = ({ manager }) => {
@@ -61,7 +60,7 @@ export const ManagerDetails: FC<ManagerDetailsProps> = ({ manager }) => {
           </tr>
         </table>
         <div className={styles.actions}>
-          {user && user.role === "SUPERADMIN" && (
+          {user?.role === "SUPERADMIN" && (
             <button className={styles.dangerButton}>Delete</button>
           )}
           {ownProfile && (
