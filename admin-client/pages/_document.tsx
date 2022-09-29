@@ -5,6 +5,8 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta name="description" content="Management Panel for 420VOGUE" />
+          <link rel="icon" href="/favicon.ico" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
