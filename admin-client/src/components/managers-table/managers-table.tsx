@@ -42,7 +42,6 @@ export const ManagersTable = () => {
           rowLink="/managers"
           linkProp="_id"
           keyProp="_id"
-          error={JSON.stringify(JSON.stringify(error))}
           isLoading={isLoading}
         />
       </div>
