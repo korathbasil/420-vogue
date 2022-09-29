@@ -4,14 +4,14 @@ export const BasicInsights = () => {
   return (
     <div className={styles.parent}>
       <div className={styles.card}>
-        <h4>Today's sale</h4>
+        <h4>Today&aposs sale</h4>
 
         <h2>
           ₹7580 <span>4 Orders</span>
         </h2>
       </div>
       <div className={styles.card}>
-        <h4>This month's sale</h4>
+        <h4>This month&aposs sale</h4>
 
         <h2>
           ₹24567 <span>39 Odrers</span>

@@ -52,6 +52,7 @@ const LoginPage: NextPage & {
           firstname: manager.firstname,
           lastname: manager.lastname,
           email: manager.email,
+          role: manager.role,
         },
       });
 
