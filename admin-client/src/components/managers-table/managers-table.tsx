@@ -1,25 +1,29 @@
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Manager } from "lib/interfaces";
+import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 
 import styles from "./managers-table.module.scss";
 import { CustomTable } from "../custom-table/custom-table";
 import { ManagersController } from "lib/controllers";
-import { useQuery } from "@tanstack/react-query";
+import { State } from "state/store";
 
 export const ManagersTable = () => {
+  const user = useSelector((st: State) => st.auth.user);
+
   const { data: managers = [] } = useQuery(["managers"], async () => {
     return ManagersController.getAllManagers();
   });
   return (
     <div>
-      <div className={styles.top}>
-        <div className={styles.actions}>
-          <Link href={"/managers/add"}>
-            <a>Add Manager</a>
-          </Link>
+      {user?.role === "SUPERADMIN" && (
+        <div className={styles.top}>
+          <div className={styles.actions}>
+            <Link href={"/managers/add"}>
+              <a>Add Manager</a>
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
       <div className="spacer-X"></div>
       <div className={styles.table}>
         <CustomTable
