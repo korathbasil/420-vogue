@@ -66,9 +66,15 @@ export const CustomTable = <T extends ModifiedObject>({
           <Spinner />
         </div>
       )}
+
+      {data.length < 1 && !error && (
+        <div className={styles.message}>
+          <p>No contents!</p>
+        </div>
+      )}
       {error && (
         <div className={styles.message}>
-          <p>{error}</p>
+          <p style={{ color: "var(--clr-danger)" }}>{error}</p>
         </div>
       )}
     </div>
