@@ -5,33 +5,12 @@ import { Manager } from "lib/interfaces";
 import styles from "./managers-table.module.scss";
 import { CustomTable } from "../custom-table/custom-table";
 import { ManagersController } from "lib/controllers";
-
-const data = [
-  {
-    name: "James",
-    age: "21",
-  },
-  {
-    name: "Raphel",
-    age: "33",
-  },
-];
+import { useQuery } from "@tanstack/react-query";
 
 export const ManagersTable = () => {
-  const [managers, setManagers] = useState<Manager[]>([]);
-
-  useEffect(() => {
-    fetchManagers();
+  const { data: managers = [] } = useQuery(["managers"], async () => {
+    return ManagersController.getAllManagers();
   });
-
-  async function fetchManagers() {
-    try {
-      const managers = await ManagersController.getAllManagers();
-      setManagers(managers);
-    } catch (e) {
-      console.log(e);
-    }
-  }
   return (
     <div>
       <div className={styles.top}>

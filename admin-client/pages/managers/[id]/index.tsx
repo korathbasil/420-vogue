@@ -5,24 +5,16 @@ import { Manager } from "lib/interfaces";
 import styles from "../../../styles/manager-details-page.module.scss";
 import { ManagerDetails, PageTitle } from "components";
 import { ManagersController } from "lib/controllers";
+import { useQuery } from "@tanstack/react-query";
 
 const ManagerDetailsPage = () => {
   const router = useRouter();
-  const [manager, setManager] = useState<Manager | null>(null);
 
   const { id: managerId } = router.query;
-
-  useEffect(() => {
-    loadManagerDetails();
-  }, [router.query]);
-
-  async function loadManagerDetails() {
+  const { data: manager } = useQuery([`managers/${managerId}`], async () => {
     if (!managerId || Array.isArray(managerId)) return;
-    try {
-      const manager = await ManagersController.getManagerById(managerId);
-      setManager(manager);
-    } catch (error) {}
-  }
+    return ManagersController.getManagerById(managerId);
+  });
 
   return (
     <main>

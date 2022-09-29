@@ -7,12 +7,14 @@ export class AuthTokenService {
   constructor(private readonly jwtService: JwtService) {}
 
   sign(payload: AdminJwtPayload) {
-    return this.jwtService.signAsync(payload);
+    return this.jwtService.signAsync(payload, {
+      secret: process.env.ADMIN_SERVER_JWT_SECRET,
+    });
   }
 
   verify(token: string): Promise<AdminJwtPayload> {
     return this.jwtService.verifyAsync(token, {
-      secret: 'secret',
+      secret: process.env.ADMIN_SERVER_JWT_SECRET,
     });
   }
 }

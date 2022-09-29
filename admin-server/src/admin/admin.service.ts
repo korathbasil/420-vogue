@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { CryptoService } from 'common-server';
 
 import { CreateAdminDto } from './dtos/create-admin.dto';
@@ -51,5 +55,48 @@ export class AdminService {
     if (!doesPasswordsMatch)
       throw new UnauthorizedException('Invalid credentials');
     return admin;
+  }
+
+  async updatePassword(
+    userId: string,
+    oldPassword: string,
+    newPassword: string,
+  ) {
+    const user = await this.adminRepo.findById(userId);
+    if (!user) throw new NotFoundException();
+
+    const isOldPasswordCorrect = await this.cryptoServcie.compareHash(
+      user.password,
+      oldPassword,
+    );
+
+    if (!isOldPasswordCorrect) throw new UnauthorizedException();
+
+    const newHashedPassword = await this.cryptoServcie.hashString(newPassword);
+
+    return this.adminRepo.updateOne(
+      { _id: userId },
+      {
+        $set: { password: newHashedPassword },
+      },
+    );
+  }
+
+  async updateAdmin(
+    id: string,
+    obj: {
+      firstname?: string;
+      lastname?: string;
+      phone?: string;
+    },
+  ) {
+    const res = await this.adminRepo.updateOne(
+      { _id: id },
+      {
+        $set: obj,
+      },
+    );
+
+    return res.upsertedId;
   }
 }

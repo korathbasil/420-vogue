@@ -1,15 +1,22 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
+
+import { Payment } from "../payments/payment.model";
+import { ProductVariant } from "../products/product-variants.model";
+import { Product } from "../products/products.model";
+import { Address } from "../addresses/address.model";
+
+export type OrderDocument = Order & Document;
 
 class User {
   @Prop({ type: String, required: true })
   _id: string;
 
   @Prop({ type: String, required: true })
-  firstName: string;
+  firstname: string;
 
   @Prop({ type: String, required: true })
-  lastName: string;
+  lastname: string;
 
   @Prop({ type: String, required: true })
   email: string;
@@ -18,63 +25,18 @@ class User {
   phone: string;
 }
 
-class ProductVariant {
-  @Prop({ type: String, required: true })
-  color: string;
-
-  @Prop({ type: String, required: true })
-  colorCode: string;
-
-  @Prop([{ type: String, required: true }])
-  images: string[];
-
-  @Prop({ type: Number, required: true })
-  price: number;
-}
-
-class Product {
-  @Prop({ type: String, required: true })
-  _id: string;
-
-  @Prop({ type: String, required: true })
-  brandName: string;
-
-  @Prop({ type: String, required: true })
-  styleName: string;
-
-  @Prop({ type: String, required: true })
-  category: string;
-
-  @Prop({ type: String, required: true })
-  subCategory: string;
-
-  @Prop({ type: ProductVariant, required: true })
-  variant: ProductVariant;
-}
-
-class Products {
-  @Prop({ type: String, required: true })
+class ProductWithVariantAndQty {
+  @Prop({ type: [{ type: Types.ObjectId, ref: Product.name }], required: true })
   product: Product;
+
+  @Prop({
+    type: [{ type: Types.ObjectId, ref: ProductVariant.name }],
+    required: true,
+  })
+  variant: ProductVariant;
 
   @Prop([{ type: Number, required: true }])
   quantity: number;
-}
-
-class Address {
-  @Prop({ type: String, required: true })
-  line1: string;
-
-  @Prop({ type: String, required: true })
-  line2: string;
-
-  @Prop({ type: String })
-  line3: string;
-
-  @Prop({ type: String, required: true })
-  city: string;
-
-  @Prop({ type: String, required: true })
-  pin: string;
 }
 
 export enum Status {
@@ -84,19 +46,28 @@ export enum Status {
   DELIVERED = "DELIVERED",
 }
 
-@Schema()
-export class Order extends Document {
+@Schema({ timestamps: { createdAt: true, updatedAt: true } })
+export class Order {
   @Prop({ type: User, required: true })
   user: User;
 
-  @Prop([{ type: Products, required: true }])
-  products: Products[];
-
-  @Prop({ type: Address, required: true })
-  address: Address;
+  @Prop({ type: String, required: true })
+  contactName: string;
 
   @Prop({ type: String, required: true })
-  phone: string;
+  contactPhone: string;
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: Address.name }], required: true })
+  address: Address;
+
+  @Prop([{ type: ProductWithVariantAndQty, required: true }])
+  products: ProductWithVariantAndQty[];
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: Payment.name }], required: true })
+  payment: Payment;
+
+  @Prop({ type: Boolean, default: false })
+  hasPaid?: boolean;
 
   @Prop({ type: String, required: true, default: "PENDING" })
   status: Status;

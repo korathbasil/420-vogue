@@ -56,7 +56,11 @@ export const PrimaryLayout = ({
       {user && (
         <div style={{ display: "flex", paddingTop: "85px" }}>
           <Sidebar />
-          <aside style={{ width: "100%", padding: "10px" }}>{children}</aside>
+          <aside
+            style={{ width: "100%", padding: "10px", paddingLeft: "255px" }}
+          >
+            {children}
+          </aside>
         </div>
       )}
     </>

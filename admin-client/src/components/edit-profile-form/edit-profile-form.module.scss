@@ -1,0 +1,15 @@
+.parent {
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  .actions {
+    display: flex;
+
+    div {
+      background-color: var(--clr-info);
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  }
+}

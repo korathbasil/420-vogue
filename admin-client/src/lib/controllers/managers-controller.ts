@@ -1,7 +1,7 @@
 import { axios } from "utils";
 import { HttpError } from "lib/http";
 import { Manager } from "lib/interfaces";
-import { TRUE } from "sass";
+import { AxiosError } from "axios";
 
 export class ManagersController {
   static async getAllManagers(): Promise<Manager[]> {
@@ -14,8 +14,14 @@ export class ManagersController {
   }
 
   static async getManagerById(id: string) {
-    const res = await axios.get(`/admin/${id}`, { withCredentials: true });
-    return res.data;
+    try {
+      const res = await axios.get<Manager>(`/admin/${id}`, {
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (e: any) {
+      throw new HttpError(e.response.data.message, e.response.data.statusCode);
+    }
   }
 
   static async getLoggedInManager() {
@@ -67,6 +73,37 @@ export class ManagersController {
       );
       if (res.data) return res.data;
     } catch (e: any) {
+      throw new HttpError(e.response.data.message, e.response.data.statusCode);
+    }
+  }
+
+  static async ChangePassword(oldPassword: string, newPassword: string) {
+    return axios.put(
+      "/admin/password",
+      {
+        oldPassword,
+        newPassword,
+      },
+      { withCredentials: true }
+    );
+  }
+
+  static async updateManager(
+    id: string,
+    obj: {
+      firstname?: string;
+      lastname?: string;
+      email?: string;
+      phone?: string;
+    }
+  ) {
+    try {
+      const res = await axios.patch<string[]>(`/admin/${id}`, obj, {
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (e: any) {
+      console.log(e);
       throw new HttpError(e.response.data.message, e.response.data.statusCode);
     }
   }

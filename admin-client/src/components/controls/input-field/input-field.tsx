@@ -8,6 +8,7 @@ export function InputField({
   onBlur,
   value,
   required = false,
+  error,
 }: {
   label: string;
   type?: string;
@@ -16,6 +17,7 @@ export function InputField({
   onBlur?: any;
   value?: any;
   required?: boolean;
+  error?: string;
 }) {
   return (
     <div className={styles.input}>
@@ -28,6 +30,7 @@ export function InputField({
         value={value}
         required={required}
       />
+      <div>{error && <p>{error}</p>}</div>
     </div>
   );
 }

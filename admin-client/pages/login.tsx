@@ -52,6 +52,7 @@ const LoginPage: NextPage & {
           firstname: manager.firstname,
           lastname: manager.lastname,
           email: manager.email,
+          role: manager.role,
         },
       });
 
@@ -81,7 +82,6 @@ const LoginPage: NextPage & {
       dispatch({
         type: "user/set",
         payload: {
-          loggedIn: false,
           user: null,
         },
       });

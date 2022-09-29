@@ -14,3 +14,7 @@ export * from "./product-preview/product-preview";
 export * from "./add-product-variant-form/add-product-variant-form";
 export * from "./edit-product-form/edit-product-form";
 export * from "./manager-details/manager-details";
+export * from "./edit-profile-form/edit-profile-form";
+export * from "./basic-insights/basic-insights";
+export * from "./modal/modal";
+export * from "./change-password-modal/change-password-modal";

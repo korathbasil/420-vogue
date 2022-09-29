@@ -79,4 +79,8 @@ export class ProductsService {
   ) {
     return this.productsRepo.updateOne(filterQuery, updateQuery);
   }
+
+  getVariantById(id: string) {
+    return this.variantsRepo.findById(id);
+  }
 }
