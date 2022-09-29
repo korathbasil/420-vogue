@@ -38,7 +38,9 @@ export const ManagerDetails: FC<ManagerDetailsProps> = ({
             <td>{manager.phone}</td>
           </tr>
           <tr>
-            <td className={styles.prop}>Role</td>
+            <td className={styles.prop}>
+              {manager.role === "ADMIN" ? "Manager" : "Super Admin"}
+            </td>
             <td>{manager.role}</td>
           </tr>
           <tr>
