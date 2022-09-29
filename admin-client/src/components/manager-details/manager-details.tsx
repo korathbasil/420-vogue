@@ -53,15 +53,14 @@ export const ManagerDetails: FC<ManagerDetailsProps> = ({
           </tr>
         </table>
         <div className={styles.actions}>
-          {/* <Link href={`/products/${product._id}/edit`}>
-            <a className="primary-button-link">Edit</a>
-          </Link> */}
           {!ownProfile && (
             <button className={styles.dangerButton}>Delete</button>
           )}
-          <Link href="/profile/edit">
-            {ownProfile && <button>Edit</button>}
-          </Link>
+          {ownProfile && (
+            <Link href="/profile/edit">
+              <button>Edit</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
