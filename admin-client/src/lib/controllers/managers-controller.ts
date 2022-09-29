@@ -52,6 +52,20 @@ export class ManagersController {
     }
   }
 
+  static async logoutManager() {
+    try {
+      const res = await axios.post(
+        "/auth/logout",
+        {},
+        { withCredentials: true }
+      );
+      return res.status;
+    } catch (e: any) {
+      console.log(e);
+      throw new HttpError(e.response.data.message, e.response.data.statusCode);
+    }
+  }
+
   static async createManager(
     firstname: string,
     lastname: string,

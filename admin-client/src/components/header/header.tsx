@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./header.module.scss";
 import { LogoText } from "../logo-text/logo-text";
 import { State } from "state/store";
+import { ManagersController } from "lib/controllers";
 
 export const Header = () => {
   const router = useRouter();
@@ -11,29 +12,21 @@ export const Header = () => {
 
   const user = useSelector((state: State) => state.auth.user);
 
-  function logoutHandler() {
-    // dispatch({
-    //   type: "user/set",
-    //   payload: {
-    //     loggedIn: false,
-    //     user: null,
-    //   },
-    // });
-    // Reset all cookies
-    document.cookie =
-      "access-token" +
-      "=;expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/;domain=http://localhost3000 ;";
-    // router.replace("/login");
+  async function logoutHandler() {
+    console.log("Logging Out");
+    try {
+      const res = await ManagersController.logoutManager();
+      dispatch({
+        type: "user/set",
+        payload: {
+          user: null,
+        },
+      });
 
-    // clearAllCookies();
-  }
-
-  function clearAllCookies() {
-    const cookies = document.cookie.split(";");
-
-    cookies.forEach((c) => {
-      document.cookie = c + "=;expires=" + new Date(0).toUTCString();
-    });
+      router.replace("/login");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
