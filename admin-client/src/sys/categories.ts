@@ -4,8 +4,12 @@ export const categories = [
     value: "footwear",
     subCategories: [
       {
-        name: "Shoes",
-        value: "shoes",
+        name: "Sneakers",
+        value: "sneakers",
+      },
+      {
+        name: "Sports Shoes",
+        value: "sports_shoes",
       },
       {
         name: "Boots",
@@ -35,11 +39,11 @@ export const categories = [
       },
       {
         name: "Casual Shirts",
-        value: "casualshirts",
+        value: "casual_shirts",
       },
       {
         name: "Formal Shirts",
-        value: "formalshirts",
+        value: "formal_shirts",
       },
       {
         name: "Jackets",
@@ -62,11 +66,11 @@ export const categories = [
       },
       {
         name: "Casual Trousers",
-        value: "casualtrousers",
+        value: "casual_trousers",
       },
       {
         name: "Formal Trousers",
-        value: "formaltrousers",
+        value: "formal_trousers",
       },
       {
         name: "Shorts",
@@ -101,7 +105,7 @@ export const categories = [
       },
       {
         name: "Wireless Headphones",
-        value: "wirelessheadphones",
+        value: "wireless_headphones",
       },
       {
         name: "Speakers",
@@ -109,7 +113,7 @@ export const categories = [
       },
       {
         name: "Wireless Speakers",
-        value: "wirelessspeakers",
+        value: "wireless_speakers",
       },
     ],
   },

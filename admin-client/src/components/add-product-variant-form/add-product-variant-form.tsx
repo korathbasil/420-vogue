@@ -8,7 +8,9 @@ import { ImagesController, VaraintsController } from "lib/controllers";
 import styles from "./add-product-variant-form.module.scss";
 import { InputField } from "components/controls";
 import { AddImage, Delete } from "assets/icons";
-import { String } from "cypress/types/lodash";
+import { Nanoid } from "utils";
+
+const IMAGE_LIMIT_PER_VARIANT = 6;
 
 export const AddProductVariantForm = () => {
   const [images, setImages] = useState<{ file: File; key: string }[]>([]);
@@ -139,7 +141,7 @@ export const AddProductVariantForm = () => {
           {images.length < 6 && (
             <div
               onClick={() => {
-                if (images.length < 6) {
+                if (images.length < IMAGE_LIMIT_PER_VARIANT) {
                   imagePickerRef.current!.click();
                 }
               }}
@@ -155,7 +157,11 @@ export const AddProductVariantForm = () => {
         id="image-picker"
         ref={imagePickerRef}
         onChange={(e) => {
-          if (e.target.files && e.target.files[0] && images.length < 6) {
+          if (
+            e.target.files &&
+            e.target.files[0] &&
+            images.length < IMAGE_LIMIT_PER_VARIANT
+          ) {
             const imgFile = e.target.files[0];
             const ext =
               imgFile.name.split(".")[imgFile.name.split(".").length - 1];
@@ -164,7 +170,7 @@ export const AddProductVariantForm = () => {
               ...images,
               {
                 file: e.target.files[0],
-                key: `${productId}/${new Date().toISOString()}.${ext}`,
+                key: `${productId}/${Nanoid.new()}.${ext}`,
               },
             ]);
           }
@@ -172,7 +178,7 @@ export const AddProductVariantForm = () => {
         hidden
       />
       <button className="primary-button" type="submit">
-        Add
+        Add Product Variant
       </button>
     </form>
   );
