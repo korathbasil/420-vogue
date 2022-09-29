@@ -13,7 +13,6 @@ export const Header = () => {
   const user = useSelector((state: State) => state.auth.user);
 
   async function logoutHandler() {
-    console.log("Logging Out");
     try {
       const res = await ManagersController.logoutManager();
       dispatch({
@@ -42,10 +41,6 @@ export const Header = () => {
             <h4>{`${user.firstname} ${user.lastname}`}</h4>
             <p>{user.role === "ADMIN" ? "Manager" : "Super Admin"}</p>
           </div>
-          {/* <img
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&w=1000&q=80"
-              alt=""
-            /> */}
           <button className="primary-button" onClick={logoutHandler}>
             Logout
           </button>
