@@ -6,10 +6,6 @@ import { PageTitle, BasicInsights } from "components";
 const Home: NextPage = () => {
   return (
     <div>
-      <Head>
-        <title>MPanel - 420 Vogue</title>
-      </Head>
-
       <PageTitle routes={["Dashboard"]} />
       <div className="spacer-X"></div>
       <BasicInsights />

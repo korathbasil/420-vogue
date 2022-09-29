@@ -5,6 +5,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>MPanel - 420 Vogue</title>
           <meta name="description" content="Management Panel for 420VOGUE" />
           <link rel="icon" href="/favicon.ico" />
           <link
