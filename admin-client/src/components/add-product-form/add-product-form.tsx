@@ -38,7 +38,7 @@ export const AddProductForm = () => {
       await ProductController.createProduct(
         formik.values.brand,
         formik.values.style,
-        selectedCategory?.name!,
+        selectedCategory?.value!,
         selectedSubCategory!
       );
 
@@ -118,7 +118,9 @@ export const AddProductForm = () => {
             }}
           />
         )}
-        <button type="submit">Add</button>
+        <button className="primary-button" type="submit">
+          Add Product
+        </button>
       </form>
     </section>
   );
