@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, FC } from "react";
+import { ChangeEvent, useState, FC, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -8,6 +8,7 @@ import { categories } from "sys";
 import styles from "./edit-product-form.module.scss";
 import { InputField, SelectInputField } from "components/controls";
 import { Category, Product } from "lib/interfaces";
+import { findCategoryFromValue, findSubCategoryFromValue } from "utils";
 
 interface EditProductFormProps {
   product: Product;
@@ -86,6 +87,20 @@ export const EditProductForm: FC<EditProductFormProps> = ({ product }) => {
       };
     });
   }
+
+  useEffect(() => {
+    const category = findCategoryFromValue(product.category);
+    if (!category) return;
+    setSelectdeCategory(category);
+
+    const subCategory = findSubCategoryFromValue(
+      category.value,
+      product.subCategory
+    );
+    if (!subCategory) return;
+    setSelectedSubCategory(subCategory.value);
+  }, []);
+
   return (
     <section className={styles.parent}>
       <form onSubmit={formik.handleSubmit}>

@@ -1,24 +1,23 @@
 import { categories } from "sys";
 
-export function findCategoryFromValue(arr: typeof categories, value: string) {
-  const selectedCategory = arr.find((e) => {
+export function findCategoryFromValue(value: string) {
+  const selectedCategory = categories.find((e) => {
     return e.value === value;
   });
-  return selectedCategory?.name;
+  return selectedCategory;
 }
 
 export function findSubCategoryFromValue(
-  arr: typeof categories,
   category: string,
   subCategory: string
 ) {
-  const selectedCategory = arr.find((e) => {
-    return e.value === category;
-  });
+  const selectedCategory = findCategoryFromValue(category);
 
-  const selectedSubCategory = selectedCategory?.subCategories.find((e) => {
+  if (!selectedCategory) return;
+
+  const selectedSubCategory = selectedCategory.subCategories.find((e) => {
     return e.value === subCategory;
   });
 
-  return selectedSubCategory?.name;
+  return selectedSubCategory;
 }

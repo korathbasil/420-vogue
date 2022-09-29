@@ -38,16 +38,15 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
           </tr>
           <tr>
             <td className={styles.prop}>Category</td>
-            <td>{findCategoryFromValue(categories, product.category)}</td>
+            <td>{findCategoryFromValue(product.category)?.value}</td>
           </tr>
           <tr>
             <td className={styles.prop}>Sub Category</td>
             <td>
-              {findSubCategoryFromValue(
-                categories,
-                product.category,
-                product.subCategory
-              )}
+              {
+                findSubCategoryFromValue(product.category, product.subCategory)
+                  ?.value
+              }
             </td>
           </tr>
           <tr>
