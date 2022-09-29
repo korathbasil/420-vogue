@@ -10,9 +10,12 @@ import { State } from "state/store";
 export const ManagersTable = () => {
   const user = useSelector((st: State) => st.auth.user);
 
-  const { data: managers = [] } = useQuery(["managers"], async () => {
-    return ManagersController.getAllManagers();
-  });
+  const { data: managers = [], isLoading } = useQuery(
+    ["managers"],
+    async () => {
+      return ManagersController.getAllManagers();
+    }
+  );
   return (
     <div>
       {user?.role === "SUPERADMIN" && (
@@ -35,10 +38,10 @@ export const ManagersTable = () => {
             { name: "Role", prop: "role" },
           ]}
           data={managers}
-          errMsg="No managers added"
           rowLink="/managers"
           linkProp="_id"
           keyProp="_id"
+          isLoading={isLoading}
         />
       </div>
     </div>
