@@ -10,12 +10,13 @@ import { State } from "state/store";
 export const ManagersTable = () => {
   const user = useSelector((st: State) => st.auth.user);
 
-  const { data: managers = [], isLoading } = useQuery(
-    ["managers"],
-    async () => {
-      return ManagersController.getAllManagers();
-    }
-  );
+  const {
+    data: managers = [],
+    isLoading,
+    error,
+  } = useQuery(["managers"], async () => {
+    return ManagersController.getAllManagers();
+  });
   return (
     <div>
       {user?.role === "SUPERADMIN" && (
@@ -41,6 +42,7 @@ export const ManagersTable = () => {
           rowLink="/managers"
           linkProp="_id"
           keyProp="_id"
+          error={JSON.stringify(JSON.stringify(error))}
           isLoading={isLoading}
         />
       </div>

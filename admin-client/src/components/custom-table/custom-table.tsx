@@ -67,12 +67,12 @@ export const CustomTable = <T extends ModifiedObject>({
         </div>
       )}
 
-      {data.length < 1 && !error && (
+      {!isLoading && data.length < 1 && !error && (
         <div className={styles.message}>
           <p>No contents!</p>
         </div>
       )}
-      {error && (
+      {!isLoading && error && (
         <div className={styles.message}>
           <p style={{ color: "var(--clr-danger)" }}>{error}</p>
         </div>
