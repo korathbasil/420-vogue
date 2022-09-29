@@ -16,6 +16,7 @@ import {
 import { Request } from 'express';
 
 import { AuthGuard } from 'src/guards/auth.guard';
+import { SuperAuthGuard } from 'src/guards/super-auth.guard';
 import { AdminService } from './admin.service';
 import { CreateAdminDto } from './dtos/create-admin.dto';
 import { UpdateAdminDto } from './dtos/update-admin-dto';
@@ -43,6 +44,7 @@ export class AdminController {
   }
 
   @Post()
+  @UseGuards(SuperAuthGuard)
   @UseGuards(AuthGuard)
   @UsePipes(ValidationPipe)
   async createAdmin(@Body() adminData: CreateAdminDto) {

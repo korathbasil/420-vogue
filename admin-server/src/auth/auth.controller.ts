@@ -54,6 +54,7 @@ export class AuthController {
 
       res.cookie('access-token', token, {
         httpOnly: true,
+        maxAge: 60 * 60 * 24 * 3 - 200,
       });
 
       return admin;
@@ -62,6 +63,16 @@ export class AuthController {
     }
   }
 
-  @Post()
-  logoutAdmin() {}
+  @Post('logout')
+  @UseGuards(AuthGuard)
+  logoutAdmin(@Res({ passthrough: true }) res: Response) {
+    res.cookie('access-token', '__unauthorozed__', {
+      httpOnly: true,
+      maxAge: 0,
+    });
+    return {
+      status: 200,
+      statusText: '200 OK',
+    };
+  }
 }

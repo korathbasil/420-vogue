@@ -1,18 +1,26 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { Manager } from "lib/interfaces";
 
 import styles from "./manager-details.module.scss";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { State } from "state/store";
 
 interface ManagerDetailsProps {
   manager: Manager;
   ownProfile?: boolean;
 }
 
-export const ManagerDetails: FC<ManagerDetailsProps> = ({
-  manager,
-  ownProfile = false,
-}) => {
+export const ManagerDetails: FC<ManagerDetailsProps> = ({ manager }) => {
+  const [ownProfile, setOwnProfile] = useState(false);
+
+  const user = useSelector((st: State) => st.auth.user);
+
+  useEffect(() => {
+    if (!user) return;
+
+    setOwnProfile(user._id === manager._id);
+  });
   return (
     <div className={styles.parent}>
       <div className={styles.top}>
@@ -53,15 +61,14 @@ export const ManagerDetails: FC<ManagerDetailsProps> = ({
           </tr>
         </table>
         <div className={styles.actions}>
-          {/* <Link href={`/products/${product._id}/edit`}>
-            <a className="primary-button-link">Edit</a>
-          </Link> */}
-          {!ownProfile && (
+          {user && user.role === "SUPERADMIN" && (
             <button className={styles.dangerButton}>Delete</button>
           )}
-          <Link href="/profile/edit">
-            {ownProfile && <button>Edit</button>}
-          </Link>
+          {ownProfile && (
+            <Link href="/profile/edit">
+              <button>Edit</button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
