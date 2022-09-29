@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
 
@@ -12,11 +13,18 @@ async function bootstrap() {
     credentials: true,
     origin:
       process.env.NODE_ENV === 'prod'
-        ? 'mpanel.420vogue.in'
+        ? 'https://mpanel.420vogue.in'
         : 'http://localhost:3000',
   });
 
   app.use(cookieParser());
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      groups: [],
+    }),
+  );
+
   await app.listen(PORT);
 }
 bootstrap();
