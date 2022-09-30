@@ -1,9 +1,11 @@
 import { FC, useCallback, useState } from "react";
+import { GOOGLE_OAUTH_CLIENT_LIBRARY_URL } from "utils";
 
 import styles from "./login-modal.module.scss";
 import { Google, Facebook, Close } from "assets/icons";
 import { Login } from "./login";
 import { Signup } from "./signup";
+import { UsersController } from "lib/controller";
 
 interface LoginModalProps {
   closeModal: () => void;
@@ -17,6 +19,12 @@ export const LoginModal: FC<LoginModalProps> = ({
   const [showLogin, setShowLogin] = useState(true);
 
   const loginSignupSwitcher = useCallback(setShowLogin, []);
+
+  async function googleAuthHandler() {
+    try {
+      await UsersController.initGoogleSigninFlow();
+    } catch (error) {}
+  }
 
   return (
     <section className="login-wrapper">
@@ -38,7 +46,7 @@ export const LoginModal: FC<LoginModalProps> = ({
         )}
         <hr />
         <div className={styles.socialLogin}>
-          <div className={styles.social}>
+          <div onClick={googleAuthHandler} className={styles.social}>
             <Google size="20px" />
             <h4>Google</h4>
           </div>
