@@ -12,36 +12,49 @@ import {
   VariantModal,
 } from "components";
 import { Product, ProductVariant } from "lib/interfaces";
+import { useQuery } from "@tanstack/react-query";
 
 const ProductPage: NextPage = () => {
   const router = useRouter();
   const { id: productId } = router.query;
-
   const [isVariantModalOpen, setIsVariantModalOpen] = useState(false);
 
-  const [product, setProdcut] = useState<Product | null>(null);
+  const { data: product } = useQuery([`products/${productId}`], () => {
+    return ProductController.getProductById(productId as string);
+  });
+
+  useEffect(() => {
+    if (product) {
+      setSelectedVariant(product.variants[0]);
+      const inStockSize = product.variants[0].stock.find((s) => {
+        if (s.quantity > 0) {
+          return s;
+        }
+      });
+
+      if (inStockSize) setSelectedSize(inStockSize.sizeName);
+      else setSelectedSize(product.variants[0].stock[0].sizeName);
+    }
+  }, [productId, product]);
+
   const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(
     null
   );
-  const [selectedSize, setSelectedSize] = useState(0);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
-  const variantSelector = useCallback(setSelectedVariant, [product?.variants]);
+  const variantSelector = useCallback(
+    (v: ProductVariant) => {
+      setSelectedVariant(v);
+    },
+    [product?.variants]
+  );
+  const sizeSelector = useCallback(
+    (size: string) => {
+      setSelectedSize(size);
+    },
+    [selectedVariant]
+  );
 
-  useEffect(() => {
-    fetchProductDetails();
-  }, [productId]);
-
-  async function fetchProductDetails() {
-    if (productId == undefined || Array.isArray(productId)) return;
-
-    try {
-      const product = await ProductController.getProductById(productId);
-      setProdcut(product);
-      setSelectedVariant(product.variants[0]);
-    } catch (error) {
-      console.log(error);
-    }
-  }
   return (
     <section className="container">
       {product && (
@@ -72,7 +85,9 @@ const ProductPage: NextPage = () => {
           <VariantModal
             variants={product.variants}
             selectedVariant={selectedVariant}
-            selector={variantSelector}
+            variantSelector={variantSelector}
+            selectedSize={selectedSize}
+            sizeSelector={sizeSelector}
             closeModal={() => setIsVariantModalOpen(false)}
           />
         </Modal>

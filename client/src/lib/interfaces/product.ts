@@ -14,9 +14,10 @@ export type ProductVariant = {
   colorCode: string;
   images: string[];
   price: number;
+  stock: ProductStock[];
 };
 
 type ProductStock = {
   sizeName: string;
-  quantity: string;
+  quantity: number;
 };

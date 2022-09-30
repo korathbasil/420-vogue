@@ -23,8 +23,8 @@ export class ProductController {
       const res = await axios.get<Product>("/products/" + id);
       res.data.isActive = res.data.isActive ? "ACTIVE" : "DISABLED";
       return res.data;
-    } catch (e) {
-      throw e;
+    } catch (e: any) {
+      throw new HttpError(e.response.data.message, e.response.data.statusCode);
     }
   }
 }
