@@ -13,12 +13,12 @@ export class FavController {
 
   @Post('/')
   async addTofav(@Body('id') productId: string) {
-    try {
-      await this.favService.addToFav(productId, '630a06eee4d1b07c37c07f9b');
-    } catch (error) {
-      console.log(error);
-      throw new BadRequestException();
-    }
+    // try {
+    //   await this.favService.addToFav(productId, '630a06eee4d1b07c37c07f9b');
+    // } catch (error) {
+    //   console.log(error);
+    //   throw new BadRequestException();
+    // }
   }
 
   @Delete('/:id')
