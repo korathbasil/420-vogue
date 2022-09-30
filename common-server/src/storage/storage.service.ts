@@ -4,14 +4,15 @@ import { S3 } from "aws-sdk";
 @Injectable()
 export class StorageService {
   private s3: S3;
-  private readonly _BUCKET_NAME = "static.420vogue.in";
+  private readonly _BUCKET_NAME = process.env.ADMIN_SERVER_AWS_S3_BUCKET_NAME;
   private readonly _REGION = "ap-south-1";
 
   constructor() {
     this.s3 = new S3({
       region: this._REGION,
-      accessKeyId: process.env.ADMIN_SERVER_AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.ADMIN_SERVER_AWS_SECRET_ACCESS_KEY,
+      accessKeyId: process.env.ADMIN_SERVER_S3_SIGNED_URL_AWS_ACCESS_KEY_ID,
+      secretAccessKey:
+        process.env.ADMIN_SERVER_S3_SIGNED_URL_AWS_SECRET_ACCESS_KEY,
     });
   }
 
