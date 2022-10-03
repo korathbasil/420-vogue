@@ -17,18 +17,8 @@
 
     .products {
       margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
+      display: grid;
       gap: 1rem;
-    }
-  }
-
-  @include tab {
-    .items {
-      background-color: var(--clr-white);
-      border-radius: 10px;
-      box-shadow: var(--shadow-light);
-      padding: 1rem;
     }
   }
 
@@ -58,5 +48,17 @@
       padding: 0.5rem;
       border-radius: 10px;
     }
+  }
+}
+
+@include tab {
+  .items {
+    background-color: var(--clr-white);
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    padding: 1rem;
+  }
+  .products {
+    grid-template-columns: repeat(2, auto);
   }
 }
