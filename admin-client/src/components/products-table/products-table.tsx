@@ -30,7 +30,6 @@ export const ProductsTable = () => {
             { name: "Active", prop: "isActive" },
           ]}
           data={products}
-          errMsg="No products available!"
           rowLink="/products"
           linkProp="_id"
           keyProp="_id"

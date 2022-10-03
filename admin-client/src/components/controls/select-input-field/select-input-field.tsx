@@ -6,6 +6,7 @@ import styles from "./select-input-field.module.scss";
 interface SelectInputFieldProps<T> {
   label: string;
   name: string;
+  value?: any;
   options:
     | {
         name: string;
@@ -22,6 +23,7 @@ export const SelectInputField: FC<SelectInputFieldProps<Category | null>> = ({
   options,
   onChangeHandler,
   required = false,
+  value,
 }) => {
   return (
     <div className={styles.input}>

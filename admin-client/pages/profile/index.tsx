@@ -19,7 +19,7 @@ const ProfilePage: NextPage = () => {
     <main>
       <PageTitle routes={["Profile"]} />
       <div className="spacer-X"></div>
-      {manager && <ManagerDetails manager={manager} ownProfile={true} />}
+      {manager && <ManagerDetails manager={manager} />}
     </main>
   );
 };

@@ -6,18 +6,22 @@ import styles from "./variant-modal.module.scss";
 interface VariantModalProps {
   variants: ProductVariant[];
   selectedVariant: ProductVariant | null;
-  selector: Dispatch<SetStateAction<ProductVariant | null>>;
+  variantSelector: (v: ProductVariant) => void;
+  selectedSize: string | null;
+  sizeSelector: (s: string) => void;
   closeModal: () => void;
 }
 
 export const VariantModal: FC<VariantModalProps> = ({
   variants,
   selectedVariant,
-  selector,
+  variantSelector,
+  selectedSize,
+  sizeSelector,
   closeModal,
 }) => {
   return (
-    <div className={styles.modal}>
+    <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
       <h4>Choose color and size</h4>
       <form className={styles.options}>
         <div className={styles.side}>
@@ -35,7 +39,7 @@ export const VariantModal: FC<VariantModalProps> = ({
                     ? "var(--clr-white)"
                     : "var(--clr-primary)",
               }}
-              onClick={() => selector(v)}
+              onClick={() => variantSelector(v)}
               className={styles.color}
             >
               <div
@@ -50,15 +54,28 @@ export const VariantModal: FC<VariantModalProps> = ({
         </div>
         <div className={styles.side}>
           <h6>Size</h6>
-          <div className={styles.size}>
-            <p>42EU</p>
-          </div>
-          <div className={styles.size}>
-            <p>44EU</p>
-          </div>
-          <div className={styles.size}>
-            <p>36US</p>
-          </div>
+
+          {selectedVariant?.stock.map((st) => {
+            if (st.quantity > 0)
+              return (
+                <div
+                  style={{
+                    backgroundColor:
+                      selectedSize == st.sizeName
+                        ? "var(--clr-primary)"
+                        : "var(--clr-white)",
+                    color:
+                      selectedSize == st.sizeName
+                        ? "var(--clr-white)"
+                        : "var(--clr-primary)",
+                  }}
+                  onClick={() => sizeSelector(st.sizeName)}
+                  className={styles.size}
+                >
+                  <p>{st.sizeName.toUpperCase()}</p>
+                </div>
+              );
+          })}
         </div>
       </form>
     </div>

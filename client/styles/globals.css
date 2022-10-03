@@ -57,6 +57,20 @@ a {
   padding-top: 5rem;
 }
 
+/* SMall UI parts */
+.button-link-white {
+  background-color: var(--clr-white);
+  color: var(--clr-primary);
+  border: 2px solid var(--clr-primary);
+  font-weight: 700;
+  border-radius: 99px;
+  padding: 10px;
+  box-shadow: var(--shadow-light);
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
 
 
 /* Product carousel indicator */

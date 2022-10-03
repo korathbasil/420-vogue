@@ -13,7 +13,11 @@
     border-radius: 5px;
     padding: 10px;
     outline: none;
-    border: 2px solid var(--clr-secondary);
+    border: 2px solid var(--clr-grey);
+
+    &:focus {
+      border: 2px solid var(--clr-secondary);
+    }
   }
 
   div {

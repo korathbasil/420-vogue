@@ -22,7 +22,7 @@ const AboutUsPage = () => {
 
           <div className={styles.links}>
             <Link href={"/help"}>
-              <a>
+              <a className="button-link-white">
                 <div className={styles.iconWrapper}>
                   <Help size="25px" />
                 </div>
@@ -34,6 +34,7 @@ const AboutUsPage = () => {
               href="https://www.instagram.com/420__vogue/"
               target="_blank"
               rel="noreferrer"
+              className="button-link-white"
             >
               <div className={styles.iconWrapper}>
                 <Instagram size="25px" />

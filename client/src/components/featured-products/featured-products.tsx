@@ -4,22 +4,13 @@ import { Product } from "lib/interfaces";
 import styles from "./featured-products.module.scss";
 import { ProductCard } from "../product-card/product-card";
 import { ProductController } from "lib/controller";
+import { useQuery } from "@tanstack/react-query";
 
 export const FeaturedProducts = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const { data: products } = useQuery(["products"], () => {
+    return ProductController.getProducts();
+  });
 
-  useEffect(() => {
-    loadAllProducts();
-  }, []);
-
-  async function loadAllProducts() {
-    try {
-      const products = await ProductController.getProducts();
-      setProducts(products);
-    } catch (error) {
-      console.log(error);
-    }
-  }
   return (
     <section className="container">
       <div className={styles.parent}>

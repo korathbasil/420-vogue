@@ -1,10 +1,13 @@
 import { FC } from "react";
 import Link from "next/link";
 import { Product } from "lib/interfaces";
+import { categories } from "sys";
+import { findCategoryFromValue, findSubCategoryFromValue } from "utils";
 
 import styles from "./product-details.module.scss";
 import { VariantCard } from "./variant-card";
 import { SwitchInputField } from "components/controls";
+import { array, TypeOf } from "yup";
 
 interface ProductDetailsProps {
   product: Product;
@@ -35,11 +38,16 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
           </tr>
           <tr>
             <td className={styles.prop}>Category</td>
-            <td>{product.category}</td>
+            <td>{findCategoryFromValue(product.category)?.value}</td>
           </tr>
           <tr>
             <td className={styles.prop}>Sub Category</td>
-            <td>{product.subCategory}</td>
+            <td>
+              {
+                findSubCategoryFromValue(product.category, product.subCategory)
+                  ?.value
+              }
+            </td>
           </tr>
           <tr>
             <td className={styles.prop}>Status</td>

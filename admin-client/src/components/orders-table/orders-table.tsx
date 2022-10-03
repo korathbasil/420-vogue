@@ -81,8 +81,8 @@ export const OrdersTable = () => {
             { name: "PIN", prop: "role" },
             { name: "STATUS", prop: "status" },
           ]}
+          error={"Not FOund"}
           data={orders}
-          errMsg="No orders recieved!"
           keyProp="_id"
         />
       </div>

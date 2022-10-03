@@ -18,6 +18,7 @@ const HelpPage: NextPage = () => {
               href="mailto:support@420vogue.in?subject=Enquiry"
               target="_blank"
               rel="noreferrer"
+              className="button-link-white"
             >
               support@420vogue.in
             </a>

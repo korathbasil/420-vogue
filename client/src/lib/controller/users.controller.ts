@@ -42,4 +42,16 @@ export class UsersController {
     });
     return data as User;
   }
+
+  static async initGoogleSigninFlow() {
+    try {
+      const res = await axios.get("/auth/google", {
+        headers: {
+          "Access-Control-Allow-Origin": "http://localhost:8000",
+        },
+      });
+
+      console.log(res);
+    } catch (error) {}
+  }
 }

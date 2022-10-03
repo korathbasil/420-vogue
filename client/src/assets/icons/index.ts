@@ -17,3 +17,4 @@ export * from "./facebook";
 export * from "./edit";
 export * from "./add-box";
 export * from "./minus-box";
+export * from "./filter";

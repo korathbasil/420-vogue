@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Product, ProductVariant } from "lib/interfaces";
+import { serializeCategory } from "utils";
 
 import styles from "./product-details.module.scss";
 
@@ -19,7 +20,8 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
         <h4>{variant.price}</h4>
         <h2>{product.style}</h2>
         <p>
-          {product.category}, {product.subCategory}
+          {serializeCategory(product.category)},{" "}
+          {serializeCategory(product.subCategory)}
         </p>
       </div>
       <div className={styles.description}>
@@ -31,32 +33,6 @@ export const ProductDetails: FC<ProductDetailsProps> = ({
           <li>Lightweight</li>
         </ul>
       </div>
-
-      {/* <div className={styles.colors}>
-        <p>Choose colors</p>
-        <div>
-          <div className={styles.colorBox}>
-            <div style={{ backgroundColor: "#36369c" }}></div>
-            <p>Blue</p>
-          </div>
-          <div className={styles.colorBox}>
-            <div style={{ backgroundColor: "#bb6363" }}></div>
-            <p>Red</p>
-          </div>
-          <div className={styles.colorBox}>
-            <div style={{ backgroundColor: "#afaf43" }}></div>
-            <p>Yellow</p>
-          </div>
-          <div className={styles.colorBox}>
-            <div style={{ backgroundColor: "#b95f16" }}></div>
-            <p>Orange</p>
-          </div>
-          <div className={styles.colorBox}>
-            <div style={{ backgroundColor: "#2e6e2e" }}></div>
-            <p>Green</p>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

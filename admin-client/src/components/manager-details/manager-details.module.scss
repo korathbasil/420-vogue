@@ -7,16 +7,16 @@
 
   .top {
     position: relative;
-    table > tr {
+    table > tbody > tr {
       height: 30px;
     }
 
-    table > tr > .prop {
+    table > tbody > tr > .prop {
       min-width: 150px;
       font-size: 14px;
     }
 
-    table > tr > td:nth-child(2n) {
+    table > tbody > tr > td:nth-child(2n) {
       font-weight: 600;
     }
 

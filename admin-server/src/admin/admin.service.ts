@@ -97,6 +97,6 @@ export class AdminService {
       },
     );
 
-    return res.upsertedId;
+    return Object.keys(obj);
   }
 }
