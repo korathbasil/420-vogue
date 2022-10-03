@@ -60,8 +60,7 @@ export const AddProductVariantForm = () => {
       await ImagesController.uploadImages(imagesWithUrls);
 
       const imageKeys = images.map(
-        (img) =>
-          "https://s3.ap-south-1.amazonaws.com/static.420vogue.in/" + img.key
+        (img) => process.env.NEXT_PUBLIC_S3_BUCKET_URL + img.key
       );
       await VaraintsController.createVariant(
         productId,
