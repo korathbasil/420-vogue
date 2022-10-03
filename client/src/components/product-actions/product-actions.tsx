@@ -1,35 +1,56 @@
 import { FC } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useLocalStorage } from "lib/hooks";
 
 import styles from "./product-actions.module.scss";
 import { ShoppingBag, Bolt } from "assets/icons";
-import { Product, ProductVariant } from "lib/interfaces";
-import { useUserStore } from "store";
+import { BagProduct, Product, ProductVariant } from "lib/interfaces";
+import { useUserStore, useVBagStore } from "store";
 
 interface ProductActionsProps {
   product: Product;
   variant: ProductVariant;
+  size: string | null;
 }
 
 export const ProductActions: FC<ProductActionsProps> = ({
   product,
   variant,
+  size,
 }) => {
   const router = useRouter();
   const { id: productId } = router.query;
 
   const user = useUserStore((state) => state.user);
-  function addToBag(product: Product) {
+  const vBag = useVBagStore((vb) => vb.vBag);
+  const setVBag = useVBagStore((vb) => vb.setVBag);
+
+  function addToBag() {
+    const bagProduct = {
+      _id: product._id,
+      brand: product.brand,
+      style: product.style,
+      category: product.category,
+      subCategory: product.subCategory,
+      quantity: 1,
+      variant: {
+        _id: variant._id,
+        color: variant.color,
+        colorCode: variant.colorCode,
+        images: variant.images,
+        price: variant.price,
+        size: size,
+      },
+    } as BagProduct;
     if (user) {
     } else {
       // handle case for guest user
+      setVBag([...vBag, bagProduct]);
     }
   }
   return (
     <div className={styles.actions}>
-      <div className={styles.bag}>
+      <div onClick={addToBag} className={styles.bag}>
         <ShoppingBag size="22px" />
         <h3>ADD TO BAG</h3>
       </div>

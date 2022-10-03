@@ -78,6 +78,7 @@ const ProductPage: NextPage = () => {
         <ProductActions
           product={product}
           variant={selectedVariant ? selectedVariant : product.variants[0]}
+          size={selectedSize}
         />
       )}
       {product && isVariantModalOpen && (
