@@ -33,7 +33,6 @@ export const UsersTable = () => {
             { name: "Email", prop: "email" },
           ]}
           data={users}
-          errMsg="No users registred!"
           keyProp="_id"
         />
       </div>
