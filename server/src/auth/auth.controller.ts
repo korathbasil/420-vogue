@@ -1,3 +1,4 @@
+import { Response } from 'express';
 import {
   Body,
   Controller,
@@ -12,12 +13,11 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { AuthGuard } from '@nestjs/passport';
 import { User, UserDto, UseSerializeInterceptor } from 'common-server';
-import { Response } from 'express';
 
 import { LoginUserDto } from './dtos/login-user.dto';
 import { AuthService } from './auth.service';
-import { AuthGuard } from './guards/auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -95,5 +95,18 @@ export class AuthController {
     } catch (e) {
       throw new UnauthorizedException(e.message);
     }
+  }
+
+  // Google OAuth
+  @Get('/google')
+  @UseGuards(AuthGuard('google'))
+  async googleAuth(@Req() req) {
+    console.log('Hit');
+  }
+
+  @Get('/google/callback')
+  @UseGuards(AuthGuard('google'))
+  googleAuthRedirect(@Req() req) {
+    return req?.user;
   }
 }
