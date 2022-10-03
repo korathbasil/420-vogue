@@ -1,3 +1,5 @@
+@import "../../sass/screen-media-queries.scss";
+
 .product {
   border-radius: 10px;
   border: 2px solid var(--clr-lightgrey-bg);
@@ -52,5 +54,11 @@
       font-size: 12px;
       text-align: center;
     }
+  }
+}
+
+@include phone {
+  .product {
+    box-shadow: var(--shadow-light);
   }
 }

@@ -1,9 +1,10 @@
+@import "../../sass/screen-media-queries.scss";
+
 .bag {
   gap: 2rem;
 
   color: var(--clr-grey-text);
 
-  .items,
   .summary {
     background-color: var(--clr-white);
     border-radius: 10px;
@@ -22,10 +23,20 @@
     }
   }
 
+  @include tab {
+    .items {
+      background-color: var(--clr-white);
+      border-radius: 10px;
+      box-shadow: var(--shadow-light);
+      padding: 1rem;
+    }
+  }
+
   .summary {
     position: fixed;
     bottom: 1rem;
     width: calc(100vw - 2rem);
+    max-width: 1400px;
     display: flex;
     justify-content: space-between;
     align-items: center;
