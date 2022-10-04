@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Product } from "lib/interfaces";
 
-import { SearchHeader, SearchResults } from "components";
+import { SearchHeader, SearchResult } from "components";
 
 const SearchPage = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -11,7 +11,7 @@ const SearchPage = () => {
   return (
     <main>
       <SearchHeader setProducts={setProductsHandler} />
-      <SearchResults />
+      <SearchResult products={products} />
     </main>
   );
 };
