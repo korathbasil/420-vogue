@@ -18,6 +18,21 @@ export class ProductController {
     }
   }
 
+  static async getProductsFromQuery(qs: string) {
+    try {
+      const res = await axios.get<Product[]>("/products/?qs=" + qs);
+      const products = res.data.map((p: any) => {
+        return {
+          ...p,
+          isActive: p.isActive ? "ACTIVE" : "DIABLED",
+        };
+      });
+      return products;
+    } catch (e: any) {
+      throw new HttpError(e.response.data.message, e.response.data.statusCode);
+    }
+  }
+
   static async getProductById(id: string) {
     try {
       const res = await axios.get<Product>("/products/" + id);
