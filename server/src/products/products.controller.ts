@@ -17,8 +17,9 @@ export class ProductsController {
   constructor(private readonly productService: ProductsService) {}
 
   @Get()
-  getProducts(): Promise<Product[]> {
-    return this.productService.getAllProducts();
+  getProducts(@Query('qs') query: string): Promise<Product[]> {
+    if (!query) return this.productService.getAllProducts();
+    return this.productService.getProductsWitQuery(query);
   }
 
   @Get('/:id')
@@ -31,17 +32,17 @@ export class ProductsController {
     }
   }
 
-  @Get('/?category')
-  async getProductsWithCategory(
-    @Query('category') cat: string,
-  ): Promise<Product[]> {
-    try {
-      const product = await this.productService.getProductsWithCategory(cat);
-      return product;
-    } catch (e) {
-      throw new NotFoundException('Product not dound');
-    }
-  }
+  // @Get('/?category')
+  // async getProductsWithCategory(
+  //   @Query('category') cat: string,
+  // ): Promise<Product[]> {
+  //   try {
+  //     const product = await this.productService.getProductsWithCategory(cat);
+  //     return product;
+  //   } catch (e) {
+  //     throw new NotFoundException('Product not dound');
+  //   }
+  // }
 
   @Post()
   @UsePipes(ValidationPipe)
