@@ -20,6 +20,12 @@ export class ProductsService {
     return this.productsRepo.find({});
   }
 
+  getProductsWitQuery(q: string) {
+    return this.productsRepo.find({
+      style: { $regex: q, $options: "i" },
+    });
+  }
+
   getProductsWithCategory(categoryName: string): Promise<Product[]> {
     return this.productsRepo.find({ category: categoryName });
   }
