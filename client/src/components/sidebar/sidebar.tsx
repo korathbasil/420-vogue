@@ -73,26 +73,30 @@ export const Sidebar: FC<SidebarProps> = ({
               </a>
             </Link>
           </ul>
-          <ul>
-            <Link href={"/orders"}>
-              <a className={styles.link}>
-                <div className={styles.iconWrapper}>
-                  <Order />
-                </div>
-                <p>MY ORDERS</p>
-              </a>
-            </Link>
-          </ul>
-          <ul>
-            <Link href={"/account"}>
-              <a className={styles.link}>
-                <div className={styles.iconWrapper}>
-                  <Avatar />
-                </div>
-                <p>MY ACCOUNT</p>
-              </a>
-            </Link>
-          </ul>
+          {user && (
+            <ul>
+              <Link href={"/orders"}>
+                <a className={styles.link}>
+                  <div className={styles.iconWrapper}>
+                    <Order />
+                  </div>
+                  <p>MY ORDERS</p>
+                </a>
+              </Link>
+            </ul>
+          )}
+          {user && (
+            <ul>
+              <Link href={"/account"}>
+                <a className={styles.link}>
+                  <div className={styles.iconWrapper}>
+                    <Avatar />
+                  </div>
+                  <p>MY ACCOUNT</p>
+                </a>
+              </Link>
+            </ul>
+          )}
 
           <div className={styles.bottom}>
             <ul>

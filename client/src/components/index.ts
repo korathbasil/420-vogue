@@ -21,3 +21,5 @@ export * from "./favourites/favourites";
 export * from "./orders/orders";
 export * from "./variant-modal/variant-modal";
 export * from "./search-header/search-header";
+export * from "./search-results/search-result";
+export * from "./categories/categories";

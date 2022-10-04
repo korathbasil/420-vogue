@@ -1,8 +1,12 @@
 .header {
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
+
   form {
     width: 100%;
-    padding: 1rem;
     display: flex;
+    padding: 1rem 0;
     align-items: center;
 
     input {
@@ -17,6 +21,7 @@
       height: 40px;
       border-radius: 8px;
       font-size: 16px;
+      border: 2px solid var(--clr-lightgrey);
 
       &:focus {
         border: 2px solid var(--clr-primary);

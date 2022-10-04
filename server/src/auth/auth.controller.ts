@@ -100,7 +100,7 @@ export class AuthController {
   // Google OAuth
   @Get('/google')
   @UseGuards(AuthGuard('google'))
-  async googleAuth(@Req() req) {
+  async googleAuth(@Req() req: Request) {
     console.log('Hit');
   }
 

@@ -20,8 +20,18 @@ export class ProductsService {
     return this.productsRepo.find({});
   }
 
-  getProductsWithCategory(categoryName: string): Promise<Product[]> {
-    return this.productsRepo.find({ category: categoryName });
+  getProductsWitQuery(q: string) {
+    return this.productsRepo.find({
+      style: { $regex: q, $options: "i" },
+    });
+  }
+
+  getProductsByCategory(name: string): Promise<Product[]> {
+    return this.productsRepo.find({ category: name });
+  }
+
+  getProductsBySubCategory(name: string): Promise<Product[]> {
+    return this.productsRepo.find({ subCategory: name });
   }
 
   async getProductWithId(id: string) {
