@@ -11,7 +11,9 @@ const SearchPage = () => {
   return (
     <main>
       <SearchHeader setProducts={setProductsHandler} />
-      <SearchResult products={products} />
+      <section className="container page-start">
+        <SearchResult products={products} />
+      </section>
     </main>
   );
 };
