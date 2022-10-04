@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PassportModule } from '@nestjs/passport';
@@ -8,6 +8,7 @@ import { ProductsModule } from '../products/products.module';
 import { AuthModule } from 'src/auth/auth.module';
 import { PaymentsModule } from 'src/payments/payments.module';
 import { FavModule } from 'src/fav/fav.module';
+import { SetUserMiddleware } from 'src/middlewares/set-user.middleware';
 
 @Module({
   imports: [
@@ -21,4 +22,8 @@ import { FavModule } from 'src/fav/fav.module';
     FavModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(SetUserMiddleware).forRoutes('*');
+  }
+}

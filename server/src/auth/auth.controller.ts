@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import {
   Body,
   Controller,
@@ -26,44 +26,12 @@ export class AuthController {
     private readonly authService: AuthService,
   ) {}
 
-  // @UseGuards(AuthGuard)
-  // @UseSerializeInterceptor(UserDto)
-  // @Get('/current-user')
-  // async getCurrentUser(
-  //   @Res({ passthrough: true }) res: Response,
-  //   @Req() req: Request,
-  // ) {
-  //   // @ts-ignore
-  //   const token = req.cookies['token'];
-  //   // @ts-ignore
-
-  //   if (!token) throw new UnauthorizedException('Please login to continue');
-
-  //   type JwtPayload = {
-  //     _id: string;
-  //     firstname: string;
-  //     lastname: string;
-  //     email: string;
-  //   };
-
-  //   try {
-  //     const userData: JwtPayload = await this.jwtService.verifyAsync(token, {
-  //       secret: 'secret',
-  //     });
-  //     const loggedInUser = await this.authService.getLoggedInUser(userData._id);
-  //     (
-  //       loggedInUser as User & {
-  //         token: string;
-  //       }
-  //     ).token = token;
-  //     res.cookie('token', token, {
-  //       httpOnly: true,
-  //     });
-  //     return loggedInUser;
-  //   } catch (e) {
-  //     throw new UnauthorizedException('Please login to continue');
-  //   }
-  // }
+  @Get()
+  @UseGuards(AuthGuard)
+  async getCurrentUser(@Req() req: Request) {
+    const admin = req.user;
+    return admin;
+  }
 
   @UsePipes(ValidationPipe)
   @Post('/login')

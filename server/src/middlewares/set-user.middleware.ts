@@ -3,14 +3,14 @@ import { Request, Response, NextFunction } from 'express';
 import { AuthTokenService } from 'src/auth-token/auth-token.service';
 
 @Injectable()
-export class SetAdminMiddleware implements NestMiddleware {
+export class SetUserMiddleware implements NestMiddleware {
   constructor(private readonly authTokenService: AuthTokenService) {}
-  async use(req: Request, res: Response, next: NextFunction) {
+  async use(req: Request, _: Response, next: NextFunction) {
     const jwtToken = req.cookies['access-token'];
 
     try {
-      const adminData = await this.authTokenService.verify(jwtToken);
-      req.user = adminData;
+      const userData = await this.authTokenService.verify(jwtToken);
+      req.user = userData;
       return next();
     } catch (error) {
       req.user = null;
