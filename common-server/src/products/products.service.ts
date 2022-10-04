@@ -26,8 +26,12 @@ export class ProductsService {
     });
   }
 
-  getProductsWithCategory(categoryName: string): Promise<Product[]> {
-    return this.productsRepo.find({ category: categoryName });
+  getProductsByCategory(name: string): Promise<Product[]> {
+    return this.productsRepo.find({ category: name });
+  }
+
+  getProductsBySubCategory(name: string): Promise<Product[]> {
+    return this.productsRepo.find({ subCategory: name });
   }
 
   async getProductWithId(id: string) {
