@@ -3,7 +3,6 @@ import {
   Body,
   Controller,
   Get,
-  NotFoundException,
   Post,
   Req,
   Res,
@@ -12,25 +11,26 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { AuthGuard } from '@nestjs/passport';
-import { User, UserDto, UseSerializeInterceptor } from 'common-server';
+import { AuthGuard as OAuthGuard } from '@nestjs/passport';
+import { User } from 'common-server';
 
+import { AuthTokenService } from 'src/auth-token/auth-token.service';
+import { AuthGuard } from 'src/guards/auth.guard';
 import { LoginUserDto } from './dtos/login-user.dto';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
   constructor(
-    private readonly jwtService: JwtService,
     private readonly authService: AuthService,
+    private readonly authTokenService: AuthTokenService,
   ) {}
 
   @Get()
   @UseGuards(AuthGuard)
   async getCurrentUser(@Req() req: Request) {
-    const admin = req.user;
-    return admin;
+    const user = req.user;
+    return user;
   }
 
   @UsePipes(ValidationPipe)
@@ -42,14 +42,14 @@ export class AuthController {
     try {
       const user = await this.authService.loginUser(cred.email, cred.password);
 
-      const token = await this.jwtService.signAsync({
+      const token = await this.authTokenService.sign({
         _id: user._id,
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
       });
 
-      res.cookie('token', token, {
+      res.cookie('access-token', token, {
         httpOnly: true,
       });
 
@@ -67,13 +67,13 @@ export class AuthController {
 
   // Google OAuth
   @Get('/google')
-  @UseGuards(AuthGuard('google'))
+  @UseGuards(OAuthGuard('google'))
   async googleAuth(@Req() req: Request) {
     console.log('Hit');
   }
 
   @Get('/google/callback')
-  @UseGuards(AuthGuard('google'))
+  @UseGuards(OAuthGuard('google'))
   googleAuthRedirect(@Req() req) {
     return req?.user;
   }

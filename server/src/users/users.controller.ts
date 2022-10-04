@@ -9,14 +9,15 @@ import {
   Res,
 } from '@nestjs/common';
 import { Response } from 'express';
-import { JwtService } from '@nestjs/jwt';
 import { UsersService, CreateUserDto, User } from 'common-server';
+
+import { AuthTokenService } from 'src/auth-token/auth-token.service';
 
 @Controller('users')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
-    private readonly jwtService: JwtService,
+    private readonly authTokenService: AuthTokenService,
   ) {}
 
   @Get()
@@ -34,14 +35,14 @@ export class UsersController {
       const user = await this.usersService.createUser(userData);
       if (!user) return new BadRequestException('User already exists');
 
-      const token = await this.jwtService.signAsync({
+      const token = await this.authTokenService.sign({
         _id: user._id,
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
       });
 
-      res.cookie('token', token, {
+      res.cookie('access-token', token, {
         httpOnly: true,
       });
 
