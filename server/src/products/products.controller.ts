@@ -17,9 +17,19 @@ export class ProductsController {
   constructor(private readonly productService: ProductsService) {}
 
   @Get()
-  getProducts(@Query('qs') query: string): Promise<Product[]> {
-    if (!query) return this.productService.getAllProducts();
-    return this.productService.getProductsWitQuery(query);
+  getProducts(
+    @Query('qs') query: string,
+    @Query('c') category: string,
+    @Query('sc') subCategory: string,
+  ): Promise<Product[]> {
+    if (!query && !category && !subCategory)
+      return this.productService.getAllProducts();
+    if (query && !category && !subCategory)
+      return this.productService.getProductsWitQuery(query);
+
+    if (subCategory && !category)
+      return this.productService.getProductsBySubCategory(subCategory);
+    return this.productService.getProductsByCategory(category);
   }
 
   @Get('/:id')
