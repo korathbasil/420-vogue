@@ -45,13 +45,7 @@ export class UsersController {
 
   static async initGoogleSigninFlow() {
     try {
-      const res = await axios.get("/auth/google", {
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:8000",
-        },
-      });
-
-      console.log(res);
+      const res = await axios.get("/auth/google");
     } catch (error) {}
   }
 }
