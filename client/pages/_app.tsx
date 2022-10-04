@@ -45,7 +45,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       {/* <AnyComponent {...pageProps} /> */}
       <Auth Component={Component} {...pageProps} />
-      <ReactQueryDevtools initialIsOpen={false} />
+      {process.env.NODE_ENV === "development" && (
+        <ReactQueryDevtools initialIsOpen={false} />
+      )}
     </QueryClientProvider>
   );
 }
