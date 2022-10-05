@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { UsersController } from "lib/controller";
+import { GoogleController, UsersController } from "lib/controller";
 
 import "../styles/globals.css";
 import { useUserStore } from "store";
+import { googleLogout } from "@react-oauth/google";
+import { getPageStaticInfo } from "next/dist/build/analysis/get-page-static-info";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +43,9 @@ function Auth({ Component, ...pageProps }: AppProps) {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  function handleCredentialResponse(response: any) {
+    console.log("Encoded JWT ID token: " + response.credential);
+  }
   return (
     <QueryClientProvider client={queryClient}>
       {/* <AnyComponent {...pageProps} /> */}
@@ -48,6 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       {process.env.NODE_ENV === "development" && (
         <ReactQueryDevtools initialIsOpen={false} />
       )}
+      <div className="google-login-button" hidden></div>
     </QueryClientProvider>
   );
 }
