@@ -38,7 +38,7 @@ export const Login: FC<LoginProps> = ({
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
-        role: user.role,
+        phone: user.phone,
       });
 
       closeModal();

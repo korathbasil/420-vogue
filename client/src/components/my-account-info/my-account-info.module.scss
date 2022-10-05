@@ -1,0 +1,26 @@
+.info {
+  border-radius: 10px;
+  background-color: var(--clr-primary);
+  padding: 0.5rem;
+  color: var(--clr-white);
+  position: relative;
+
+  .edit {
+    display: flex;
+    padding: 0.25rem;
+    background-color: var(--clr-white);
+    color: var(--clr-primary);
+    width: fit-content;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+
+    p {
+      margin-left: 0.25rem;
+    }
+  }
+}

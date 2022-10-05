@@ -29,7 +29,7 @@ function Auth({ Component, ...pageProps }: AppProps) {
           firstname: user.firstname,
           lastname: user.lastname,
           email: user.email,
-          role: user.role,
+          phone: user.phone,
         });
       } catch (error) {
         removeUser();
