@@ -15,12 +15,12 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Teko:wght@600&display=swap"
             rel="stylesheet"
           />
-          <script
+          {/* <script
             src="https://accounts.google.com/gsi/client"
             async
             defer
             crossOrigin="crossorigin"
-          ></script>
+          ></script> */}
         </Head>
         <body>
           <Main />

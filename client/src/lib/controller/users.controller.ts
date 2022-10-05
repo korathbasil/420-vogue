@@ -37,7 +37,7 @@ export class UsersController {
   }
 
   static async getCurrentUser() {
-    const { data } = await axios.get("/auth/current-user", {
+    const { data } = await axios.get("/auth", {
       withCredentials: true,
     });
     return data as User;
