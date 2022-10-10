@@ -1,3 +1,5 @@
+import { useQuery } from "@tanstack/react-query";
+import { UsersController } from "lib/controller";
 import { Dispatch, SetStateAction, useState, FC } from "react";
 
 import styles from "./checkout-steps.module.scss";
@@ -12,6 +14,15 @@ export const CheckoutAddress: FC<CheckoutAddressProps> = ({ updateStep }) => {
   function addAddressSwitcher() {
     setAddAddress(!addAddress);
   }
+
+  const { data: addresses } = useQuery(["addresses"], async () => {
+    try {
+      const addresses = await UsersController.getAddresses();
+      console.log(addresses);
+      return addresses;
+    } catch (error) {}
+  });
+
   return (
     <div className={styles.box}>
       <div className={styles.header}>
