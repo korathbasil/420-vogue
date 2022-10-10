@@ -78,12 +78,12 @@ export const CheckoutNavigator: FC<CheckoutSNavigatorProps> = ({
           <p>PAYMENT</p>
         </div>
       </div>
-      <div className={styles.actions}>
+      {/* <div className={styles.actions}>
         <div className={styles.backward}></div>
         <div className={styles.forward}>
           <button onClick={nextButtonAction}>{nextButtonText}</button>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

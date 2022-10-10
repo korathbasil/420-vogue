@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, FC } from "react";
 
 import styles from "./checkout-steps.module.scss";
-import { LoginModal, MiniLogin } from "components";
+import { LoginModal } from "components";
 
 interface CheckoutLoginProps {
   updateStep: Dispatch<SetStateAction<number>>;
@@ -20,7 +20,7 @@ export const CheckoutLogin: FC<CheckoutLoginProps> = ({ updateStep }) => {
         <h3>LOGIN / SIGNUP</h3>
       </div>
       <div className={styles.body}>
-        <MiniLogin />
+        <LoginModal closeModal={() => {}} minimal={true} />
       </div>
     </div>
   );
