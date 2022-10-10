@@ -24,3 +24,4 @@ export * from "./search-header/search-header";
 export * from "./search-results/search-result";
 export * from "./categories/categories";
 export * from "./my-account-info/my-account-info";
+export * from "./mini-login/mini-login";
