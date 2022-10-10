@@ -1,5 +1,6 @@
 import { Schema, SchemaFactory, Prop } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
+import { Address } from "../addresses";
 
 import { Product } from "../products/products.model";
 
@@ -51,11 +52,11 @@ export class User extends Document {
   @Prop([{ type: UserAccount }])
   accounts?: UserAccount[];
 
-  @Prop([{ type: Types.ObjectId, ref: "Product" }])
+  @Prop([{ type: { type: Types.ObjectId, ref: Product.name } }])
   favourites: Product[];
 
-  @Prop([{ type: UserAddress }])
-  addresses?: UserAddress[];
+  @Prop([{ type: { type: Types.ObjectId, ref: Address.name } }])
+  addresses?: Address[];
 
   @Prop({ type: Date })
   createdAt: string;

@@ -54,4 +54,9 @@ export class UsersService {
       $push: { favourites: productId },
     });
   }
+
+  async getAddressesForUser(id: string) {
+    const user = await this.usersRepo.findById(id);
+    return user.addresses;
+  }
 }
