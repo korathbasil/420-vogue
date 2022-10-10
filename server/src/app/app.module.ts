@@ -10,6 +10,7 @@ import { PaymentsModule } from 'src/payments/payments.module';
 import { FavModule } from 'src/fav/fav.module';
 import { SetUserMiddleware } from 'src/middlewares/set-user.middleware';
 import { AuthTokenModule } from 'src/auth-token/auth-token.module';
+import { AddressesModule } from 'src/addresses/addresses.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AuthTokenModule } from 'src/auth-token/auth-token.module';
     AuthModule,
     PaymentsModule,
     FavModule,
+    AddressesModule,
   ],
 })
 export class AppModule {

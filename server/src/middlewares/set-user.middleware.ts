@@ -10,10 +10,10 @@ export class SetUserMiddleware implements NestMiddleware {
 
     try {
       const userData = await this.authTokenService.verify(jwtToken);
-      req.user = userData;
+      req.authUser = userData;
       return next();
     } catch (error) {
-      req.user = null;
+      req.authUser = null;
       return next();
     }
   }

@@ -29,7 +29,7 @@ export class AuthController {
   @Get()
   @UseGuards(AuthGuard)
   async getCurrentUser(@Req() req: Request) {
-    const user = req.user;
+    const user = req.authUser;
     return user;
   }
 
@@ -51,6 +51,7 @@ export class AuthController {
 
       res.cookie('access-token', token, {
         httpOnly: true,
+        maxAge: 259200,
       });
 
       (
@@ -68,13 +69,12 @@ export class AuthController {
   // Google OAuth
   @Get('/google')
   @UseGuards(OAuthGuard('google'))
-  async googleAuth(@Req() req: Request) {
-    console.log('Hit');
-  }
+  async googleAuth(@Req() req: Request) {}
 
   @Get('/google/callback')
   @UseGuards(OAuthGuard('google'))
-  googleAuthRedirect(@Req() req) {
-    return req?.user;
+  googleAuthRedirect(@Req() req: Request, @Res() res: Response) {
+    console.log(req.user);
+    return res.redirect('http://localhost:3000');
   }
 }

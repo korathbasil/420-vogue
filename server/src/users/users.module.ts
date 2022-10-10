@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { UsersModule as CommonUsersModule } from 'common-server';
+import { SetUserMiddleware } from 'src/middlewares/set-user.middleware';
 
-import { AuthTokenModule } from 'src/auth-token/auth-token.module';
+import { AuthTokenModule } from '../auth-token/auth-token.module';
 import { UsersController } from './users.controller';
 
 @Module({
