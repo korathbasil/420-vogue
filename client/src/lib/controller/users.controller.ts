@@ -59,7 +59,6 @@ export class UsersController {
       });
       return res.data;
     } catch (e: any) {
-      console.log(e);
       throw new HttpError(e.response.data.message, e.response.data.statusCode);
     }
   }

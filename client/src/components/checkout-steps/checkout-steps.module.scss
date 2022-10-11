@@ -5,6 +5,13 @@
   background-color: var(--clr-white);
 }
 
+@include phone {
+  .steps {
+    width: 100%;
+    flex: 1;
+  }
+}
+
 .box {
   .header {
     background-color: var(--clr-primary);
@@ -152,6 +159,12 @@
 
       &:nth-child(1) {
         margin-right: 1rem;
+      }
+    }
+
+    @include phone {
+      div {
+        width: calc(50% - 0.5rem);
       }
     }
   }
