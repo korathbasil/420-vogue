@@ -41,7 +41,7 @@ const HomePage: NextPage = () => {
         />
         <main style={{ paddingTop: "5.5rem" }}>
           <Greetings />
-          <HomeBanner />
+          {/* <HomeBanner /> */}
           <FeaturedProducts />
         </main>
         {isLoginModalOpen && (
