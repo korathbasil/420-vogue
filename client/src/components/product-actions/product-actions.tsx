@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import styles from "./product-actions.module.scss";
 import { ShoppingBag, Bolt } from "assets/icons";
 import { BagProduct, Product, ProductVariant } from "lib/interfaces";
-import { useUserStore, useVBagStore } from "store";
+import { useTempBagProductStore, useUserStore, useVBagStore } from "store";
 
 interface ProductActionsProps {
   product: Product;
@@ -25,6 +25,8 @@ export const ProductActions: FC<ProductActionsProps> = ({
   const vBag = useVBagStore((vb) => vb.vBag);
   const setVBag = useVBagStore((vb) => vb.setVBag);
 
+  const setTempBagPeoduct = useTempBagProductStore((st) => st.setProduct);
+
   function addToBag() {
     const bagProduct = {
       _id: product._id,
@@ -42,6 +44,7 @@ export const ProductActions: FC<ProductActionsProps> = ({
         size: size,
       },
     } as BagProduct;
+
     if (user) {
     } else {
       // handle case for guest user
@@ -54,12 +57,34 @@ export const ProductActions: FC<ProductActionsProps> = ({
         <ShoppingBag size="22px" />
         <h3>ADD TO BAG</h3>
       </div>
-      <Link href={`/checkout/${productId}`}>
-        <div className={styles.cart}>
-          <Bolt fill="white" size="22px" />
-          <h3>BUY NOW</h3>
-        </div>
-      </Link>
+
+      <div
+        onClick={() => {
+          const bagProduct = {
+            _id: product._id,
+            brand: product.brand,
+            style: product.style,
+            category: product.category,
+            subCategory: product.subCategory,
+            quantity: 1,
+            variant: {
+              _id: variant._id,
+              color: variant.color,
+              colorCode: variant.colorCode,
+              images: variant.images,
+              price: variant.price,
+              size: size,
+            },
+          } as BagProduct;
+
+          setTempBagPeoduct(bagProduct);
+          router.push(`/checkout/${productId}`);
+        }}
+        className={styles.cart}
+      >
+        <Bolt fill="white" size="22px" />
+        <h3>BUY NOW</h3>
+      </div>
     </div>
   );
 };
