@@ -11,7 +11,6 @@ export class AuthGuard implements CanActivate {
       .switchToHttp()
       .getRequest();
 
-    console.log(request.url + request.authUser);
     if (!request.authUser) return false;
     return true;
   }

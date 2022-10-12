@@ -12,10 +12,16 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { UsersService, CreateUserDto, User } from 'common-server';
+import {
+  UsersService,
+  CreateUserDto,
+  User,
+  CreateAddressDto,
+} from 'common-server';
 
 import { AuthTokenService } from 'src/auth-token/auth-token.service';
 import { AuthGuard } from 'src/guards/auth.guard';
+import { userSchema } from 'common-server/dist/users/user.model';
 
 @Controller('users')
 export class UsersController {
@@ -69,12 +75,23 @@ export class UsersController {
   @UseGuards(AuthGuard)
   addresses(@Req() req: Request) {
     const userId = req.authUser._id;
-
     try {
       const addresses = this.usersService.getAddressesForUser(userId);
       return addresses;
     } catch (error) {
       throw new InternalServerErrorException();
+    }
+  }
+
+  @Post('/addresses')
+  @UseGuards(AuthGuard)
+  async newAddress(@Req() req: Request, @Body() data: CreateAddressDto) {
+    const id = req.authUser._id;
+    try {
+      await this.usersService.addAddress(id, data);
+      return;
+    } catch (error) {
+      throw new BadRequestException();
     }
   }
 }
