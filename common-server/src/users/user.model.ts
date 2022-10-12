@@ -52,10 +52,10 @@ export class User extends Document {
   @Prop([{ type: UserAccount }])
   accounts?: UserAccount[];
 
-  @Prop([{ type: { type: Types.ObjectId, ref: Product.name } }])
+  @Prop({ type: [{ type: Types.ObjectId, ref: Product.name }] })
   favourites: Product[];
 
-  @Prop([{ type: { type: Types.ObjectId, ref: Address.name } }])
+  @Prop({ type: [{ type: Types.ObjectId, ref: Address.name }] })
   addresses?: Address[];
 
   @Prop({ type: Date })

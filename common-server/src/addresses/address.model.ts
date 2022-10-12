@@ -11,6 +11,9 @@ export class Address {
   @Prop({ type: String, required: true, min: 5, max: 40 })
   line2: string;
 
+  @Prop({ type: String, required: true, min: 5, max: 40 })
+  line3: string;
+
   @Prop({ type: String, required: true, min: 3, max: 30 })
   city: string;
 
@@ -22,6 +25,9 @@ export class Address {
 
   @Prop({ type: String, required: true, default: "INDIA (IN)" })
   country: string;
+
+  @Prop({ type: String, required: true, min: 4, max: 40 })
+  name: string;
 }
 
 export const addressSchema = SchemaFactory.createForClass(Address);

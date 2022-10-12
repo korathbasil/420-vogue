@@ -9,10 +9,14 @@ import { CreateUserDto } from "./dtos/create-user.dto";
 import { User } from "./user.model";
 import { hashString, compareHash } from "../util/crypto-hash";
 import { Types } from "mongoose";
+import { AddressesService, CreateAddressDto } from "../addresses";
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly usersRepo: UsersRepository) {}
+  constructor(
+    private readonly usersRepo: UsersRepository,
+    private readonly addressesService: AddressesService
+  ) {}
 
   findAllUsers() {
     return this.usersRepo.find({});
@@ -53,6 +57,15 @@ export class UsersService {
     return this.usersRepo.updateOne(userId, {
       $push: { favourites: productId },
     });
+  }
+
+  async addAddress(userId: string, address: CreateAddressDto) {
+    const add = await this.addressesService.addAddress(address);
+    await this.usersRepo.updateOne(userId, {
+      $push: { addresses: add._id },
+    });
+
+    return add._id;
   }
 
   async getAddressesForUser(id: string) {

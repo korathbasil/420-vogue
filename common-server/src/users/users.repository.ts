@@ -19,11 +19,11 @@ export class UsersRepository {
   }
 
   findOne(query: FilterQuery<User>) {
-    return this.userModel.findOne(query);
+    return this.userModel.findOne(query).populate("addresses");
   }
 
   async findById(id: string) {
-    return this.userModel.findById(id).populate("addresses").exec();
+    return this.userModel.findById(id).populate("addresses");
   }
 
   async insertOne(user: User) {
