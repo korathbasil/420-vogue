@@ -1,17 +1,12 @@
-import { Module } from '@nestjs/common';
-import { JwtModule } from '@nestjs/jwt';
+import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { UsersModule as CommonUsersModule } from 'common-server';
+import { SetUserMiddleware } from 'src/middlewares/set-user.middleware';
 
+import { AuthTokenModule } from '../auth-token/auth-token.module';
 import { UsersController } from './users.controller';
 
 @Module({
-  imports: [
-    JwtModule.register({
-      secret: 'secret',
-      signOptions: { expiresIn: '600s' },
-    }),
-    CommonUsersModule,
-  ],
+  imports: [AuthTokenModule, CommonUsersModule],
   controllers: [UsersController],
 })
 export class UsersModule {}

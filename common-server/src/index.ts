@@ -11,3 +11,5 @@ export * from "./crypto";
 export * from "./orders";
 
 export * from "./payments";
+
+export * from "./addresses";

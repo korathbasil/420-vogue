@@ -1,9 +1,8 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import {
   Body,
   Controller,
   Get,
-  NotFoundException,
   Post,
   Req,
   Res,
@@ -12,58 +11,27 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import { AuthGuard } from '@nestjs/passport';
-import { User, UserDto, UseSerializeInterceptor } from 'common-server';
+import { AuthGuard as OAuthGuard } from '@nestjs/passport';
+import { User } from 'common-server';
 
+import { AuthTokenService } from 'src/auth-token/auth-token.service';
+import { AuthGuard } from 'src/guards/auth.guard';
 import { LoginUserDto } from './dtos/login-user.dto';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
   constructor(
-    private readonly jwtService: JwtService,
     private readonly authService: AuthService,
+    private readonly authTokenService: AuthTokenService,
   ) {}
 
-  // @UseGuards(AuthGuard)
-  // @UseSerializeInterceptor(UserDto)
-  // @Get('/current-user')
-  // async getCurrentUser(
-  //   @Res({ passthrough: true }) res: Response,
-  //   @Req() req: Request,
-  // ) {
-  //   // @ts-ignore
-  //   const token = req.cookies['token'];
-  //   // @ts-ignore
-
-  //   if (!token) throw new UnauthorizedException('Please login to continue');
-
-  //   type JwtPayload = {
-  //     _id: string;
-  //     firstname: string;
-  //     lastname: string;
-  //     email: string;
-  //   };
-
-  //   try {
-  //     const userData: JwtPayload = await this.jwtService.verifyAsync(token, {
-  //       secret: 'secret',
-  //     });
-  //     const loggedInUser = await this.authService.getLoggedInUser(userData._id);
-  //     (
-  //       loggedInUser as User & {
-  //         token: string;
-  //       }
-  //     ).token = token;
-  //     res.cookie('token', token, {
-  //       httpOnly: true,
-  //     });
-  //     return loggedInUser;
-  //   } catch (e) {
-  //     throw new UnauthorizedException('Please login to continue');
-  //   }
-  // }
+  @Get()
+  @UseGuards(AuthGuard)
+  async getCurrentUser(@Req() req: Request) {
+    const user = req.authUser;
+    return user;
+  }
 
   @UsePipes(ValidationPipe)
   @Post('/login')
@@ -74,15 +42,16 @@ export class AuthController {
     try {
       const user = await this.authService.loginUser(cred.email, cred.password);
 
-      const token = await this.jwtService.signAsync({
+      const token = await this.authTokenService.sign({
         _id: user._id,
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
       });
 
-      res.cookie('token', token, {
+      res.cookie('access-token', token, {
         httpOnly: true,
+        maxAge: 259200,
       });
 
       (
@@ -99,14 +68,13 @@ export class AuthController {
 
   // Google OAuth
   @Get('/google')
-  @UseGuards(AuthGuard('google'))
-  async googleAuth(@Req() req: Request) {
-    console.log('Hit');
-  }
+  @UseGuards(OAuthGuard('google'))
+  async googleAuth(@Req() req: Request) {}
 
   @Get('/google/callback')
-  @UseGuards(AuthGuard('google'))
-  googleAuthRedirect(@Req() req) {
-    return req?.user;
+  @UseGuards(OAuthGuard('google'))
+  googleAuthRedirect(@Req() req: Request, @Res() res: Response) {
+    console.log(req.user);
+    return res.redirect('http://localhost:3000');
   }
 }

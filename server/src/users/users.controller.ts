@@ -7,16 +7,21 @@ import {
   ValidationPipe,
   BadRequestException,
   Res,
+  UseGuards,
+  Req,
+  InternalServerErrorException,
 } from '@nestjs/common';
-import { Response } from 'express';
-import { JwtService } from '@nestjs/jwt';
+import { Request, Response } from 'express';
 import { UsersService, CreateUserDto, User } from 'common-server';
+
+import { AuthTokenService } from 'src/auth-token/auth-token.service';
+import { AuthGuard } from 'src/guards/auth.guard';
 
 @Controller('users')
 export class UsersController {
   constructor(
     private readonly usersService: UsersService,
-    private readonly jwtService: JwtService,
+    private readonly authTokenService: AuthTokenService,
   ) {}
 
   @Get()
@@ -34,15 +39,16 @@ export class UsersController {
       const user = await this.usersService.createUser(userData);
       if (!user) return new BadRequestException('User already exists');
 
-      const token = await this.jwtService.signAsync({
+      const token = await this.authTokenService.sign({
         _id: user._id,
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
       });
 
-      res.cookie('token', token, {
+      res.cookie('access-token', token, {
         httpOnly: true,
+        maxAge: 259200,
       });
 
       delete user.password;
@@ -56,6 +62,19 @@ export class UsersController {
       return user;
     } catch (e) {
       return e;
+    }
+  }
+
+  @Get('/addresses')
+  @UseGuards(AuthGuard)
+  addresses(@Req() req: Request) {
+    const userId = req.authUser._id;
+
+    try {
+      const addresses = this.usersService.getAddressesForUser(userId);
+      return addresses;
+    } catch (error) {
+      throw new InternalServerErrorException();
     }
   }
 }

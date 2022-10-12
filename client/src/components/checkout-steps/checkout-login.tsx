@@ -20,7 +20,12 @@ export const CheckoutLogin: FC<CheckoutLoginProps> = ({ updateStep }) => {
         <h3>LOGIN / SIGNUP</h3>
       </div>
       <div className={styles.body}>
-        <LoginModal closeModal={GoToCheckoutAddress} minimal={true} />
+        <LoginModal
+          closeModal={() => {
+            GoToCheckoutAddress();
+          }}
+          minimal={true}
+        />
       </div>
     </div>
   );

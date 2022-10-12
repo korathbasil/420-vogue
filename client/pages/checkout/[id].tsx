@@ -21,6 +21,35 @@ const CheckoutPage: NextPage = () => {
     } else setStep(1);
   }, [user]);
 
+  function getNextButtonText() {
+    if (step === 1) return "LOGIN";
+    if (step === 2) return "Next";
+    if (step === 3) return "Next";
+    if (step === 3) return "Make Payment";
+    return "LOADING";
+  }
+
+  function getNextButtonAction() {
+    if (step === 1)
+      return () => {
+        // Login
+        setStep(2);
+      };
+    if (step === 2)
+      return () => {
+        setStep(3);
+      };
+    if (step === 3)
+      return () => {
+        setStep(4);
+      };
+    if (step === 4)
+      return () => {
+        setStep(5);
+      };
+    return () => {};
+  }
+
   return (
     <main>
       <CHeader />
@@ -31,6 +60,8 @@ const CheckoutPage: NextPage = () => {
             step={step}
             updateStep={updateStep}
             minStep={minStep}
+            nextButtonText={getNextButtonText()}
+            nextButtonAction={getNextButtonAction()}
           />
         </div>
       </div>

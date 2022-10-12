@@ -1,4 +1,5 @@
-import { User } from "lib/interfaces";
+import { HttpError } from "lib/http";
+import { Address, User } from "lib/interfaces";
 import { axios } from "utils";
 
 export class UsersController {
@@ -37,7 +38,7 @@ export class UsersController {
   }
 
   static async getCurrentUser() {
-    const { data } = await axios.get("/auth/current-user", {
+    const { data } = await axios.get("/auth", {
       withCredentials: true,
     });
     return data as User;
@@ -47,5 +48,18 @@ export class UsersController {
     try {
       const res = await axios.get("/auth/google");
     } catch (error) {}
+  }
+
+  // User
+
+  static async getAddresses() {
+    try {
+      const res = await axios.get<Address[]>("/users/addresses", {
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (e: any) {
+      throw new HttpError(e.response.data.message, e.response.data.statusCode);
+    }
   }
 }

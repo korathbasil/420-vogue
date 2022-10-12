@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, UpdateQuery } from "mongoose";
+import { FilterQuery, Model, UpdateQuery } from "mongoose";
 import { Address, AddressDoc } from "./address.model";
 
 @Injectable()
@@ -8,6 +8,10 @@ export class AddressesRepository {
   constructor(
     @InjectModel("Address") private readonly addressModel: Model<AddressDoc>
   ) {}
+
+  find(filter?: FilterQuery<AddressDoc>) {
+    return this.addressModel.find(filter);
+  }
 
   insertOne(address: Address) {
     const newAddress = new this.addressModel(address);

@@ -21,9 +21,12 @@ export const LoginModal: FC<LoginModalProps> = ({
   const loginSignupSwitcher = useCallback(setShowLogin, []);
 
   async function googleAuthHandler() {
-    try {
-      await UsersController.initGoogleSigninFlow();
-    } catch (error) {}
+    const googleButton = document.getElementById(
+      "google-login-button-wrapper"
+    ) as HTMLDivElement;
+
+    googleButton.focus();
+    console.log("Hit");
   }
 
   return (

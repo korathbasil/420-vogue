@@ -2,11 +2,6 @@
 
 .checkout {
   padding-top: 5rem;
-}
-
-@include tab {
-  .checkout {
-    display: flex;
-    gap: 2rem;
-  }
+  display: flex;
+  gap: 2rem;
 }

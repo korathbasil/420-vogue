@@ -1,3 +1,5 @@
+@import "../../sass/screen-media-queries.scss";
+
 .navigator {
   background-color: var(--clr-white);
   border-radius: 10px;
@@ -5,8 +7,6 @@
   flex: 0.4;
   height: fit-content;
   padding: 1rem;
-  position: fixed;
-  bottom: 1rem;
   width: calc(100% - 2rem);
 
   .steps {
@@ -16,16 +16,21 @@
     .step {
       padding: 0.3rem 0.5rem;
       border-radius: 20px;
-      color: var(--clr-white);
-      background-color: var(--clr-primary);
       font-weight: 700;
       font-size: 14px;
     }
 
     .devider {
-      height: 0.5rem;
+      height: 0.25rem;
       flex: 1;
       background-color: var(--clr-primary);
     }
+  }
+}
+
+@include phone {
+  .navigator {
+    position: fixed;
+    bottom: 1rem;
   }
 }

@@ -1,6 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Model, FilterQuery, Types, UpdateQuery } from "mongoose";
+import {
+  Model,
+  FilterQuery,
+  Types,
+  UpdateQuery,
+  PipelineStage,
+} from "mongoose";
 
 import { User } from "./user.model";
 
@@ -17,7 +23,7 @@ export class UsersRepository {
   }
 
   async findById(id: string) {
-    return this.userModel.findById(id).exec();
+    return this.userModel.findById(id).populate("addresses").exec();
   }
 
   async insertOne(user: User) {
@@ -28,5 +34,9 @@ export class UsersRepository {
 
   updateOne(id: string, query: UpdateQuery<User>) {
     return this.userModel.updateOne({ _id: new Types.ObjectId(id) }, query);
+  }
+
+  aggregate(stages: PipelineStage[]) {
+    return this.userModel.aggregate(stages);
   }
 }

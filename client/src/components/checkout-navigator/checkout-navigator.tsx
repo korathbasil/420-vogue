@@ -6,51 +6,84 @@ interface CheckoutSNavigatorProps {
   step: number;
   minStep: number;
   updateStep: Dispatch<SetStateAction<number>>;
+  nextButtonText: string;
+  nextButtonAction: () => void;
 }
 
 export const CheckoutNavigator: FC<CheckoutSNavigatorProps> = ({
   step,
   minStep,
   updateStep,
+  nextButtonText,
+  nextButtonAction,
 }) => {
+  function getBackgroundColor(value: number, step: number) {
+    if (step > value) return "var(--clr-primary)";
+    return "var(--clr-lightgrey-bg)";
+  }
+  function getColor(value: number, step: number) {
+    if (step > value) return "var(--clr-white)";
+    if (step === value) return "var(--clr-primary)";
+    return "var(--clr-lightgrey)";
+  }
   return (
     <section className={styles.navigator}>
       <div className={styles.steps}>
-        <div className={styles.step}>
+        <div
+          style={{
+            backgroundColor: getBackgroundColor(1, step),
+            color: getColor(1, step),
+          }}
+          className={styles.step}
+        >
           <p>LOGIN</p>
         </div>
-        <div className={styles.devider}></div>
-        <div className={styles.step}>
+        <div
+          style={{ backgroundColor: getBackgroundColor(1, step) }}
+          className={styles.devider}
+        ></div>
+        <div
+          style={{
+            backgroundColor: getBackgroundColor(2, step),
+            color: getColor(2, step),
+          }}
+          className={styles.step}
+        >
           <p>ADDRESS</p>
         </div>
-        <div className={styles.devider}></div>
-        <div className={styles.step}>
+        <div
+          style={{ backgroundColor: getBackgroundColor(2, step) }}
+          className={styles.devider}
+        ></div>
+        <div
+          style={{
+            backgroundColor: getBackgroundColor(3, step),
+            color: getColor(3, step),
+          }}
+          className={styles.step}
+        >
           <p>SUMMARY</p>
         </div>
-        <div className={styles.devider}></div>
-        <div className={styles.step}>
+        <div
+          style={{ backgroundColor: getBackgroundColor(3, step) }}
+          className={styles.devider}
+        ></div>
+        <div
+          style={{
+            backgroundColor: getBackgroundColor(4, step),
+            color: getColor(4, step),
+          }}
+          className={styles.step}
+        >
           <p>PAYMENT</p>
         </div>
       </div>
-      {/* Navigator
-      <button
-        onClick={() => {
-          if (step > minStep) {
-            updateStep((step) => step - 1);
-          }
-        }}
-      >
-        Prev
-      </button>
-      <button
-        onClick={() => {
-          if (step < 4) {
-            updateStep((step) => step + 1);
-          }
-        }}
-      >
-        Next
-      </button> */}
+      {/* <div className={styles.actions}>
+        <div className={styles.backward}></div>
+        <div className={styles.forward}>
+          <button onClick={nextButtonAction}>{nextButtonText}</button>
+        </div>
+      </div> */}
     </section>
   );
 };

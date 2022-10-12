@@ -7,6 +7,10 @@ import { CreateAddressDto } from "./dtos/create-address.dto";
 export class AddressesService {
   constructor(private readonly repo: AddressesRepository) {}
 
+  getAddresses(userId: string) {
+    return this.repo.find({});
+  }
+
   addAddress(addressData: CreateAddressDto) {
     const address = {
       ...addressData,

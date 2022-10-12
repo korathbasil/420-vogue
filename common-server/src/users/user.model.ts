@@ -1,5 +1,6 @@
 import { Schema, SchemaFactory, Prop } from "@nestjs/mongoose";
-import { Document, Schema as MSchema, Types } from "mongoose";
+import { Document, Types } from "mongoose";
+import { Address } from "../addresses";
 
 import { Product } from "../products/products.model";
 
@@ -31,12 +32,6 @@ class UserAddress {
   pin: string;
 }
 
-export enum Role {
-  SUPERUSER = "SUPERUSER",
-  MANAGER = "MANAGER",
-  USER = "USER",
-}
-
 @Schema({ timestamps: { createdAt: true, updatedAt: true } })
 export class User extends Document {
   @Prop({ type: String, required: true })
@@ -57,14 +52,11 @@ export class User extends Document {
   @Prop([{ type: UserAccount }])
   accounts?: UserAccount[];
 
-  @Prop({ type: String, required: true })
-  role: Role;
-
-  @Prop([{ type: MSchema.Types.ObjectId, ref: "Product" }])
+  @Prop([{ type: { type: Types.ObjectId, ref: Product.name } }])
   favourites: Product[];
 
-  @Prop([{ type: UserAddress }])
-  addresses?: UserAddress[];
+  @Prop([{ type: { type: Types.ObjectId, ref: Address.name } }])
+  addresses?: Address[];
 
   @Prop({ type: Date })
   createdAt: string;
