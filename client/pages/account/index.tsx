@@ -1,5 +1,5 @@
 import { useUserStore } from "store";
-import { CHeader, MyAccountInfo } from "components";
+import { AccountMenu, CHeader, MyAccountInfo } from "components";
 
 const AccountPage = () => {
   const user = useUserStore((us) => us.user);
@@ -15,6 +15,9 @@ const AccountPage = () => {
             phone={user.phone}
           />
         )}
+        <div style={{ marginTop: "1rem" }}>
+          <AccountMenu />
+        </div>
       </div>
     </main>
   );
