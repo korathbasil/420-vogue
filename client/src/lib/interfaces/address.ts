@@ -3,6 +3,7 @@ export type Address = {
   name: string;
   line1: string;
   line2: string;
+  line3: string;
   city: string;
   pin: string;
   state: string;

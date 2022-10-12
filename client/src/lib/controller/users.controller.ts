@@ -62,4 +62,15 @@ export class UsersController {
       throw new HttpError(e.response.data.message, e.response.data.statusCode);
     }
   }
+
+  static async addnewAddress(data: Address) {
+    try {
+      const res = await axios.post<Address>("/users/addresses", data, {
+        withCredentials: true,
+      });
+      return res.data;
+    } catch (e: any) {
+      throw new HttpError(e.response.data.message, e.response.data.statusCode);
+    }
+  }
 }

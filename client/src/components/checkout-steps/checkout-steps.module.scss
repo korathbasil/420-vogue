@@ -53,35 +53,60 @@
       width: 100%;
       background-color: white;
       border-radius: 10px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
 
-      label {
-        padding: 0.5rem;
-        background-color: var(--clr-lightgrey-bg);
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        font-size: 14px;
+      .radios {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
 
-        p {
-          margin-left: 0.5rem;
+        label {
+          p {
+            margin-left: 0.5rem;
+          }
+        }
+
+        .disabledLabel {
+          color: grey;
+        }
+
+        .addressRadio {
+          padding: 0.5rem;
+          background-color: var(--clr-lightgrey-bg);
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          align-items: baseline;
+
+          div {
+            margin-left: 0.5rem;
+
+            P {
+              margin: 0;
+            }
+          }
         }
       }
 
-      .disabledLabel {
-        color: grey;
-      }
+      .details {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        label {
+          margin-bottom: 0.25rem;
+          font-size: 14px;
+        }
 
-      .addressRadio {
-        align-items: baseline;
+        input {
+          border-radius: 5px;
+          padding: 0.75rem 0.5rem;
+          outline: none;
+          border: 2px solid var(--clr-lightgrey);
+          margin-bottom: 0.5rem;
+          color: var(--clr-primary);
 
-        div {
-          margin-left: 0.5rem;
-
-          P {
-            margin: 0;
+          &:focus {
+            border: 2px solid var(--clr-primary);
           }
         }
       }
